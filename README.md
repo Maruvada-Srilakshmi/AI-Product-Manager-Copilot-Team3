@@ -1,1 +1,1 @@
-# AI-Product-Manager-Copilot-
+# AI-Product-Manager-Copilot
