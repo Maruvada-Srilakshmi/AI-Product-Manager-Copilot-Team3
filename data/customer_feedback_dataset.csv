@@ -1,0 +1,101 @@
+feedback_id,source,date,customer_id,author_role,product_area,feedback_text,sentiment,rating
+FB-0001,Support Email,08-06-2026,CUST-1017,Finance Lead,Customer Support,"Support team resolved my issue within an hour, really impressed with the response time.",positive,4
+FB-0002,Zendesk,29-04-2026,CUST-1051,Product Owner,Search,Saved searches would be a huge time saver for our recurring reports.,neutral,3
+FB-0003,Community Forum,22-05-2026,CUST-1056,Product Owner,Onboarding,A guided product tour would really help new users get started faster.,neutral,3
+FB-0004,CRM,28-04-2026,CUST-1016,Trial User,Customer Support,"Waited 5 days for a response to a critical billing issue, unacceptable turnaround.",negative,2
+FB-0005,Twitter/X,02-05-2026,CUST-1014,Trial User,Integrations,Slack integration works well but doesn't support threaded replies yet.,neutral,4
+FB-0006,Jira,05-06-2026,CUST-1009,Trial User,Dashboard,It would help to be able to customize which widgets appear on the dashboard.,neutral,3
+FB-0007,Support Email,11-07-2026,CUST-1038,Ops Analyst,Dashboard,"Dashboard performance degrades noticeably after 2pm, might be a server load issue.",neutral,3
+FB-0008,NPS Survey,07-06-2026,CUST-1048,Team Lead,Performance,"Overall the app feels sluggish compared to six months ago, something has regressed.",negative,1
+FB-0009,Support Email,08-07-2026,CUST-1010,Ops Analyst,Export/Reporting,Export to Google Sheets directly would save us a lot of manual steps.,neutral,3
+FB-0010,App Store Review,01-04-2026,CUST-1053,Finance Lead,Data Security,"Audit logs don't capture who exported data, this is a compliance blocker for us.",negative,1
+FB-0011,CRM,17-06-2026,CUST-1034,Finance Lead,Mobile App,The mobile app crashes every time I try to open the reports tab on iOS.,negative,2
+FB-0012,Zendesk,27-07-2026,CUST-1007,Product Owner,Dashboard,"Dashboard is so slow to load each morning, sometimes I just wait a full minute.",negative,2
+FB-0013,In-App Survey,22-07-2026,CUST-1056,Support Contact,Notifications,"Getting duplicate notifications for the same event, filling up my inbox.",negative,1
+FB-0014,NPS Survey,11-04-2026,CUST-1049,Trial User,Data Security,Would like more granular role-based permissions for sensitive customer data.,neutral,4
+FB-0015,NPS Survey,17-04-2026,CUST-1055,Support Contact,API,API returns inconsistent field names between the v1 and v2 endpoints.,negative,2
+FB-0016,Support Email,25-05-2026,CUST-1042,Product Owner,Integrations,Zapier integration stopped working after the last platform update.,negative,2
+FB-0017,In-App Survey,27-05-2026,CUST-1004,Product Owner,Pricing/Billing,"Billing page shows the wrong currency for our region, causing confusion with finance.",negative,1
+FB-0018,Jira,03-04-2026,CUST-1045,Anonymous User,Export/Reporting,Scheduled report exports never actually arrive in our inbox.,negative,1
+FB-0019,Jira,30-04-2026,CUST-1032,Enterprise Admin,Dark Mode/UI,Dark theme would really help reduce eye strain during late night work.,neutral,3
+FB-0020,Community Forum,06-05-2026,CUST-1036,Ops Analyst,Login & Auth,Two-factor authentication fails randomly and locks me out of my account.,negative,1
+FB-0021,Jira,02-05-2026,CUST-1006,IT Manager,Dashboard,Dashboard crashes on Firefox specifically when filtering by custom date range.,negative,1
+FB-0022,Zendesk,16-05-2026,CUST-1043,Verified Customer,Login & Auth,Could you support biometric login on mobile devices?,neutral,4
+FB-0023,In-App Survey,08-04-2026,CUST-1012,Enterprise Admin,Mobile App,"Mobile app doesn't sync properly, I see stale data from two days ago.",negative,1
+FB-0024,CRM,08-06-2026,CUST-1017,Ops Analyst,Dark Mode/UI,"Dark mode finally shipped and it looks fantastic, thank you!",positive,5
+FB-0025,Zendesk,02-05-2026,CUST-1041,Finance Lead,Notifications,"I get way too many email notifications, there's no way to customize frequency.",negative,1
+FB-0026,CRM,17-07-2026,CUST-1026,Ops Analyst,Notifications,Please add Slack integration for notifications instead of just email.,neutral,3
+FB-0027,CRM,01-06-2026,CUST-1024,Anonymous User,Dark Mode/UI,"Please add a dark mode option, the bright white UI is hard on the eyes at night.",neutral,4
+FB-0028,Support Email,20-05-2026,CUST-1044,Finance Lead,Performance,Bulk actions on more than 100 records time out consistently.,negative,2
+FB-0029,App Store Review,24-06-2026,CUST-1013,Anonymous User,Search,Fuzzy search would help since our team frequently misspells product names.,neutral,3
+FB-0030,Zendesk,14-06-2026,CUST-1037,Ops Analyst,Pricing/Billing,"It's unclear what counts toward our seat limit, billing transparency needs work.",neutral,4
+FB-0031,CRM,04-06-2026,CUST-1004,Support Contact,Search,"Search doesn't support filters by date range, makes it hard to find recent items.",negative,1
+FB-0032,Community Forum,09-04-2026,CUST-1015,Support Contact,Dashboard,"Loading the main dashboard is unbearable, especially on Monday mornings when everyone logs in.",negative,1
+FB-0033,Community Forum,16-06-2026,CUST-1036,Finance Lead,Data Security,Single sign-on with Okta would make security review much easier for us.,neutral,3
+FB-0034,In-App Survey,11-05-2026,CUST-1016,IT Manager,Login & Auth,"SSO login via Google keeps timing out, had to reset my password 3 times this week.",negative,2
+FB-0035,Jira,17-04-2026,CUST-1000,Ops Analyst,Mobile App,Android app is missing half the features available on desktop.,negative,2
+FB-0036,NPS Survey,19-06-2026,CUST-1016,Trial User,Collaboration,Please add @mentions in comments so teammates get notified directly.,neutral,3
+FB-0037,Twitter/X,29-07-2026,CUST-1018,Trial User,Onboarding,"Onboarding flow is confusing, I didn't understand how to invite my team for the first week.",negative,1
+FB-0038,Jira,27-05-2026,CUST-1056,Trial User,API,API rate limits are too restrictive for our automated reporting pipeline.,negative,2
+FB-0039,App Store Review,04-05-2026,CUST-1018,Support Contact,Onboarding,"Too many steps required before you can actually use the product, lost several teammates during signup.",negative,1
+FB-0040,NPS Survey,27-04-2026,CUST-1031,Team Lead,Dashboard,"Dashboard takes 8-10 seconds to load every morning, it's painfully slow.",negative,2
+FB-0041,App Store Review,25-07-2026,CUST-1002,Anonymous User,Dashboard,Charts on the dashboard freeze when I have more than 50 data points.,negative,2
+FB-0042,Sales Call Notes,13-05-2026,CUST-1035,IT Manager,Onboarding,Sample data or templates during onboarding would help new users understand the tool faster.,neutral,4
+FB-0043,CRM,11-06-2026,CUST-1034,Anonymous User,Dashboard,Loading times on the dashboard have gotten noticeably worse this quarter.,negative,1
+FB-0044,CRM,16-07-2026,CUST-1002,Team Lead,Dashboard,"The widgets on my dashboard take forever to refresh, sometimes I just give up and refresh the page.",negative,2
+FB-0045,In-App Survey,17-05-2026,CUST-1042,Verified Customer,Login & Auth,"Login page shows a blank screen on Safari, works fine on Chrome though.",negative,1
+FB-0046,CRM,16-05-2026,CUST-1051,Trial User,Notifications,"Notification settings reset every time I update my profile, very annoying.",negative,1
+FB-0047,Twitter/X,22-07-2026,CUST-1050,IT Manager,API,Would love GraphQL support in addition to the REST API.,neutral,3
+FB-0048,Jira,12-07-2026,CUST-1024,Anonymous User,Mobile App,Offline mode for the mobile app would be great for field sales reps.,neutral,4
+FB-0049,Sales Call Notes,19-07-2026,CUST-1022,Team Lead,Export/Reporting,"Exporting to CSV fails silently when the report has more than 10,000 rows.",negative,1
+FB-0050,In-App Survey,15-07-2026,CUST-1025,Product Owner,Performance,Performance is fine most days but spikes badly during month-end close.,neutral,3
+FB-0051,NPS Survey,06-05-2026,CUST-1025,Finance Lead,Login & Auth,"I keep getting logged out every few minutes, it's incredibly frustrating during long work sessions.",negative,2
+FB-0052,CRM,13-05-2026,CUST-1037,Team Lead,Customer Support,The live chat support agent was extremely knowledgeable and fixed my problem quickly.,positive,4
+FB-0053,Twitter/X,05-04-2026,CUST-1027,Support Contact,Export/Reporting,CSV export just hangs and never completes for our larger datasets.,negative,2
+FB-0054,App Store Review,05-06-2026,CUST-1002,IT Manager,Data Security,We need SOC 2 compliance documentation before we can roll this out company-wide.,negative,1
+FB-0055,Jira,01-04-2026,CUST-1042,Product Owner,Login & Auth,Getting randomly logged out mid-task is disrupting our whole workflow.,negative,2
+FB-0056,NPS Survey,19-06-2026,CUST-1019,IT Manager,Notifications,A digest option instead of individual emails would cut down on notification noise.,neutral,3
+FB-0057,In-App Survey,12-05-2026,CUST-1026,IT Manager,Pricing/Billing,"Would like an annual billing discount option, currently only monthly is available.",neutral,4
+FB-0058,NPS Survey,26-06-2026,CUST-1053,Anonymous User,Collaboration,It would help a lot to have real-time co-editing on shared documents.,neutral,4
+FB-0059,Community Forum,09-05-2026,CUST-1038,Product Owner,Dark Mode/UI,"The interface feels cluttered, could use a cleaner minimal layout option.",neutral,3
+FB-0060,NPS Survey,30-05-2026,CUST-1030,Trial User,API,Documentation for the webhooks API is outdated and missing several fields.,neutral,4
+FB-0061,Jira,24-06-2026,CUST-1052,Enterprise Admin,Dark Mode/UI,"Really enjoy the new UI refresh, feels much more modern and intuitive.",positive,4
+FB-0062,CRM,26-06-2026,CUST-1001,Anonymous User,Export/Reporting,"Can't export filtered views, it always exports the entire unfiltered dataset.",negative,1
+FB-0063,Support Email,02-05-2026,CUST-1056,Support Contact,Dark Mode/UI,"Please prioritize a dark mode toggle, several of us have asked already.",neutral,3
+FB-0064,In-App Survey,25-04-2026,CUST-1009,Anonymous User,Performance,"Large workspace with 50k+ records is basically unusable, everything lags.",negative,2
+FB-0065,CRM,24-07-2026,CUST-1051,Finance Lead,Collaboration,"No way to see version history on shared documents, we lost important edits.",negative,1
+FB-0066,Sales Call Notes,30-05-2026,CUST-1008,Ops Analyst,Integrations,The Jira integration breaks whenever we rename a project in Jira.,negative,1
+FB-0067,NPS Survey,25-06-2026,CUST-1028,Trial User,Pricing/Billing,"We were charged twice for the same invoice last month, support hasn't resolved it yet.",negative,2
+FB-0068,In-App Survey,05-07-2026,CUST-1053,Team Lead,Export/Reporting,"PDF exports render broken table borders, looks unprofessional for client reports.",negative,2
+FB-0069,Sales Call Notes,08-07-2026,CUST-1004,Team Lead,Mobile App,"iOS app freezes on the reports screen, have to force close it.",negative,2
+FB-0070,NPS Survey,01-05-2026,CUST-1005,Trial User,Login & Auth,"The password reset email takes over 20 minutes to arrive, sometimes never comes.",negative,2
+FB-0071,In-App Survey,20-04-2026,CUST-1004,IT Manager,Dashboard,Dashboard performance is the number one complaint from our whole team right now.,negative,1
+FB-0072,Zendesk,23-05-2026,CUST-1013,IT Manager,Export/Reporting,Excel export loses all my formatting and column widths every single time.,negative,2
+FB-0073,Zendesk,20-05-2026,CUST-1022,Team Lead,Customer Support,Support kept redirecting me between departments without solving the actual issue.,negative,2
+FB-0074,Sales Call Notes,06-07-2026,CUST-1014,Team Lead,Export/Reporting,"Please add a PDF export option for reports, we need it for client presentations.",neutral,4
+FB-0075,Twitter/X,26-05-2026,CUST-1042,IT Manager,Mobile App,Would love push notifications for task assignments on the mobile app.,neutral,3
+FB-0076,Community Forum,02-07-2026,CUST-1034,Anonymous User,Integrations,"Please add a native Salesforce integration, we currently rely on manual CSV imports.",neutral,4
+FB-0077,Support Email,26-07-2026,CUST-1008,Ops Analyst,Search,"Search results are often irrelevant, searching for 'invoice' returns unrelated support tickets.",negative,1
+FB-0078,Twitter/X,24-04-2026,CUST-1013,Ops Analyst,Collaboration,Comments get lost when two people edit the same record at the same time.,negative,2
+FB-0079,Support Email,12-05-2026,CUST-1016,Verified Customer,Login & Auth,Would be nice to have a 'remember this device' option so I don't have to re-authenticate constantly.,neutral,4
+FB-0080,In-App Survey,31-05-2026,CUST-1041,Verified Customer,Export/Reporting,The export button just spins forever and never actually downloads the file.,negative,2
+FB-0081,CRM,14-05-2026,CUST-1031,Enterprise Admin,Collaboration,Comments get lost when two people edit the same record at the same time.,negative,2
+FB-0082,Community Forum,16-05-2026,CUST-1044,Team Lead,Mobile App,The mobile app crashes every time I try to open the reports tab on iOS.,negative,2
+FB-0083,In-App Survey,11-06-2026,CUST-1046,IT Manager,Dark Mode/UI,Dark theme would really help reduce eye strain during late night work.,neutral,3
+FB-0084,Sales Call Notes,02-06-2026,CUST-1050,Anonymous User,Customer Support,The live chat support agent was extremely knowledgeable and fixed my problem quickly.,positive,4
+FB-0085,In-App Survey,12-04-2026,CUST-1019,Support Contact,Onboarding,Sample data or templates during onboarding would help new users understand the tool faster.,neutral,3
+FB-0086,NPS Survey,18-05-2026,CUST-1021,Product Owner,Export/Reporting,Scheduled report exports never actually arrive in our inbox.,negative,2
+FB-0087,App Store Review,29-06-2026,CUST-1014,Verified Customer,Dashboard,"Dashboard takes 8-10 seconds to load every morning, it's painfully slow.",negative,2
+FB-0088,NPS Survey,02-07-2026,CUST-1048,Trial User,Dark Mode/UI,"The interface feels cluttered, could use a cleaner minimal layout option.",neutral,4
+FB-0089,Community Forum,25-04-2026,CUST-1048,Finance Lead,Search,Fuzzy search would help since our team frequently misspells product names.,neutral,4
+FB-0090,App Store Review,16-06-2026,CUST-1014,Product Owner,Notifications,A digest option instead of individual emails would cut down on notification noise.,neutral,3
+FB-0091,App Store Review,23-04-2026,CUST-1002,Anonymous User,Login & Auth,"SSO login via Google keeps timing out, had to reset my password 3 times this week.",negative,1
+FB-0092,Jira,10-06-2026,CUST-1055,Anonymous User,Data Security,"Audit logs don't capture who exported data, this is a compliance blocker for us.",negative,2
+FB-0093,Sales Call Notes,13-06-2026,CUST-1021,Trial User,Login & Auth,Getting randomly logged out mid-task is disrupting our whole workflow.,negative,2
+FB-0094,Jira,07-04-2026,CUST-1025,Ops Analyst,Collaboration,Please add @mentions in comments so teammates get notified directly.,neutral,4
+FB-0095,Community Forum,10-04-2026,CUST-1019,Verified Customer,Export/Reporting,CSV export just hangs and never completes for our larger datasets.,negative,1
+FB-0096,NPS Survey,02-05-2026,CUST-1024,Ops Analyst,Dashboard,Loading times on the dashboard have gotten noticeably worse this quarter.,negative,1
+FB-0097,App Store Review,26-07-2026,CUST-1036,Support Contact,Export/Reporting,"Please add a PDF export option for reports, we need it for client presentations.",neutral,4
+FB-0098,App Store Review,08-04-2026,CUST-1042,Verified Customer,Export/Reporting,Export to Google Sheets directly would save us a lot of manual steps.,neutral,3
+FB-0099,CRM,21-04-2026,CUST-1000,IT Manager,Customer Support,Support kept redirecting me between departments without solving the actual issue.,negative,1
+FB-0100,In-App Survey,28-05-2026,CUST-1018,Team Lead,Export/Reporting,The export button just spins forever and never actually downloads the file.,negative,1
