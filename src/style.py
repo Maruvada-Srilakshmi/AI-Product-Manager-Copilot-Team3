@@ -19,11 +19,12 @@ import streamlit as st
 # the brand identity), only the content-area colors flip.
 # ---------------------------------------------------------------------------
 _LIGHT_VARS = {
-    "--pm-sidebar-bg": "#141A2E",
-    "--pm-sidebar-bg-active": "#6C5CE7",
-    "--pm-sidebar-text": "#AEB4CC",
+    "--pm-sidebar-bg-start": "#3B1E8C",
+    "--pm-sidebar-bg-end": "#1A0F3D",
+    "--pm-sidebar-bg-active": "linear-gradient(135deg, #7C3AED, #5B21B6)",
+    "--pm-sidebar-text": "#C9BFEE",
     "--pm-sidebar-text-active": "#FFFFFF",
-    "--pm-sidebar-border": "#232A45",
+    "--pm-sidebar-border": "rgba(255, 255, 255, 0.08)",
 
     "--pm-primary": "#6C5CE7",
     "--pm-primary-dark": "#5A47D6",
@@ -52,11 +53,12 @@ _LIGHT_VARS = {
 }
 
 _DARK_VARS = {
-    "--pm-sidebar-bg": "#0D1120",
-    "--pm-sidebar-bg-active": "#6C5CE7",
-    "--pm-sidebar-text": "#9AA0BA",
+    "--pm-sidebar-bg-start": "#2A1665",
+    "--pm-sidebar-bg-end": "#0B0818",
+    "--pm-sidebar-bg-active": "linear-gradient(135deg, #8B7CF6, #6C3FE0)",
+    "--pm-sidebar-text": "#B4ABDD",
     "--pm-sidebar-text-active": "#FFFFFF",
-    "--pm-sidebar-border": "#1D2237",
+    "--pm-sidebar-border": "rgba(255, 255, 255, 0.07)",
 
     "--pm-primary": "#8B7CF6",
     "--pm-primary-dark": "#7C6AF0",
@@ -138,6 +140,46 @@ div[data-baseweb="menu"] {
     gap: 0.9rem;
 }
 
+/* ---------------- Typography color enforcement (main content) ----------------
+   Streamlit's own base theme sets explicit text colors directly on the
+   headings/paragraphs/labels/captions it renders. In Dark mode those
+   built-in defaults are near-black and silently win over our
+   `.stApp { color: var(--pm-text) }` default, leaving page titles,
+   captions, tab labels, and widget labels unreadable against the dark
+   background (e.g. Settings > Appearance). Re-asserting color directly on
+   every element Streamlit actually renders text into fixes this
+   regardless of load order. Scoped to the main content area only — the
+   sidebar already sets its own text colors via `section[data-testid=
+   "stSidebar"] *` above and must not be touched here.
+*/
+section[data-testid="stMain"] [data-testid="stMarkdownContainer"],
+section[data-testid="stMain"] [data-testid="stMarkdownContainer"] *:not(a),
+section[data-testid="stMain"] [data-testid="stWidgetLabel"] p,
+section[data-testid="stMain"] label,
+section[data-testid="stMain"] span,
+section[data-testid="stMain"] h1,
+section[data-testid="stMain"] h2,
+section[data-testid="stMain"] h3,
+section[data-testid="stMain"] h4,
+section[data-testid="stMain"] h5,
+section[data-testid="stMain"] h6,
+section[data-testid="stMain"] p {
+    color: var(--pm-text) !important;
+}
+section[data-testid="stMain"] [data-testid="stCaptionContainer"],
+section[data-testid="stMain"] [data-testid="stCaptionContainer"] *,
+section[data-testid="stMain"] small {
+    color: var(--pm-text-muted) !important;
+}
+/* Tabs keep their own muted (inactive) / primary (active) coloring rather
+   than the blanket fix above — these are more specific so they still win. */
+section[data-testid="stMain"] .stTabs [data-baseweb="tab"] p {
+    color: var(--pm-text-muted) !important;
+}
+section[data-testid="stMain"] .stTabs [aria-selected="true"] p {
+    color: var(--pm-primary) !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
@@ -155,10 +197,11 @@ div[data-baseweb="menu"] {
     background-color: var(--pm-scrollbar-thumb-hover);
 }
 
-/* ---------------- Sidebar (dark navy rail) ---------------- */
+/* ---------------- Sidebar (purple gradient rail) ---------------- */
 section[data-testid="stSidebar"] {
-    background-color: var(--pm-sidebar-bg);
+    background: linear-gradient(180deg, var(--pm-sidebar-bg-start) 0%, var(--pm-sidebar-bg-end) 100%);
     border-right: 1px solid var(--pm-sidebar-border);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
 }
 section[data-testid="stSidebar"] * {
     color: var(--pm-sidebar-text);
@@ -167,50 +210,88 @@ section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
     color: #FFFFFF !important;
+    letter-spacing: -0.01em;
+}
+
+/* Subtle divider glow under headings/hr inside the sidebar */
+section[data-testid="stSidebar"] hr {
+    border-color: var(--pm-sidebar-border) !important;
+    margin: 1rem 0 !important;
 }
 
 /* Auto-generated page nav links */
 section[data-testid="stSidebarNav"] {
-    padding-top: 0.5rem;
+    padding-top: 0.75rem;
 }
 section[data-testid="stSidebarNav"] a {
-    border-radius: var(--pm-radius-sm);
-    margin: 2px 8px;
-    padding: 8px 12px !important;
+    border-radius: 999px;
+    margin: 3px 10px;
+    padding: 9px 16px !important;
     color: var(--pm-sidebar-text) !important;
     transition: var(--pm-transition);
 }
 section[data-testid="stSidebarNav"] a:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.09);
     color: #FFFFFF !important;
+    transform: translateX(2px);
 }
 section[data-testid="stSidebarNav"] a[aria-current="page"] {
-    background-color: var(--pm-sidebar-bg-active);
+    background: var(--pm-sidebar-bg-active);
     color: #FFFFFF !important;
     font-weight: 600;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
 }
 section[data-testid="stSidebarNav"] a[aria-current="page"] span {
     color: #FFFFFF !important;
 }
 
+/* Radio-style nav (st.radio used for Navigation) rendered as pills */
+section[data-testid="stSidebar"] div[role="radiogroup"] label {
+    border-radius: 999px;
+    padding: 9px 14px;
+    margin-bottom: 4px;
+    transition: var(--pm-transition);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] {
+    background: var(--pm-sidebar-bg-active);
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] p {
+    color: #FFFFFF !important;
+    font-weight: 600;
+}
+
 /* Sidebar buttons (e.g. Log out) styled like ghost pills on dark bg */
 section[data-testid="stSidebar"] .stButton > button {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.07);
     color: #FFFFFF;
     border: 1px solid var(--pm-sidebar-border);
+    border-radius: 999px;
 }
 section[data-testid="stSidebar"] .stButton > button:hover {
-    background-color: var(--pm-primary);
-    border-color: var(--pm-primary);
+    background: var(--pm-sidebar-bg-active);
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
 }
 
 /* Sidebar text inputs / selects on dark background */
 section[data-testid="stSidebar"] .stTextInput input,
 section[data-testid="stSidebar"] .stTextArea textarea,
 section[data-testid="stSidebar"] div[data-baseweb="select"] > div {
-    background-color: rgba(255, 255, 255, 0.06) !important;
+    background-color: rgba(255, 255, 255, 0.07) !important;
     border: 1px solid var(--pm-sidebar-border) !important;
+    border-radius: var(--pm-radius-sm) !important;
     color: #FFFFFF !important;
+}
+
+/* Workspace / caption text sits a bit dimmer than nav labels */
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+section[data-testid="stSidebar"] small {
+    color: var(--pm-sidebar-text) !important;
+    opacity: 0.75;
 }
 
 /* ---------------- Headings ---------------- */
@@ -344,14 +425,35 @@ div[data-testid="stMetricDelta"] svg {
 .stTextInput input, .stTextArea textarea, .stNumberInput input,
 div[data-baseweb="select"] > div, div[data-baseweb="input"] {
     background-color: var(--pm-bg) !important;
+    color: var(--pm-text) !important;
     border: 1px solid var(--pm-border) !important;
     border-radius: var(--pm-radius-sm) !important;
     transition: var(--pm-transition);
+}
+.stTextInput input::placeholder, .stTextArea textarea::placeholder {
+    color: var(--pm-text-muted) !important;
+    opacity: 1;
 }
 .stTextInput input:focus, .stTextArea textarea:focus,
 div[data-baseweb="select"] > div:focus-within {
     border-color: var(--pm-primary) !important;
     box-shadow: 0 0 0 1px var(--pm-primary) !important;
+}
+/* The BaseWeb select's visible value, its dropdown arrow icon, and any
+   nested wrapper divs aren't reached by the shallow selector above, so
+   without this the select control is left showing its light default
+   background/text regardless of theme — the fix here forces every layer
+   of it (not just the outer box) to follow the active palette. Scoped to
+   the main content area so it doesn't fight the sidebar's own select
+   styling (which intentionally stays white-on-dark in both themes).
+*/
+section[data-testid="stMain"] div[data-baseweb="select"] div,
+section[data-testid="stMain"] div[data-baseweb="select"] span {
+    background-color: transparent !important;
+    color: var(--pm-text) !important;
+}
+section[data-testid="stMain"] div[data-baseweb="select"] svg {
+    fill: var(--pm-text-muted) !important;
 }
 .stSlider [data-baseweb="slider"] div[role="slider"] {
     background-color: var(--pm-primary) !important;

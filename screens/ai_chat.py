@@ -120,11 +120,11 @@ def show_ai_chat():
 
     header_col, clear_col = st.columns([5, 1])
     with header_col:
-        st.markdown("### 🤖 AI Chat Assistant")
+        st.markdown("### AI Chat Assistant")
         st.caption("Ask anything about your product, feedback, and roadmap — grounded in your real workspace data.")
     with clear_col:
         st.write("")
-        if st.button("🗑 Clear Chat", use_container_width=True):
+        if st.button("Clear Chat", use_container_width=True):
             execute("DELETE FROM chat_history WHERE workspace_id = ?", (ws_id(),))
             st.session_state.chat_history = [
                 {"role": "ai", "text": _WELCOME, "time": datetime.now().strftime("%I:%M %p")}
@@ -164,7 +164,7 @@ def show_ai_chat():
 
     with side_col:
         with st.container(border=True):
-            st.markdown('<div class="suggested-title">💡 Suggested Questions</div>', unsafe_allow_html=True)
+            st.markdown('<div class="suggested-title">Suggested Questions</div>', unsafe_allow_html=True)
 
             for q in _SUGGESTED_QUESTIONS:
                 if st.button(q, key=f"suggested_{q}", use_container_width=True):

@@ -54,8 +54,8 @@ def show_settings():
     st.caption("Manage your profile, workspace, notifications, and AI backend connection.")
     st.write("")
 
-    tab_profile, tab_workspace, tab_data, tab_appearance, tab_ai, tab_danger = st.tabs(
-        ["Profile", "Workspace", "Data", "Appearance", "AI Backend", "Log Out / Clear Workspace Data"]
+    tab_profile, tab_workspace, tab_data, tab_ai, tab_danger = st.tabs(
+        ["Profile", "Workspace", "Data", "AI Backend", "Log Out / Clear Workspace Data"]
     )
 
     # -----------------------------
@@ -78,7 +78,7 @@ def show_settings():
                 )
                 st.text_input("Company", value="AI Product Manager Copilot", disabled=True)
 
-            saved = st.form_submit_button("💾 Save Profile", type="primary")
+            saved = st.form_submit_button("Save Profile", type="primary")
 
             if saved:
                 if name.strip() and email.strip():
@@ -114,7 +114,7 @@ def show_settings():
 
         with st.form("workspace_form"):
             ws_name = st.text_input("Workspace name", value=ws["name"])
-            ws_saved = st.form_submit_button("💾 Save workspace name", type="primary")
+            ws_saved = st.form_submit_button("Save workspace name", type="primary")
             if ws_saved and ws_name.strip():
                 execute("UPDATE workspaces SET name = ? WHERE id = ?", (ws_name.strip(), ws["id"]))
                 st.session_state["workspace"]["name"] = ws_name.strip()
@@ -140,15 +140,15 @@ def show_settings():
         features = fetch_features()
 
         d1, d2, d3 = st.columns(3)
-        d1.metric("📊 Feedback rows in DB", len(feedback))
-        d2.metric("💡 Feature requests in DB", len(features))
+        d1.metric("Feedback rows in DB", len(feedback))
+        d2.metric("Feature requests in DB", len(features))
         d3.metric(
-            "🔍 Classified",
+            "Classified",
             int(feedback["theme"].notna().sum()) if not feedback.empty and "theme" in feedback.columns else 0,
         )
 
         st.write("")
-        if st.button("🔄 Reload dataset (re-run AI classification)", type="primary"):
+        if st.button("Reload dataset (re-run AI classification)", type="primary"):
             with st.spinner("Clearing existing feedback/feature data and re-ingesting from the dataset..."):
                 result = reload_dataset()
             if "error" in result:
@@ -156,22 +156,6 @@ def show_settings():
             else:
                 st.success(f"✅ Reloaded {result['ingested']} feedback rows into the database.")
                 st.rerun()
-
-    # -----------------------------
-    # Appearance
-    # -----------------------------
-    with tab_appearance:
-        st.subheader("Appearance")
-        theme_choice = st.radio(
-            "Theme", ["Light", "Dark"],
-            index=["Light", "Dark"].index(settings["theme"]), horizontal=True,
-        )
-        st.caption("Switches the whole app — sidebar, cards, charts, and inputs — immediately.")
-
-        if theme_choice != settings["theme"]:
-            settings["theme"] = theme_choice
-            st.session_state["theme"] = theme_choice
-            st.rerun()
 
     # -----------------------------
     # AI Backend (real: tests the actual Gemini connection used by src/llm.py)
@@ -208,14 +192,14 @@ def show_settings():
 
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🚪 Log Out", use_container_width=True):
+            if st.button("Log Out", use_container_width=True):
                 st.session_state.logged_in = False
                 st.session_state.pop("current_user", None)
                 st.session_state.pop("user_settings", None)
                 st.session_state.pop("_settings_seeded_for", None)
                 st.rerun()
         with col2:
-            if st.button("🗑️ Clear all workspace data", use_container_width=True, type="primary"):
+            if st.button("Clear all workspace data", use_container_width=True, type="primary"):
                 st.session_state.confirm_delete = True
 
         if st.session_state.get("confirm_delete"):

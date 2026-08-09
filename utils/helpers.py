@@ -57,7 +57,8 @@ def fetch_roadmap() -> pd.DataFrame:
 def fetch_prioritized_backlog() -> pd.DataFrame:
     return fetch_df(
         """SELECT f.id as feature_id, f.title, f.theme, f.votes, f.status,
-                  p.reach, p.impact, p.confidence, p.effort, p.rice_score
+                  p.reach, p.impact, p.confidence, p.effort, p.rice_score,
+                  p.ice_score, p.risk_level, p.ai_rationale
            FROM feature_requests f LEFT JOIN prioritization p ON p.feature_id = f.id
            WHERE f.workspace_id = ? ORDER BY p.rice_score DESC""",
         (ws_id(),),
@@ -98,6 +99,7 @@ def ingest_and_classify(df: pd.DataFrame, source_name: str) -> dict:
     source_col = guess_column(df.columns, FEEDBACK_ALIASES["source"])
     customer_col = guess_column(df.columns, FEEDBACK_ALIASES["customer"])
     rating_col = guess_column(df.columns, FEEDBACK_ALIASES["rating"])
+    date_col = guess_column(df.columns, FEEDBACK_ALIASES["date"])
 
     texts = []
     rows_meta = []
@@ -110,6 +112,7 @@ def ingest_and_classify(df: pd.DataFrame, source_name: str) -> dict:
             "source": str(row.get(source_col)) if source_col else source_name,
             "customer": str(row.get(customer_col)) if customer_col else "Unknown",
             "rating": pd.to_numeric(row.get(rating_col), errors="coerce") if rating_col else None,
+            "date": row.get(date_col) if date_col else None,
         })
 
     if not texts:
@@ -127,11 +130,19 @@ def ingest_and_classify(df: pd.DataFrame, source_name: str) -> dict:
         sentiment, score = score_sentiment(text)
         rating_val = float(meta["rating"]) if meta["rating"] is not None and pd.notna(meta["rating"]) else None
 
+        # Use the row's own submitted/created date when the file provides one
+        # (e.g. a "date_submitted" column) so imported feedback keeps its real
+        # timeline instead of every row collapsing onto the moment it was
+        # ingested — that collapse is what made trend charts show a single
+        # point for bulk imports.
+        parsed_date = pd.to_datetime(meta["date"], errors="coerce") if meta["date"] is not None else None
+        created_at = parsed_date.isoformat() if parsed_date is not None and pd.notna(parsed_date) else now()
+
         conn.execute(
             """INSERT INTO feedback
                (workspace_id, source, customer, text, rating, created_at, theme, sentiment, sentiment_score)
                VALUES (?,?,?,?,?,?,?,?,?)""",
-            (ws_id(), meta["source"], meta["customer"], text, rating_val, now(), theme, sentiment, score),
+            (ws_id(), meta["source"], meta["customer"], text, rating_val, created_at, theme, sentiment, score),
         )
 
         if sentiment == "Positive":
@@ -225,7 +236,11 @@ def reload_dataset() -> dict:
     reprocessed on demand without a manual upload screen.
     """
     conn = get_conn()
-    for table in ["feedback", "feature_requests", "prioritization"]:
+    # Delete child tables before the parent they reference — `prioritization`
+    # has a FOREIGN KEY on feature_requests.id, so it must be cleared first or
+    # SQLite raises "FOREIGN KEY constraint failed" when feature_requests rows
+    # (still referenced by leftover prioritization rows) are deleted.
+    for table in ["prioritization", "feature_requests", "feedback"]:
         conn.execute(f"DELETE FROM {table} WHERE workspace_id = ?", (ws_id(),))
     conn.commit()
     conn.close()
@@ -335,6 +350,109 @@ def save_rice_score(feature_id: int, reach, impact, confidence, effort):
             (reach, impact, confidence, effort, rice, int(existing.iloc[0]["id"])),
         )
     return rice
+
+
+# ---------------- AI-Based Prioritization & Impact Analysis Engine ----------------
+# (design doc: Prioritization Agent — RICE, ICE, effort estimate, risk
+# assessment, priority recommendation. Agent logic lives in
+# src/prioritization_engine.py; this section wires it to the `prioritization`
+# table the same way run_theme_agent_enrichment wires up the Theme Agent.)
+
+def save_prioritization_result(feature_id: int, reach, impact, confidence, effort, risk=None, rationale=None):
+    """
+    Like save_rice_score(), but also persists the AI-derived ICE score, the
+    assessed delivery risk, and the AI's rationale from the Prioritization
+    Engine.
+    """
+    from src.prioritization_engine import compute_rice, compute_ice
+    rice = compute_rice(reach, impact, confidence, effort)
+    ice = compute_ice(impact, confidence, effort)
+
+    existing = fetch_df(
+        "SELECT id FROM prioritization WHERE workspace_id = ? AND feature_id = ?", (ws_id(), feature_id)
+    )
+    if existing.empty:
+        execute(
+            """INSERT INTO prioritization
+               (workspace_id, feature_id, reach, impact, confidence, effort, rice_score,
+                ice_score, risk_level, ai_rationale, notes)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
+            (ws_id(), feature_id, reach, impact, confidence, effort, rice, ice, risk, rationale, ""),
+        )
+    else:
+        execute(
+            """UPDATE prioritization SET reach=?, impact=?, confidence=?, effort=?, rice_score=?,
+               ice_score=?, risk_level=?, ai_rationale=? WHERE id=?""",
+            (reach, impact, confidence, effort, rice, ice, risk, rationale, int(existing.iloc[0]["id"])),
+        )
+    return {"rice_score": rice, "ice_score": ice}
+
+
+def run_ai_prioritization_engine(top_n: int = 15):
+    """
+    Runs the AI-Based Prioritization & Impact Analysis Engine over the top
+    `top_n` feature requests by customer votes: scores impact, effort,
+    confidence, and risk via the CrewAI "Impact & Risk Analyst" agent in
+    `src/prioritization_engine.py` (one batched call, not one per feature),
+    computes RICE + ICE from those scores, and persists everything to the
+    `prioritization` table.
+
+    Any feature the AI call doesn't return a score for (including a total
+    engine failure — no API key, crewai unavailable, timeout) falls back to
+    the same votes-based heuristic `ensure_rice_score()` already uses
+    (impact=3, confidence=80%, effort=2 person-months, risk="Medium"), so
+    every feature always ends up prioritized.
+
+    Returns (summary_dict, error). summary_dict is None only when there
+    were no feature requests at all to analyze; error is None on a fully
+    successful AI run, or the engine's failure reason when any/all features
+    fell back to the heuristic.
+    """
+    from src.prioritization_engine import run_prioritization_engine
+
+    features_df = fetch_features()
+    if features_df.empty:
+        return None, "No feature requests to analyze yet."
+
+    feedback = fetch_feedback()
+    top = features_df.sort_values("votes", ascending=False).head(top_n)
+
+    batch = []
+    for _, row in top.iterrows():
+        samples = []
+        if not feedback.empty and "theme" in feedback.columns:
+            samples = feedback.loc[feedback["theme"] == row["theme"], "text"].dropna().head(3).tolist()
+        batch.append({
+            "id": int(row["id"]),
+            "title": row["title"],
+            "description": row.get("description"),
+            "theme": row.get("theme"),
+            "votes": int(row["votes"]),
+            "sample_feedback": samples,
+        })
+
+    results, error = run_prioritization_engine(batch)
+    scored_by_id = {r["id"]: r for r in results} if results else {}
+
+    analyzed = fallback_count = 0
+    for f in batch:
+        reach = f["votes"] * 10
+        scored = scored_by_id.get(f["id"])
+        if scored:
+            save_prioritization_result(
+                f["id"], reach, scored["impact"], scored["confidence"], scored["effort"],
+                risk=scored["risk"], rationale=scored["rationale"],
+            )
+            analyzed += 1
+        else:
+            save_prioritization_result(
+                f["id"], reach, 3, 80, 2.0, risk="Medium",
+                rationale="AI scoring unavailable — default estimate used.",
+            )
+            fallback_count += 1
+
+    summary = {"analyzed": analyzed, "fallback": fallback_count, "total": len(batch)}
+    return summary, (error if results is None else None)
 
 
 # ---------------- Chat context (Module 9) ----------------

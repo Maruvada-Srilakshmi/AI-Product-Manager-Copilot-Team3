@@ -8,6 +8,7 @@ from screens.login import show_login
 from screens.register import show_register
 from screens.dashboard import show_dashboard
 from screens import theme_extraction_panel
+from screens.prioritization_engine import show_prioritization_engine
 from screens.ai_chat import show_ai_chat
 from screens.reports import show_reports
 from screens.roadmap import show_roadmap
@@ -87,6 +88,7 @@ else:
         [
             "Dashboard",
             "Theme Insights",
+            "Prioritization Engine",
             "AI Chat",
             "Reports",
             "Roadmap",
@@ -97,6 +99,22 @@ else:
     st.sidebar.markdown("---")
     st.sidebar.caption("AI Product Manager Copilot v1.0")
 
+    # -----------------------------
+    # Appearance toggle — a single sun/moon icon button in the top-right of
+    # the main content area (replacing the old Settings > Appearance tab).
+    # One click flips the theme immediately, no popup/radio buttons.
+    # -----------------------------
+    _, top_right_col = st.columns([11, 1])
+    with top_right_col:
+        is_dark = st.session_state["theme"] == "Dark"
+        toggle_icon = "☀️" if is_dark else "🌙"
+        toggle_help = "Switch to Light mode" if is_dark else "Switch to Dark mode"
+        if st.button(toggle_icon, use_container_width=True, help=toggle_help, key="theme_toggle_btn"):
+            st.session_state["theme"] = "Light" if is_dark else "Dark"
+            if "user_settings" in st.session_state:
+                st.session_state.user_settings["theme"] = st.session_state["theme"]
+            st.rerun()
+
     if page == "Dashboard":
         show_dashboard()
 
@@ -105,6 +123,9 @@ else:
         st.caption("Recurring pain points clustered from feedback, with optional AI enrichment "
                     "(sentiment, pain-point summary, intent) via the Theme Extraction Agent.")
         theme_extraction_panel.render()
+
+    elif page == "Prioritization Engine":
+        show_prioritization_engine()
 
     elif page == "AI Chat":
         show_ai_chat()

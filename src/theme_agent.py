@@ -92,7 +92,7 @@ def run_theme_extraction_agent(samples_by_theme: dict, timeout: int = 45):
         llm = _get_llm(model_id, temperature=0.3)
 
         theme_agent = Agent(
-            role="Theme Extraction Agent",
+            role="Theme Clustering Agent",
             goal="Discover recurring customer pain points by extracting topics, classifying "
                  "themes, scoring sentiment, identifying pain points, and detecting intent.",
             backstory=(
@@ -128,7 +128,7 @@ def run_theme_extraction_agent(samples_by_theme: dict, timeout: int = 45):
 
     result, error = _run_crew_with_resilience(_build_and_run, timeout_per_attempt=timeout)
     if result is None:
-        return None, error or "Unknown error calling the Theme Extraction Agent."
+        return None, error or "Unknown error calling the Theme Clustering Agent."
 
     parsed = _extract_json_array(str(result))
     if not isinstance(parsed, list):

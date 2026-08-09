@@ -70,10 +70,10 @@ def _inject_css():
     """, unsafe_allow_html=True)
 
 
-def _metric_card(icon, label, value):
+def _metric_card(label, value):
     st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">{icon} {label}</div>
+            <div class="metric-label">{label}</div>
             <div class="metric-value">{value}</div>
         </div>
     """, unsafe_allow_html=True)
@@ -95,32 +95,104 @@ def _feedback_trend_chart(feedback: pd.DataFrame):
     if fb.empty:
         st.caption("Feedback has no valid dates yet.")
         return
+    fb = fb.sort_values("created_at").reset_index(drop=True)
 
-    fb["week"] = fb["created_at"].dt.to_period("W").dt.start_time
-    total_by_week = fb.groupby("week").size().sort_index()
-    resolved_by_week = (
-        fb[fb["sentiment"].notna()].groupby("week").size().reindex(total_by_week.index).fillna(0)
-        if "sentiment" in fb.columns else pd.Series(0, index=total_by_week.index)
+    # Pick the coarsest time bucket that still yields at least two distinct
+    # points, stepping down from week -> day -> hour -> minute as the data's
+    # actual time span shrinks.
+    span = fb["created_at"].max() - fb["created_at"].min()
+    if span.days >= 60:
+        period, tick_format = "W", "Week of %b %d"
+    elif span.days >= 2:
+        period, tick_format = "D", "%b %d, %Y"
+    elif span.total_seconds() >= 2 * 3600:
+        period, tick_format = "h", "%b %d, %I %p"
+    elif span.total_seconds() >= 120:
+        period, tick_format = "min", "%I:%M %p"
+    else:
+        period, tick_format = None, None
+
+    total_by_bucket = None
+    if period is not None:
+        fb["bucket"] = fb["created_at"].dt.to_period(period).dt.start_time
+        total_by_bucket = fb.groupby("bucket").size().sort_index()
+
+    if total_by_bucket is None or len(total_by_bucket) < 2:
+        # Every row landed in the same time bucket (e.g. all feedback was
+        # imported in one batch, so there's no real time spread to chart).
+        # Fall back to a cumulative view across the record sequence itself,
+        # which still shows a genuine trend line instead of one dot.
+        fb["seq"] = range(1, len(fb) + 1)
+        total_cum = fb["seq"]
+        resolved_cum = (
+            fb["sentiment"].notna().cumsum() if "sentiment" in fb.columns
+            else pd.Series(0, index=fb.index)
+        )
+
+        fig.add_trace(go.Scatter(
+            x=fb["seq"], y=total_cum,
+            mode="lines+markers", name="Total Feedback",
+            line=dict(color="#6366F1", width=3), marker=dict(size=5)
+        ))
+        fig.add_trace(go.Scatter(
+            x=fb["seq"], y=resolved_cum,
+            mode="lines+markers", name="Classified",
+            line=dict(color="#22C55E", width=3, dash="dot"), marker=dict(size=5)
+        ))
+
+        y_max = max(int(total_cum.max()), int(resolved_cum.max()), 1)
+        fig.update_layout(
+            height=280,
+            margin=dict(l=10, r=10, t=10, b=10),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            xaxis=dict(showgrid=False, title="Feedback received (in order)"),
+            yaxis=dict(showgrid=True, gridcolor="#F3F4F6",
+                       rangemode="tozero", range=[0, y_max * 1.15]),
+        )
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.caption("All current feedback shares the same timestamp, so this shows cumulative volume by record order rather than by date.")
+        return
+
+    resolved_by_bucket = (
+        fb[fb["sentiment"].notna()].groupby("bucket").size().reindex(total_by_bucket.index).fillna(0)
+        if "sentiment" in fb.columns else pd.Series(0, index=total_by_bucket.index)
     )
 
     fig.add_trace(go.Scatter(
-        x=total_by_week.index, y=total_by_week.values,
+        x=total_by_bucket.index, y=total_by_bucket.values,
         mode="lines+markers", name="Total Feedback",
-        line=dict(color="#6366F1", width=3), marker=dict(size=6)
+        line=dict(color="#6366F1", width=3), marker=dict(size=8)
     ))
     fig.add_trace(go.Scatter(
-        x=resolved_by_week.index, y=resolved_by_week.values,
+        x=resolved_by_bucket.index, y=resolved_by_bucket.values,
         mode="lines+markers", name="Classified",
-        line=dict(color="#22C55E", width=3), marker=dict(size=6)
+        line=dict(color="#22C55E", width=3, dash="dot"), marker=dict(size=8)
     ))
+
+    # Pad the x-axis so a narrow date range doesn't cause Plotly to auto-zoom
+    # the range down to fractions of a second.
+    pad = pd.Timedelta(days=3) if period == "D" else pd.Timedelta(days=7) if period == "W" else pd.Timedelta(hours=2)
+    x_min, x_max = total_by_bucket.index.min(), total_by_bucket.index.max()
+
+    y_max = max(int(total_by_bucket.max()), int(resolved_by_bucket.max()), 1)
+
     fig.update_layout(
         height=280,
         margin=dict(l=10, r=10, t=10, b=10),
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
         plot_bgcolor="white",
         paper_bgcolor="white",
-        xaxis=dict(showgrid=False),
-        yaxis=dict(showgrid=True, gridcolor="#F3F4F6"),
+        xaxis=dict(
+            showgrid=False, type="date",
+            range=[x_min - pad, x_max + pad],
+            tickformat=tick_format,
+        ),
+        yaxis=dict(
+            showgrid=True, gridcolor="#F3F4F6",
+            rangemode="tozero", range=[0, y_max * 1.2],
+        ),
     )
     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
@@ -147,7 +219,7 @@ def show_dashboard():
 
     col_title, col_range = st.columns([3, 1])
     with col_title:
-        st.title("🤖 AI Product Manager Dashboard")
+        st.title("AI Product Manager Dashboard")
         st.caption("Live overview of your product's health, sourced from your ingested feedback and AI analysis.")
     with col_range:
         st.selectbox("Date Range", ["All time"], label_visibility="collapsed")
@@ -164,13 +236,13 @@ def show_dashboard():
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        _metric_card("💬", "Total Feedback", f"{total_feedback:,}")
+        _metric_card("Total Feedback", f"{total_feedback:,}")
     with c2:
-        _metric_card("⚠️", "Negative Feedback", f"{top_issues_count:,}")
+        _metric_card("Negative Feedback", f"{top_issues_count:,}")
     with c3:
-        _metric_card("💡", "Feature Requests", f"{feature_requests_count:,}")
+        _metric_card("Feature Requests", f"{feature_requests_count:,}")
     with c4:
-        _metric_card("😊", "Satisfied Users", satisfied_pct)
+        _metric_card("Satisfied Users", satisfied_pct)
 
     st.write("")
 
@@ -268,5 +340,3 @@ def show_dashboard():
                     f'<div class="activity-row"><span>{icon} {text}</span><span class="badge-time">{when}</span></div>',
                     unsafe_allow_html=True
                 )
-
-

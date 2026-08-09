@@ -12,7 +12,7 @@ _QUARTERS = ["Q1", "Q2", "Q3", "Q4"]
 
 
 def show_roadmap():
-    st.markdown("## 🗺️ Product Roadmap")
+    st.markdown("## Product Roadmap")
     st.caption("Place prioritized features onto a quarterly roadmap — backed by the real feature/prioritization data")
     st.write("")
 
@@ -34,10 +34,10 @@ def show_roadmap():
         high_priority_count = int((scheduled["rice_score"].apply(priority_bucket) == "High").sum())
 
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("📌 Planned", str(total_initiatives))
-    c2.metric("🚀 In Progress", str(in_progress))
-    c3.metric("✅ Completed", str(completed))
-    c4.metric("⭐ High Priority", str(high_priority_count))
+    c1.metric("Planned", str(total_initiatives))
+    c2.metric("In Progress", str(in_progress))
+    c3.metric("Completed", str(completed))
+    c4.metric("High Priority", str(high_priority_count))
 
     st.write("")
 
@@ -120,7 +120,7 @@ def show_roadmap():
     # -----------------------------
     # AI Recommendation (real: top RICE-scored features not yet scheduled)
     # -----------------------------
-    st.subheader("🤖 AI Recommendation")
+    st.subheader("AI Recommendation")
 
     if features.empty:
         st.info("No feature requests yet — recommendations will appear once feedback has been ingested and analyzed.")
@@ -130,7 +130,7 @@ def show_roadmap():
         unscheduled = backlog[~backlog["feature_id"].isin(scheduled_ids)].head(4)
 
         if unscheduled.empty:
-            st.success("All prioritized features are already on the roadmap. 🎉")
+            st.success("All prioritized features are already on the roadmap.")
         else:
             lines = "\n\n".join(
                 f"• **{r.title}** ({r.theme}) — RICE {r.rice_score:.1f}" if pd.notna(r.rice_score)

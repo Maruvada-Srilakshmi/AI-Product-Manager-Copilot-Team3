@@ -86,10 +86,10 @@ def render():
     with st.container(border=True):
         head_col, btn_col = st.columns([3, 1])
         with head_col:
-            st.markdown('<div class="theme-agent-title">🧠 Theme Extraction Agent</div>', unsafe_allow_html=True)
+            st.markdown('<div class="theme-agent-title">Theme Clustering Agent</div>', unsafe_allow_html=True)
             st.caption("Recurring customer pain points, clustered from feedback.")
         with btn_col:
-            enrich_clicked = st.button("✨ Enrich with AI", use_container_width=True,
+            enrich_clicked = st.button("Enrich with AI", use_container_width=True,
                                         help="Runs the Theme Extraction Agent to add sentiment, "
                                              "pain points, and intent for each theme.")
 

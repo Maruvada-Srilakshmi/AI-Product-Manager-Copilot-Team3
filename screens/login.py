@@ -12,29 +12,23 @@ def show_login():
     st.markdown("""
     <style>
 
-    .left-box{
-        background:linear-gradient(135deg,#5B21B6,#7C3AED);
-        border-radius:25px;
-        padding:50px;
-        min-height:700px;
-        color:white;
-    }
-
-    .title{
-        font-size:32px;
-        font-weight:bold;
-    }
-
-    .subtitle{
-        font-size:16px;
-        color:#E9D5FF;
-        line-height:1.6;
-    }
-
-    .robot{
-        font-size:70px;
-        margin-top:60px;
+    .brand-header{
         text-align:center;
+        margin-bottom:10px;
+    }
+
+    .brand-title{
+        font-size:30px;
+        font-weight:bold;
+        background:linear-gradient(135deg,#5B21B6,#7C3AED);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+    }
+
+    .brand-subtitle{
+        font-size:15px;
+        color:#6B7280;
+        margin-top:4px;
     }
 
     div.stButton > button{
@@ -46,54 +40,33 @@ def show_login():
     </style>
     """, unsafe_allow_html=True)
 
-    # ---------- Layout ----------
-    left, right = st.columns([1, 1])
+    # ---------- Layout (centered) ----------
+    left_spacer, center, right_spacer = st.columns([1, 1.2, 1])
 
-    # ---------- Left Side ----------
-    with left:
+    with center:
 
         st.markdown("""
-        <div class="left-box">
-
-        <div class="title">
-        AI Product Manager
-        </div>
-
-        <div class="title">
-        Copilot
-        </div>
-
-        <br>
-
-        <div class="subtitle">
-        Turn customer feedback into smarter product decisions
-        using Artificial Intelligence.
-        </div>
-
-        <div class="robot">
-            🤖
-            <br>
-            📊
-        </div>
-
+        <div class="brand-header">
+            <div class="brand-title">AI Product Manager Copilot</div>
+            <div class="brand-subtitle">
+                Turn customer feedback into smarter product decisions
+                using Artificial Intelligence.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
-    # ---------- Right Side ----------
-    with right:
-
         with st.container(border=True):
 
-            st.markdown("## Welcome Back 👋")
+            st.markdown("## Welcome Back")
             st.write("Sign in to continue")
 
             email = st.text_input(
-                "📧 Email Address",
+                "Email Address",
                 placeholder="example@company.com"
             )
 
             password = st.text_input(
-                "🔒 Password",
+                "Password",
                 type="password",
                 placeholder="Enter your password"
             )

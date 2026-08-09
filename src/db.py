@@ -17,6 +17,18 @@ def get_conn():
     return conn
 
 
+def _ensure_column(cursor, table, column, coltype):
+    """
+    Adds `column` to `table` if it doesn't already exist. SQLite has no
+    `ADD COLUMN IF NOT EXISTS`, so this checks PRAGMA table_info first —
+    lets init_db() safely evolve the schema on databases that already exist
+    on disk (like data/copilot.db) without dropping any data.
+    """
+    existing = {row[1] for row in cursor.execute(f"PRAGMA table_info({table})").fetchall()}
+    if column not in existing:
+        cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {coltype}")
+
+
 def init_db():
     conn = get_conn()
     c = conn.cursor()
@@ -98,6 +110,14 @@ def init_db():
             FOREIGN KEY (feature_id) REFERENCES feature_requests (id)
         )
     """)
+    # Added for the AI-Based Prioritization & Impact Analysis Engine
+    # (src/prioritization_engine.py): ICE score, assessed delivery risk, and
+    # the AI's one-line rationale. Added via safe ALTER TABLE migration so
+    # existing databases (with rows already in `prioritization`) don't need
+    # to be dropped/recreated.
+    _ensure_column(c, "prioritization", "ice_score", "REAL")
+    _ensure_column(c, "prioritization", "risk_level", "TEXT")
+    _ensure_column(c, "prioritization", "ai_rationale", "TEXT")
 
     # Module 7: Generated PRDs / user stories
     c.execute("""

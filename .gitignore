@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Python
 __pycache__/
 *.pyc
@@ -48,7 +48,7 @@ dist/
 # Temporary files
 tmp/
 temp/
-=======
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -267,4 +267,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
->>>>>>> 6724ae650e2c9bffcf41327f18088d6d834f8280
+
