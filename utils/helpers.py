@@ -32,6 +32,25 @@ def ws_id() -> int:
     return st.session_state["workspace"]["id"]
 
 
+def _truncate_title(text: str, limit: int = 70) -> str:
+    """
+    Turns a raw feedback string into a short feature title, breaking at the
+    nearest word boundary instead of a hard character slice. A plain
+    text[:60] regularly cut through the middle of a word — e.g. "...bundling
+    Reporting training into onboarding..." became "...bundling Reporting
+    training into onboardi..." — which read as a broken/incomplete sentence
+    everywhere the title is shown (Dashboard, Reports, Prioritization Engine).
+    """
+    text = " ".join(text.strip().split())  # collapse internal whitespace/newlines
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    last_space = cut.rfind(" ")
+    if last_space > limit * 0.5:  # only snap back if it doesn't lose too much of the title
+        cut = cut[:last_space]
+    return cut.rstrip(",.;:") + "…"
+
+
 # ---------------- Fetch helpers ----------------
 
 def fetch_feedback() -> pd.DataFrame:
@@ -164,7 +183,7 @@ def ingest_and_classify(df: pd.DataFrame, source_name: str) -> dict:
 
     # Auto-promote request-like feedback into tracked feature requests (dedupe by theme+title)
     for theme, info in promoted_themes.items():
-        title = (info["sample"][:60] + "...") if len(info["sample"]) > 60 else info["sample"]
+        title = _truncate_title(info["sample"])
         existing = fetch_df(
             "SELECT id, votes FROM feature_requests WHERE workspace_id = ? AND theme = ?",
             (ws_id(), theme),

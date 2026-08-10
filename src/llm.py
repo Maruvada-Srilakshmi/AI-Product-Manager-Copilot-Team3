@@ -346,7 +346,11 @@ def suggest_impact_score(feature_title: str, description: str, votes: int) -> in
 
 def generate_executive_summary(context: str) -> str:
     system = "You are a CPO writing a crisp executive summary in Markdown (under 300 words) from the given product data."
-    result = _call(system, context, max_tokens=600)
+    # 300 words needs roughly 450-500 tokens on its own; 600 left almost no
+    # headroom for Markdown formatting (headers, bold, bullet points) and
+    # was regularly cutting the response off mid-sentence, e.g. ending on
+    # "...outpacing **Negative (147" with no closing parenthesis.
+    result = _call(system, context, max_tokens=1500)
     if result and not result.startswith("__ERROR__"):
         return result
     return (
