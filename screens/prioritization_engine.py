@@ -96,10 +96,16 @@ def show_prioritization_engine():
         priority = recommend_priority(row.get("rice_score"), risk)
         priority_color = _PRIORITY_COLORS.get(priority, "#9CA3AF")
 
+        # Feature titles are shortened for use elsewhere in the app (e.g. the
+        # Dashboard's "Top Requested Features" list), so show the full,
+        # untruncated feedback text here instead — that's what was reading as
+        # cut off mid-sentence on this page.
+        full_text = (row.get("description") or row["title"] or "").strip()
+
         with st.container(border=True):
             top_c1, top_c2, top_c3 = st.columns([3, 1, 1])
             with top_c1:
-                st.markdown(f"**{row['title']}**")
+                st.markdown(f"**{full_text}**")
                 st.caption(f"{row['theme'] or 'Unclassified'} · {int(row['votes'])} votes")
             with top_c2:
                 st.metric("RICE", f"{row['rice_score']:.0f}" if pd.notna(row["rice_score"]) else "—")
@@ -115,4 +121,4 @@ def show_prioritization_engine():
             )
 
             if row.get("ai_rationale"):
-                st.caption(f"{row['ai_rationale']}")
+                st.caption(row["ai_rationale"])

@@ -75,13 +75,158 @@ def fetch_roadmap() -> pd.DataFrame:
 
 def fetch_prioritized_backlog() -> pd.DataFrame:
     return fetch_df(
-        """SELECT f.id as feature_id, f.title, f.theme, f.votes, f.status,
+        """SELECT f.id as feature_id, f.title, f.description, f.theme, f.votes, f.status,
                   p.reach, p.impact, p.confidence, p.effort, p.rice_score,
                   p.ice_score, p.risk_level, p.ai_rationale
            FROM feature_requests f LEFT JOIN prioritization p ON p.feature_id = f.id
            WHERE f.workspace_id = ? ORDER BY p.rice_score DESC""",
         (ws_id(),),
     )
+
+
+# ---------------- Roadmap Planning Agent ----------------
+# (design doc: Roadmap Agent -- quarterly roadmap, sprint allocation,
+# dependency planning, milestone planning, release sequencing. Agent logic
+# lives in src/roadmap_agent.py; this section wires it to the
+# `roadmap_items` table the same way run_ai_prioritization_engine wires up
+# the Prioritization Engine.)
+
+_QUARTER_ORDER = ["Q1", "Q2", "Q3", "Q4"]
+
+
+def _current_quarter() -> str:
+    import datetime as dt
+    month = dt.date.today().month
+    return _QUARTER_ORDER[(month - 1) // 3]
+
+
+def _sprint_dates(quarter: str, sprint: int):
+    """Maps a (quarter, sprint) pair to a concrete two-week date range,
+    anchored to the current calendar year and today's date for the current
+    quarter, so AI-planned items land on real, orderable dates the same way
+    manually-added items already do."""
+    import datetime as dt
+    today = dt.date.today()
+    quarter_index = _QUARTER_ORDER.index(quarter) if quarter in _QUARTER_ORDER else 0
+    current_index = _QUARTER_ORDER.index(_current_quarter())
+    quarter_start_month = quarter_index * 3 + 1
+
+    if quarter_index == current_index:
+        quarter_start = today
+    else:
+        year = today.year if quarter_index >= current_index else today.year + 1
+        quarter_start = dt.date(year, quarter_start_month, 1)
+
+    sprint_start = quarter_start + dt.timedelta(days=14 * max(sprint - 1, 0))
+    sprint_end = sprint_start + dt.timedelta(days=13)
+    return sprint_start, sprint_end
+
+
+def resequence_roadmap():
+    """
+    Recomputes `sequence_rank` for every roadmap item in the workspace using
+    the deterministic release-sequencing tool (topological_sequence), so
+    dependent items are always numbered after whatever they depend on.
+    Safe to call any time the roadmap or its dependencies change.
+    """
+    from src.roadmap_agent import topological_sequence
+
+    roadmap = fetch_roadmap()
+    if roadmap.empty:
+        return
+
+    feature_to_item = {
+        int(row["feature_id"]): int(row["id"])
+        for _, row in roadmap.iterrows() if pd.notna(row["feature_id"])
+    }
+    items = []
+    for _, row in roadmap.iterrows():
+        depends_on_feature = row.get("depends_on_feature_id")
+        depends_on_item = (
+            feature_to_item.get(int(depends_on_feature))
+            if pd.notna(depends_on_feature) else None
+        )
+        items.append({"id": int(row["id"]), "depends_on_id": depends_on_item})
+
+    for rank, item in enumerate(topological_sequence(items), start=1):
+        execute("UPDATE roadmap_items SET sequence_rank = ? WHERE id = ?", (rank, item["id"]))
+
+
+def run_ai_roadmap_planning(top_n: int = 10):
+    """
+    Runs the Roadmap Planning Agent over the top `top_n` prioritized
+    features that aren't on the roadmap yet: assigns quarter, sprint, and
+    milestone flag, and identifies dependencies, via the CrewAI "Roadmap
+    Planner" agent in src/roadmap_agent.py (one batched call, not one per
+    feature), then schedules everything onto the `roadmap_items` table and
+    recomputes release sequencing.
+
+    Any feature the AI call doesn't return a plan for (including a total
+    engine failure) falls back to a deterministic heuristic: features are
+    spread round-robin across quarters starting at the current quarter,
+    sprint 1, no dependency, not flagged as a milestone -- so every
+    requested feature always ends up scheduled.
+
+    Returns (summary_dict, error). summary_dict is None only when there
+    were no unscheduled features to plan; error is None on a fully
+    successful AI run.
+    """
+    from src.roadmap_agent import run_roadmap_planning_agent
+
+    backlog = fetch_prioritized_backlog().sort_values("rice_score", ascending=False, na_position="last")
+    roadmap = fetch_roadmap()
+    scheduled_ids = set(roadmap["feature_id"].dropna().astype(int).tolist()) if not roadmap.empty else set()
+    unscheduled = backlog[~backlog["feature_id"].isin(scheduled_ids)].head(top_n)
+
+    if unscheduled.empty:
+        return None, "No unscheduled features to plan -- everything prioritized is already on the roadmap."
+
+    current_quarter = _current_quarter()
+    batch = [
+        {
+            "id": int(row["feature_id"]),
+            "title": row["title"],
+            "theme": row.get("theme"),
+            "rice_score": float(row["rice_score"]) if pd.notna(row["rice_score"]) else None,
+            "votes": int(row["votes"]),
+        }
+        for _, row in unscheduled.iterrows()
+    ]
+
+    results, error = run_roadmap_planning_agent(batch, current_quarter=current_quarter)
+    plan_by_id = {p["id"]: p for p in results} if results else {}
+
+    planned = fallback_count = 0
+    for idx, f in enumerate(batch):
+        plan = plan_by_id.get(f["id"])
+        if plan:
+            quarter, sprint = plan["quarter"], plan["sprint"]
+            depends_on_feature_id = plan["depends_on_id"]
+            is_milestone = plan["is_milestone"]
+            rationale = plan["rationale"]
+            planned += 1
+        else:
+            quarter = _QUARTER_ORDER[(_QUARTER_ORDER.index(current_quarter) + idx // 3) % 4]
+            sprint = 1
+            depends_on_feature_id = None
+            is_milestone = False
+            rationale = "AI planning unavailable -- default quarter assignment used."
+            fallback_count += 1
+
+        start, end = _sprint_dates(quarter, sprint)
+        execute(
+            """INSERT INTO roadmap_items
+               (workspace_id, feature_id, title, quarter, start_date, end_date, status,
+                sprint, depends_on_feature_id, is_milestone, ai_rationale)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
+            (ws_id(), f["id"], f["title"], quarter, str(start), str(end), "Planned",
+             f"Sprint {sprint}", depends_on_feature_id, int(is_milestone), rationale),
+        )
+
+    resequence_roadmap()
+
+    summary = {"planned": planned, "fallback": fallback_count, "total": len(batch)}
+    return summary, (error if results is None else None)
 
 
 # ---------------- Ingestion + classification ----------------

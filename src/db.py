@@ -144,6 +144,16 @@ def init_db():
             status TEXT DEFAULT 'Planned'
         )
     """)
+    # Added for the Roadmap Planning Agent (src/roadmap_agent.py): sprint
+    # allocation, dependency planning, milestone planning, release
+    # sequencing, and the agent's rationale. Added via safe ALTER TABLE
+    # migration so existing databases (with roadmap items already scheduled)
+    # don't need to be dropped/recreated.
+    _ensure_column(c, "roadmap_items", "sprint", "TEXT")
+    _ensure_column(c, "roadmap_items", "depends_on_feature_id", "INTEGER")
+    _ensure_column(c, "roadmap_items", "is_milestone", "INTEGER DEFAULT 0")
+    _ensure_column(c, "roadmap_items", "sequence_rank", "INTEGER")
+    _ensure_column(c, "roadmap_items", "ai_rationale", "TEXT")
 
     # Module 9: Chat history for conversational assistant
     c.execute("""
