@@ -103,12 +103,17 @@ def show_login():
                     }
                     st.session_state.current_user = demo_user
                     st.session_state.logged_in = True
+                    # Persisted in the URL so a browser refresh can restore the
+                    # session instead of bouncing back to this login page --
+                    # st.session_state alone doesn't survive a hard refresh.
+                    st.query_params["user"] = email
                     st.rerun()
                 else:
                     user = verify_user(email, password)
                     if user:
                         st.session_state.current_user = user
                         st.session_state.logged_in = True
+                        st.query_params["user"] = email
                         st.rerun()
                     else:
                         st.error("Invalid Email or Password")

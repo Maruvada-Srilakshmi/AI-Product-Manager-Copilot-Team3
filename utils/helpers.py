@@ -229,6 +229,71 @@ def run_ai_roadmap_planning(top_n: int = 10):
     return summary, (error if results is None else None)
 
 
+def schedule_feature_on_roadmap(feature_id: int, title: str, theme: str = None, votes: int = 1):
+    """
+    Schedules a single feature onto the roadmap immediately after a PRD is
+    generated for it -- the "PRD -> Roadmap" handoff: once a PRD exists for
+    a feature, it's real enough to plan, so it's placed on the roadmap
+    automatically via the Roadmap Planning Agent instead of waiting for a
+    separate manual "Run AI Roadmap Planning" pass over the whole backlog.
+
+    If the feature is already scheduled, returns the existing roadmap item
+    unchanged (no duplicate). Falls back to a deterministic heuristic
+    (current quarter, sprint 1, no dependency, not a milestone) if the AI
+    call fails, so the feature always ends up scheduled either way.
+
+    Returns (roadmap_item_dict, error). error is None on success or when
+    already scheduled; otherwise it's the AI failure reason (the item is
+    still created via the fallback, just not AI-planned).
+    """
+    from src.roadmap_agent import run_roadmap_planning_agent
+
+    existing = fetch_df(
+        "SELECT * FROM roadmap_items WHERE workspace_id = ? AND feature_id = ?", (ws_id(), feature_id)
+    )
+    if not existing.empty:
+        return existing.iloc[0].to_dict(), None
+
+    backlog = fetch_prioritized_backlog()
+    rice_row = backlog[backlog["feature_id"] == feature_id]
+    rice_score = (
+        float(rice_row.iloc[0]["rice_score"])
+        if not rice_row.empty and pd.notna(rice_row.iloc[0]["rice_score"]) else None
+    )
+
+    current_quarter = _current_quarter()
+    batch = [{"id": feature_id, "title": title, "theme": theme, "rice_score": rice_score, "votes": votes}]
+    results, error = run_roadmap_planning_agent(batch, current_quarter=current_quarter)
+    plan = results[0] if results else None
+
+    if plan:
+        quarter, sprint = plan["quarter"], plan["sprint"]
+        depends_on_feature_id = plan["depends_on_id"]  # always None for a single-item batch
+        is_milestone = plan["is_milestone"]
+        rationale = plan["rationale"]
+    else:
+        quarter, sprint = current_quarter, 1
+        depends_on_feature_id, is_milestone = None, False
+        rationale = "AI planning unavailable -- default quarter assignment used."
+
+    start, end = _sprint_dates(quarter, sprint)
+    execute(
+        """INSERT INTO roadmap_items
+           (workspace_id, feature_id, title, quarter, start_date, end_date, status,
+            sprint, depends_on_feature_id, is_milestone, ai_rationale)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
+        (ws_id(), feature_id, title, quarter, str(start), str(end), "Planned",
+         f"Sprint {sprint}", depends_on_feature_id, int(is_milestone), rationale),
+    )
+    resequence_roadmap()
+
+    new_item = fetch_df(
+        "SELECT * FROM roadmap_items WHERE workspace_id = ? AND feature_id = ? ORDER BY id DESC LIMIT 1",
+        (ws_id(), feature_id),
+    )
+    return new_item.iloc[0].to_dict(), (error if plan is None else None)
+
+
 # ---------------- Ingestion + classification ----------------
 
 def read_any_table(uploaded_file) -> pd.DataFrame:

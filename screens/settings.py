@@ -103,7 +103,7 @@ def show_settings():
                     st.warning("Name and email can't be empty.")
 
         if st.session_state.pop("profile_saved", False):
-            st.success("✅ Profile updated successfully!")
+            st.success("Profile updated successfully!")
 
     # -----------------------------
     # Workspace (real: persisted in the `workspaces` table)
@@ -118,7 +118,7 @@ def show_settings():
             if ws_saved and ws_name.strip():
                 execute("UPDATE workspaces SET name = ? WHERE id = ?", (ws_name.strip(), ws["id"]))
                 st.session_state["workspace"]["name"] = ws_name.strip()
-                st.success("✅ Workspace name updated.")
+                st.success("Workspace name updated.")
                 st.rerun()
 
     # -----------------------------
@@ -154,7 +154,7 @@ def show_settings():
             if "error" in result:
                 st.error(result["error"])
             else:
-                st.success(f"✅ Reloaded {result['ingested']} feedback rows into the database.")
+                st.success(f"Reloaded {result['ingested']} feedback rows into the database.")
                 st.rerun()
 
     # -----------------------------
@@ -197,6 +197,11 @@ def show_settings():
                 st.session_state.pop("current_user", None)
                 st.session_state.pop("user_settings", None)
                 st.session_state.pop("_settings_seeded_for", None)
+                # Clear the persisted session from the URL too, or a refresh
+                # (or even just reopening the tab) would silently log the
+                # user back in via the leftover query param.
+                st.query_params.pop("user", None)
+                st.query_params.pop("page", None)
                 st.rerun()
         with col2:
             if st.button("Clear all workspace data", use_container_width=True, type="primary"):

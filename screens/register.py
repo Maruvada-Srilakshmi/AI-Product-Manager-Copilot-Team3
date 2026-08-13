@@ -58,7 +58,7 @@ def show_register():
 
         with st.container(border=True):
 
-            st.markdown("## Create Account ")
+            st.markdown("## Create Account")
             st.write("Sign up to get started")
 
             full_name = st.text_input(
