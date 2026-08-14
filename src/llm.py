@@ -443,3 +443,34 @@ def check_connection() -> dict:
         text = (resp.text or "").strip()
         return {"status": "connected", "detail": f"Gemini responded: {text[:60]!r}"}
     return {"status": "error", "detail": error}
+
+def generate_implementation_roadmap(prd_text: str) -> str:
+    """
+    Takes an existing PRD and generates a standalone 2-Sprint Implementation Roadmap.
+    """
+    system = (
+        "You are an expert Engineering Manager. Your job is to read the provided Product "
+        "Requirements Document (PRD) and translate it into a strict, actionable 2-Sprint Execution Plan. "
+        "Sprint 1 must focus entirely on backend/core logic, and Sprint 2 must focus on frontend UI/integration. "
+        "Output ONLY the roadmap in clean Markdown format."
+    )
+    user = f"Here is the approved PRD:\n\n{prd_text}"
+    
+    # We use a larger max_tokens (like you identified earlier) to ensure it doesn't get cut off
+    result = _call(system, user, max_tokens=8192)
+    
+    if result and not result.startswith("__ERROR__"):
+        return result
+        
+    return f"""### 2-Sprint Execution Plan (Offline Fallback)
+
+**Sprint 1: Core/Backend**
+*   Analyze PRD requirements for necessary data structures.
+*   Implement foundational APIs and database migrations.
+
+**Sprint 2: UI/Frontend**
+*   Build user interfaces based on the PRD user stories.
+*   Integrate frontend with Sprint 1 APIs.
+
+*(Generated offline — connect a GEMINI_API_KEY to enable full AI roadmap generation based on the actual PRD.)*
+"""
