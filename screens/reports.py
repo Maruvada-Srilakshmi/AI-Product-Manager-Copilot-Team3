@@ -12,19 +12,47 @@ from utils.helpers import (
 def _inject_css():
     st.markdown("""
         <style>
-        .report-card {
-            background: var(--pm-bg);
-            border: 1px solid var(--pm-border);
-            border-radius: 14px;
-            padding: 16px 18px;
-            margin-bottom: 12px;
-            box-shadow: var(--pm-shadow);
+        .report-title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 4px;
         }
-        .report-title { font-size: 15px; font-weight: 700; color: var(--pm-navy); margin-bottom: 2px; }
-        .report-desc { font-size: 13px; color: var(--pm-text-muted); margin-bottom: 6px; }
-        .report-meta { font-size: 12px; color: var(--pm-text-muted); }
+        .report-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: var(--pm-navy);
+            line-height: 1.45;
+        }
+        .doc-type-chip {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--pm-text-muted);
+            background: var(--pm-bg-soft);
+            border: 1px solid var(--pm-border);
+            border-radius: 6px;
+            padding: 2px 8px;
+            white-space: nowrap;
+        }
+        .report-meta {
+            font-size: 12px;
+            color: var(--pm-text-muted);
+        }
+        .report-badge-wrap {
+            text-align: right;
+            padding-top: 3px;
+        }
         .priority-badge {
-            font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
         .priority-high { background: var(--pm-red-bg); color: var(--pm-red); }
         .priority-medium { background: var(--pm-amber-bg); color: var(--pm-amber); }
@@ -42,7 +70,29 @@ def show_reports():
 
     feedback = fetch_feedback()
     features = fetch_features()
+    # Reports owns PRDs, User Stories, and Executive Summaries -- Roadmap
+    # documents (the AI-generated 2-Sprint Implementation Roadmap) are
+    # generated and displayed on the Roadmap page instead, so they're
+    # excluded here rather than leaking into "PRD Documents" below just
+    # because they live in the same shared `documents` table.
     docs = fetch_documents()
+    docs = docs[docs["doc_type"] != "Roadmap"] if not docs.empty else docs
+
+    # feature_requests.title is truncated to ~70 characters (with an
+    # ellipsis) for compact use elsewhere in the app (e.g. the Dashboard's
+    # chart legend); documents inherit that same truncated title as their
+    # key. Displayed here at full card/dropdown width that reads as a
+    # sentence cut off mid-way, so anywhere a title would be shown as prose
+    # below uses this lookup to show the full, untruncated feedback text
+    # instead. The (truncated) title itself is still used as the matching
+    # key everywhere -- only the displayed text changes.
+    title_to_full = {}
+    if not features.empty:
+        for _, f in features.iterrows():
+            title_to_full[f["title"]] = (f.get("description") or f["title"] or "").strip()
+
+    def full_text(title):
+        return title_to_full.get(title, title)
 
     header_col, btn_col = st.columns([5, 1.4])
     with header_col:
@@ -67,7 +117,7 @@ def show_reports():
         )
         samples = theme_feedback["text"].tolist()
 
-        with st.spinner(f"Drafting PRD for '{target['title']}'..."):
+        with st.spinner(f"Drafting PRD for '{target.get('description') or target['title']}'..."):
             prd = generate_prd(target["title"], target["description"] or "", target["theme"] or "General", samples)
         execute(
             "INSERT INTO documents (workspace_id, doc_type, title, content, created_at) VALUES (?,?,?,?,?)",
@@ -84,7 +134,7 @@ def show_reports():
         st.session_state["last_roadmap_addition"] = {
             "title": target["title"], "item": roadmap_item, "error": roadmap_error,
         }
-        st.session_state["prd_success"] = f"New PRD generated for '{target['title']}'!"
+        st.session_state["prd_success"] = f"New PRD generated for '{target.get('description') or target['title']}'!"
         st.rerun()
 
     st.write("")
@@ -109,7 +159,7 @@ def show_reports():
         if roadmap_addition:
             item = roadmap_addition["item"]
             with st.container(border=True):
-                st.markdown(f"**Added to Roadmap: {roadmap_addition['title']}**")
+                st.markdown(f"**Added to Roadmap: {full_text(roadmap_addition['title'])}**")
                 if item is not None:
                     sprint_label = item.get("sprint") or "Sprint 1"
                     milestone_note = " -- flagged as a milestone" if int(item.get("is_milestone") or 0) else ""
@@ -208,45 +258,55 @@ def show_reports():
                 rice = scored.get("rice_score")
             badge = priority_bucket(rice)
 
-            st.markdown(f"""
-                <div class="report-card">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="report-title">{doc['title']} <span style="font-weight:400;color:var(--pm-text-muted);">({doc['doc_type']})</span></div>
-                            <div class="report-meta">Generated on {str(doc['created_at'])[:10]}</div>
+            with st.container(border=True):
+                title_col, badge_col = st.columns([5, 1.4])
+                with title_col:
+                    st.markdown(f"""
+                        <div class="report-title-row">
+                            <span class="report-title">{full_text(doc['title'])}</span>
+                            <span class="doc-type-chip">{doc['doc_type']}</span>
                         </div>
-                        <span class="priority-badge {_priority_class(badge)}">{badge} Priority</span>
-                    </div>
-                </div>
-            """, unsafe_allow_html=True)
+                        <div class="report-meta">Generated on {str(doc['created_at'])[:10]}</div>
+                    """, unsafe_allow_html=True)
+                with badge_col:
+                    st.markdown(f"""
+                        <div class="report-badge-wrap">
+                            <span class="priority-badge {_priority_class(badge)}">{badge} Priority</span>
+                        </div>
+                    """, unsafe_allow_html=True)
 
-            v_col, d_col, r_col, _ = st.columns([1, 1, 1, 4])
-            with v_col:
-                if st.button("View", key=f"view_prd_{doc['id']}"):
-                    st.session_state.active_prd_view = (
-                        None if st.session_state.get("active_prd_view") == doc["id"] else doc["id"]
+                st.write("")
+                v_col, d_col, r_col, _ = st.columns([1, 1, 1, 4])
+                with v_col:
+                    if st.button("View", key=f"view_prd_{doc['id']}", use_container_width=True):
+                        st.session_state.active_prd_view = (
+                            None if st.session_state.get("active_prd_view") == doc["id"] else doc["id"]
+                        )
+                with d_col:
+                    st.download_button(
+                        "Download", doc["content"],
+                        file_name=f"{doc['doc_type']}_{doc['title'][:30]}.md", mime="text/markdown",
+                        key=f"download_prd_{doc['id']}", use_container_width=True,
                     )
-            with d_col:
-                st.download_button(
-                    "Download", doc["content"],
-                    file_name=f"{doc['doc_type']}_{doc['title'][:30]}.md", mime="text/markdown",
-                    key=f"download_prd_{doc['id']}",
-                )
-            with r_col:
-                if st.button("Remove", key=f"remove_prd_{doc['id']}"):
-                    execute("DELETE FROM documents WHERE id = ? AND workspace_id = ?", (doc["id"], ws_id()))
-                    st.session_state.pop("active_prd_view", None)
-                    st.success(f"Removed '{doc['title']}'.")
-                    st.rerun()
+                with r_col:
+                    if st.button("Remove", key=f"remove_prd_{doc['id']}", use_container_width=True):
+                        execute("DELETE FROM documents WHERE id = ? AND workspace_id = ?", (doc["id"], ws_id()))
+                        st.session_state.pop("active_prd_view", None)
+                        st.success(f"Removed '{full_text(doc['title'])}'.")
+                        st.rerun()
 
-            if st.session_state.get("active_prd_view") == doc["id"]:
-                with st.container(border=True):
+                if st.session_state.get("active_prd_view") == doc["id"]:
+                    st.write("")
                     st.markdown(doc["content"])
+
+            st.write("")
 
         st.write("")
         st.caption("Prefer user stories instead of a full PRD? Generate them for a specific feature below.")
         if not features.empty:
-            us_feature = st.selectbox("Feature", features["title"].tolist(), key="us_feature_select")
+            us_feature = st.selectbox(
+                "Feature", features["title"].tolist(), key="us_feature_select", format_func=full_text
+            )
             if st.button("Generate user stories", key="gen_user_stories"):
                 row = features[features["title"] == us_feature].iloc[0]
                 with st.spinner("Writing user stories..."):
@@ -313,9 +373,9 @@ def show_reports():
                         (ws_id(), "Executive Summary", f"Executive Summary — {str(now())[:10]}",
                          st.session_state["exec_summary"], now()),
                     )
-                    st.success("✅ Saved to PRD Documents.")
+                    st.success("Saved to PRD Documents.")
             with download_col:
-                st.download_button("⬇ Download summary", st.session_state["exec_summary"],
+                st.download_button("Download summary", st.session_state["exec_summary"],
                                     file_name="executive_summary.md", mime="text/markdown",
                                     key="download_exec_summary")
 
@@ -336,7 +396,7 @@ def show_reports():
             st.subheader("Top Requested Features")
             if not features.empty:
                 for _, row in features.head(5).iterrows():
-                    st.write(f"• {row['title']} — {row['votes']} requests")
+                    st.write(f"• {full_text(row['title'])} — {row['votes']} requests")
             else:
                 st.caption("No feature requests tracked yet.")
 

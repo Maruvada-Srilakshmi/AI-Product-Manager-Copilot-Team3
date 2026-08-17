@@ -2,17 +2,18 @@ import streamlit as st
 
 from src.db import init_db, get_default_workspace, get_user_by_username
 from src.style import apply_style
-from utils.helpers import ensure_dataset_seeded
+from utils.helpers import ensure_dataset_seeded, ensure_analytics_seeded
 
 from screens.login import show_login
 from screens.register import show_register
 from screens.dashboard import show_dashboard
 from screens import theme_extraction_panel
 from screens.prioritization_engine import show_prioritization_engine
+from screens.product_analytics import show_product_analytics
 from screens.ai_chat import show_ai_chat
 from screens.reports import show_reports
 from screens.roadmap import show_roadmap
-from screens.settings import show_settings
+from screens.user_profile import show_user_profile
 
 # -----------------------------
 # Page Configuration
@@ -52,6 +53,10 @@ if "workspace" not in st.session_state:
 if not st.session_state.get("dataset_seeded"):
     ensure_dataset_seeded()
     st.session_state["dataset_seeded"] = True
+
+if not st.session_state.get("analytics_seeded"):
+    ensure_analytics_seeded()
+    st.session_state["analytics_seeded"] = True
 
 # -----------------------------
 # Session State
@@ -104,10 +109,10 @@ else:
         "Dashboard",
         "Theme Insights",
         "Prioritization Engine",
+        "Product Analytics",
         "AI Chat",
         "Reports",
-        "Roadmap",
-        "Settings"
+        "Roadmap"
     ]
     # The currently selected page is also kept in the URL's query string, the
     # same mechanism used above to survive a refresh -- otherwise a reload
@@ -129,12 +134,15 @@ else:
     st.sidebar.caption("AI Product Manager Copilot v1.0")
 
     # -----------------------------
-    # Appearance toggle -- a single icon-free button in the top-right of the
-    # main content area (replacing the old Settings > Appearance tab). One
-    # click flips the theme immediately.
+    # Top-right controls: a User Profile icon (opens the profile/account
+    # actions in a popover, rather than taking up a full sidebar nav slot)
+    # next to the light/dark appearance toggle.
     # -----------------------------
-    _, top_right_col = st.columns([11, 1])
-    with top_right_col:
+    _, profile_col, theme_col = st.columns([10, 1, 1])
+    with profile_col:
+        with st.popover("", icon=":material/account_circle:", use_container_width=True, help="User Profile"):
+            show_user_profile()
+    with theme_col:
         is_dark = st.session_state["theme"] == "Dark"
         toggle_label = "Light" if is_dark else "Dark"
         toggle_help = "Switch to Light mode" if is_dark else "Switch to Dark mode"
@@ -156,6 +164,9 @@ else:
     elif page == "Prioritization Engine":
         show_prioritization_engine()
 
+    elif page == "Product Analytics":
+        show_product_analytics()
+
     elif page == "AI Chat":
         show_ai_chat()
 
@@ -164,6 +175,3 @@ else:
 
     elif page == "Roadmap":
         show_roadmap()
-
-    elif page == "Settings":
-        show_settings()

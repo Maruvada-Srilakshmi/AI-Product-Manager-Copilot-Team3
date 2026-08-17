@@ -94,7 +94,7 @@ def show_register():
                     st.error("Password must be at least 4 characters.")
                 else:
                     try:
-                        create_user(username=email, password=password, role="Product Manager")
+                        create_user(username=email, password=password, role="Product Manager", name=full_name.strip())
                         st.success("Account created! You can now sign in.")
                         st.session_state["auth_page"] = "login"
                         st.rerun()

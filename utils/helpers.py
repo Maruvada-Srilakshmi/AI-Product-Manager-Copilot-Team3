@@ -11,12 +11,18 @@ import pandas as pd
 
 from src.db import fetch_df, execute, now, get_conn
 from src.nlp_utils import extract_themes, score_sentiment, top_keywords, clean_text
-from src.csv_utils import guess_column, guess_free_text_column, FEEDBACK_ALIASES
+from src.csv_utils import guess_column, guess_free_text_column, guess_numeric_column, \
+    guess_date_column, FEEDBACK_ALIASES, ANALYTICS_ALIASES
 
 # Bundled dataset that the workspace is auto-seeded from (no manual upload
 # step anymore — see `ensure_dataset_seeded()` below).
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DATASET_PATH = os.path.join(PROJECT_ROOT, "data", "customer_feedback_dataset.csv")
+
+# Bundled sample usage-event dataset for the Product Analytics Data
+# Integration Module (Module 3) — auto-seeded the same way the feedback
+# dataset is, so the Product Analytics page always has data to show.
+DEFAULT_ANALYTICS_PATH = os.path.join(PROJECT_ROOT, "data", "product_analytics_dataset.csv")
 
 REQUEST_KEYWORDS = [
     "would like", "wish", "please add", "request", "add a", "add an",
@@ -71,6 +77,12 @@ def fetch_documents() -> pd.DataFrame:
 
 def fetch_roadmap() -> pd.DataFrame:
     return fetch_df("SELECT * FROM roadmap_items WHERE workspace_id = ?", (ws_id(),))
+
+
+def fetch_analytics() -> pd.DataFrame:
+    return fetch_df(
+        "SELECT * FROM analytics_events WHERE workspace_id = ? ORDER BY event_date", (ws_id(),)
+    )
 
 
 def fetch_prioritized_backlog() -> pd.DataFrame:
@@ -476,6 +488,114 @@ def reload_dataset() -> dict:
 
     df = pd.read_csv(DEFAULT_DATASET_PATH)
     return ingest_and_classify(df, os.path.basename(DEFAULT_DATASET_PATH))
+
+
+# ---------------- Product Analytics Data Integration (Module 3) ----------------
+
+def ingest_analytics(df: pd.DataFrame, source_name: str) -> dict:
+    """
+    Ingests a raw, column-agnostic DataFrame of product usage/analytics
+    events into the `analytics_events` table, auto-detecting which column
+    is which via ANALYTICS_ALIASES (same guess_column() approach
+    ingest_and_classify() uses for feedback), with content-based fallbacks
+    for whichever fields don't match a known header alias.
+
+    Returns a summary dict: {"ingested": int} or {"ingested": 0, "error": str}.
+    """
+    feature_col = guess_column(df.columns, ANALYTICS_ALIASES["feature"])
+    event_col = guess_column(df.columns, ANALYTICS_ALIASES["event_name"])
+    count_col = guess_column(df.columns, ANALYTICS_ALIASES["user_count"]) or \
+        guess_numeric_column(df, exclude=[feature_col, event_col])
+    date_col = guess_column(df.columns, ANALYTICS_ALIASES["date"]) or \
+        guess_date_column(df, exclude=[feature_col, event_col, count_col])
+
+    if feature_col is None:
+        feature_col = guess_free_text_column(df, exclude=[event_col, date_col])
+    if feature_col is None:
+        return {"ingested": 0, "error": "Couldn't find a feature/module column in this file."}
+
+    conn = get_conn()
+    ingested = 0
+    for _, row in df.iterrows():
+        feature = str(row.get(feature_col, "")).strip()
+        if not feature or feature.lower() == "nan":
+            continue
+
+        event_name = str(row.get(event_col)).strip() if event_col and pd.notna(row.get(event_col)) else "feature_used"
+        count_val = pd.to_numeric(row.get(count_col), errors="coerce") if count_col else None
+        user_count = int(count_val) if count_val is not None and pd.notna(count_val) else 1
+        event_date = row.get(date_col) if date_col else None
+        parsed_date = pd.to_datetime(event_date, errors="coerce") if event_date is not None else None
+        event_date_str = parsed_date.date().isoformat() if parsed_date is not None and pd.notna(parsed_date) else now()[:10]
+
+        conn.execute(
+            """INSERT INTO analytics_events
+               (workspace_id, event_name, feature, user_count, event_date)
+               VALUES (?,?,?,?,?)""",
+            (ws_id(), event_name, feature, user_count, event_date_str),
+        )
+        ingested += 1
+
+    conn.commit()
+    conn.close()
+
+    if ingested == 0:
+        return {"ingested": 0, "error": "No usable rows found in this file."}
+    return {"ingested": ingested, "source": source_name}
+
+
+def analytics_already_loaded() -> bool:
+    """True once this workspace's `analytics_events` table has been populated."""
+    df = fetch_df("SELECT COUNT(*) AS c FROM analytics_events WHERE workspace_id = ?", (ws_id(),))
+    return not df.empty and int(df.iloc[0]["c"]) > 0
+
+
+def ensure_analytics_seeded() -> dict | None:
+    """
+    Loads the bundled `data/product_analytics_dataset.csv` straight into
+    the `analytics_events` table on first launch (mirrors
+    `ensure_dataset_seeded()` for feedback), so the Product Analytics page
+    always has data without requiring a manual upload step.
+
+    Returns the ingestion summary the first time it seeds, or None if the
+    workspace already has analytics data (or the bundled file is missing).
+    """
+    if analytics_already_loaded():
+        return None
+    if not os.path.exists(DEFAULT_ANALYTICS_PATH):
+        return None
+
+    df = pd.read_csv(DEFAULT_ANALYTICS_PATH)
+    return ingest_analytics(df, os.path.basename(DEFAULT_ANALYTICS_PATH))
+
+
+def reload_analytics() -> dict:
+    """Wipes this workspace's analytics_events rows and re-ingests the bundled dataset from scratch."""
+    conn = get_conn()
+    conn.execute("DELETE FROM analytics_events WHERE workspace_id = ?", (ws_id(),))
+    conn.commit()
+    conn.close()
+
+    df = pd.read_csv(DEFAULT_ANALYTICS_PATH)
+    return ingest_analytics(df, os.path.basename(DEFAULT_ANALYTICS_PATH))
+
+
+def analytics_summary() -> dict:
+    """Headline metrics + trend/usage tables for the Product Analytics page."""
+    from src.analytics_utils import summarize, usage_by_feature, usage_trend, event_mix
+    events = fetch_analytics()
+    return {
+        "metrics": summarize(events),
+        "by_feature": usage_by_feature(events),
+        "trend": usage_trend(events),
+        "event_mix": event_mix(events),
+    }
+
+
+def analytics_vs_demand() -> pd.DataFrame:
+    """Cross-references tracked usage with customer-requested features (Module 3 x Module 5)."""
+    from src.analytics_utils import usage_vs_demand
+    return usage_vs_demand(fetch_analytics(), fetch_features())
 
 
 # ---------------- Theme Extraction Agent (Module: Theme Agent) ----------------

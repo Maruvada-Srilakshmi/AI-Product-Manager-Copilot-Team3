@@ -1,0 +1,2562 @@
+event_date,feature,event_name,user_count,platform
+2025-01-01,API,click,181,Web
+2025-01-01,Billing,error,136,Mobile
+2025-01-01,Dashboard,click,373,Web
+2025-01-01,Export,click,198,Mobile
+2025-01-01,Mobile App,feature_used,210,Web
+2025-01-01,Notifications,session_start,138,Mobile
+2025-01-01,Onboarding,feature_used,234,Mobile
+2025-01-01,Reporting,feature_used,129,Web
+2025-01-01,Search,feature_used,163,Web
+2025-01-01,Security & Compliance,feature_used,84,Web
+2025-01-02,API,feature_used,186,Web
+2025-01-02,Billing,session_start,140,Mobile
+2025-01-02,Dashboard,session_start,372,Web
+2025-01-02,Export,feature_used,248,Web
+2025-01-02,Mobile App,session_start,228,Mobile
+2025-01-02,Notifications,click,149,Web
+2025-01-02,Onboarding,feature_used,277,Web
+2025-01-02,Reporting,session_start,154,Web
+2025-01-02,Search,feature_used,151,Web
+2025-01-02,Security & Compliance,session_start,84,Web
+2025-01-03,API,feature_used,219,Mobile
+2025-01-03,Billing,feature_used,151,Web
+2025-01-03,Dashboard,feature_used,413,Web
+2025-01-03,Export,feature_used,253,Web
+2025-01-03,Mobile App,feature_used,216,Web
+2025-01-03,Notifications,feature_used,160,Mobile
+2025-01-03,Onboarding,feature_used,261,Web
+2025-01-03,Reporting,feature_used,162,Web
+2025-01-03,Search,feature_used,198,Web
+2025-01-03,Security & Compliance,feature_used,70,Web
+2025-01-04,API,feature_used,122,Web
+2025-01-04,Billing,click,86,Mobile
+2025-01-04,Dashboard,feature_used,238,Web
+2025-01-04,Export,session_start,154,Web
+2025-01-04,Mobile App,export_click,140,Web
+2025-01-04,Notifications,session_start,98,Mobile
+2025-01-04,Onboarding,click,209,Web
+2025-01-04,Reporting,feature_used,110,Mobile
+2025-01-04,Search,session_start,108,Web
+2025-01-04,Security & Compliance,feature_used,44,Web
+2025-01-05,API,session_start,124,Web
+2025-01-05,Billing,feature_used,110,Mobile
+2025-01-05,Dashboard,feature_used,246,Mobile
+2025-01-05,Export,feature_used,143,Mobile
+2025-01-05,Mobile App,click,147,Web
+2025-01-05,Notifications,click,99,Mobile
+2025-01-05,Onboarding,click,202,Mobile
+2025-01-05,Reporting,feature_used,90,Web
+2025-01-05,Search,feature_used,122,Web
+2025-01-05,Security & Compliance,session_start,46,Mobile
+2025-01-06,API,feature_used,227,Web
+2025-01-06,Billing,feature_used,181,Mobile
+2025-01-06,Dashboard,feature_used,453,Mobile
+2025-01-06,Export,feature_used,280,Web
+2025-01-06,Mobile App,feature_used,242,Web
+2025-01-06,Notifications,session_start,192,Web
+2025-01-06,Onboarding,feature_used,347,Web
+2025-01-06,Reporting,feature_used,177,Web
+2025-01-06,Search,session_start,204,Mobile
+2025-01-06,Security & Compliance,feature_used,105,Web
+2025-01-07,API,session_start,195,Web
+2025-01-07,Billing,click,155,Mobile
+2025-01-07,Dashboard,feature_used,476,Web
+2025-01-07,Export,feature_used,257,Web
+2025-01-07,Mobile App,feature_used,237,Web
+2025-01-07,Notifications,feature_used,196,Web
+2025-01-07,Onboarding,feature_used,355,Web
+2025-01-07,Reporting,click,208,Mobile
+2025-01-07,Search,click,217,Web
+2025-01-07,Security & Compliance,feature_used,73,Web
+2025-01-08,API,feature_used,228,Web
+2025-01-08,Billing,feature_used,187,Web
+2025-01-08,Dashboard,click,484,Web
+2025-01-08,Export,click,285,Web
+2025-01-08,Mobile App,feature_used,265,Web
+2025-01-08,Notifications,session_start,203,Web
+2025-01-08,Onboarding,feature_used,325,Web
+2025-01-08,Reporting,feature_used,167,Mobile
+2025-01-08,Search,feature_used,230,Web
+2025-01-08,Security & Compliance,click,111,Web
+2025-01-09,API,export_click,238,Web
+2025-01-09,Billing,session_start,150,Web
+2025-01-09,Dashboard,click,495,Mobile
+2025-01-09,Export,session_start,325,Web
+2025-01-09,Mobile App,click,270,Mobile
+2025-01-09,Notifications,feature_used,213,Web
+2025-01-09,Onboarding,session_start,344,Web
+2025-01-09,Reporting,session_start,187,Mobile
+2025-01-09,Search,export_click,208,Web
+2025-01-09,Security & Compliance,feature_used,110,Mobile
+2025-01-10,API,click,233,Web
+2025-01-10,Billing,feature_used,162,Mobile
+2025-01-10,Dashboard,feature_used,500,Mobile
+2025-01-10,Export,session_start,268,Web
+2025-01-10,Mobile App,feature_used,293,Web
+2025-01-10,Notifications,feature_used,186,Mobile
+2025-01-10,Onboarding,feature_used,347,Web
+2025-01-10,Reporting,feature_used,199,Mobile
+2025-01-10,Search,feature_used,235,Web
+2025-01-10,Security & Compliance,feature_used,108,Mobile
+2025-01-11,API,feature_used,120,Mobile
+2025-01-11,Billing,feature_used,110,Web
+2025-01-11,Dashboard,session_start,322,Mobile
+2025-01-11,Export,feature_used,142,Web
+2025-01-11,Mobile App,feature_used,176,Web
+2025-01-11,Notifications,session_start,147,Web
+2025-01-11,Onboarding,click,218,Web
+2025-01-11,Reporting,feature_used,115,Web
+2025-01-11,Search,feature_used,143,Web
+2025-01-11,Security & Compliance,session_start,69,Web
+2025-01-12,API,session_start,154,Web
+2025-01-12,Billing,feature_used,113,Web
+2025-01-12,Dashboard,feature_used,280,Web
+2025-01-12,Export,feature_used,181,Web
+2025-01-12,Mobile App,session_start,166,Web
+2025-01-12,Notifications,feature_used,142,Mobile
+2025-01-12,Onboarding,feature_used,211,Web
+2025-01-12,Reporting,feature_used,98,Web
+2025-01-12,Search,feature_used,132,Web
+2025-01-12,Security & Compliance,session_start,59,Mobile
+2025-01-13,API,feature_used,240,Web
+2025-01-13,Billing,feature_used,173,Mobile
+2025-01-13,Dashboard,feature_used,475,Web
+2025-01-13,Export,feature_used,313,Web
+2025-01-13,Mobile App,session_start,293,Web
+2025-01-13,Notifications,feature_used,216,Web
+2025-01-13,Onboarding,export_click,320,Mobile
+2025-01-13,Reporting,feature_used,200,Web
+2025-01-13,Search,feature_used,194,Web
+2025-01-13,Security & Compliance,feature_used,91,Web
+2025-01-14,API,feature_used,262,Web
+2025-01-14,Billing,export_click,151,Web
+2025-01-14,Dashboard,session_start,507,Web
+2025-01-14,Export,feature_used,303,Web
+2025-01-14,Mobile App,export_click,296,Web
+2025-01-14,Notifications,feature_used,229,Web
+2025-01-14,Onboarding,feature_used,334,Mobile
+2025-01-14,Reporting,export_click,194,Web
+2025-01-14,Search,error,238,Web
+2025-01-14,Security & Compliance,feature_used,92,Web
+2025-01-15,API,session_start,255,Mobile
+2025-01-15,Billing,feature_used,191,Web
+2025-01-15,Dashboard,session_start,504,Web
+2025-01-15,Export,export_click,288,Mobile
+2025-01-15,Mobile App,click,251,Web
+2025-01-15,Notifications,session_start,212,Mobile
+2025-01-15,Onboarding,session_start,327,Web
+2025-01-15,Reporting,feature_used,200,Mobile
+2025-01-15,Search,session_start,191,Mobile
+2025-01-15,Security & Compliance,session_start,79,Web
+2025-01-16,API,feature_used,227,Web
+2025-01-16,Billing,export_click,169,Web
+2025-01-16,Dashboard,click,478,Web
+2025-01-16,Export,session_start,300,Web
+2025-01-16,Mobile App,click,261,Mobile
+2025-01-16,Notifications,feature_used,202,Mobile
+2025-01-16,Onboarding,feature_used,320,Web
+2025-01-16,Reporting,export_click,178,Web
+2025-01-16,Search,feature_used,233,Mobile
+2025-01-16,Security & Compliance,feature_used,87,Web
+2025-01-17,API,session_start,245,Web
+2025-01-17,Billing,feature_used,162,Mobile
+2025-01-17,Dashboard,session_start,473,Web
+2025-01-17,Export,feature_used,259,Mobile
+2025-01-17,Mobile App,error,260,Web
+2025-01-17,Notifications,feature_used,190,Web
+2025-01-17,Onboarding,click,313,Mobile
+2025-01-17,Reporting,feature_used,172,Web
+2025-01-17,Search,feature_used,195,Web
+2025-01-17,Security & Compliance,feature_used,83,Web
+2025-01-18,API,session_start,108,Web
+2025-01-18,Billing,export_click,72,Web
+2025-01-18,Dashboard,feature_used,287,Web
+2025-01-18,Export,click,152,Mobile
+2025-01-18,Mobile App,feature_used,160,Mobile
+2025-01-18,Notifications,session_start,103,Mobile
+2025-01-18,Onboarding,feature_used,179,Web
+2025-01-18,Reporting,feature_used,100,Web
+2025-01-18,Search,click,130,Mobile
+2025-01-18,Security & Compliance,feature_used,49,Web
+2025-01-19,API,feature_used,137,Mobile
+2025-01-19,Billing,session_start,104,Web
+2025-01-19,Dashboard,click,274,Web
+2025-01-19,Export,feature_used,142,Web
+2025-01-19,Mobile App,feature_used,166,Web
+2025-01-19,Notifications,session_start,120,Web
+2025-01-19,Onboarding,session_start,192,Web
+2025-01-19,Reporting,session_start,101,Web
+2025-01-19,Search,session_start,137,Web
+2025-01-19,Security & Compliance,feature_used,39,Web
+2025-01-20,API,session_start,197,Mobile
+2025-01-20,Billing,session_start,142,Web
+2025-01-20,Dark Mode,feature_used,140,Web
+2025-01-20,Dashboard,feature_used,410,Mobile
+2025-01-20,Export,feature_used,246,Mobile
+2025-01-20,Mobile App,click,222,Mobile
+2025-01-20,Notifications,feature_used,190,Web
+2025-01-20,Onboarding,feature_used,289,Mobile
+2025-01-20,Reporting,feature_used,176,Web
+2025-01-20,Search,error,206,Web
+2025-01-20,Security & Compliance,feature_used,97,Mobile
+2025-01-21,API,feature_used,187,Web
+2025-01-21,Billing,export_click,112,Web
+2025-01-21,Dark Mode,feature_used,118,Mobile
+2025-01-21,Dashboard,feature_used,436,Web
+2025-01-21,Export,feature_used,230,Web
+2025-01-21,Mobile App,feature_used,240,Web
+2025-01-21,Notifications,export_click,176,Mobile
+2025-01-21,Onboarding,feature_used,274,Web
+2025-01-21,Reporting,session_start,141,Web
+2025-01-21,Search,feature_used,163,Web
+2025-01-21,Security & Compliance,feature_used,85,Web
+2025-01-22,API,session_start,191,Mobile
+2025-01-22,Billing,feature_used,149,Web
+2025-01-22,Dark Mode,feature_used,127,Web
+2025-01-22,Dashboard,feature_used,385,Web
+2025-01-22,Export,click,220,Web
+2025-01-22,Mobile App,feature_used,208,Web
+2025-01-22,Notifications,feature_used,169,Web
+2025-01-22,Onboarding,click,303,Web
+2025-01-22,Reporting,export_click,182,Web
+2025-01-22,Search,feature_used,181,Web
+2025-01-22,Security & Compliance,export_click,74,Mobile
+2025-01-23,API,click,188,Web
+2025-01-23,Billing,session_start,147,Web
+2025-01-23,Dark Mode,feature_used,125,Web
+2025-01-23,Dashboard,feature_used,336,Web
+2025-01-23,Export,feature_used,211,Web
+2025-01-23,Mobile App,feature_used,202,Mobile
+2025-01-23,Notifications,export_click,155,Web
+2025-01-23,Onboarding,feature_used,269,Mobile
+2025-01-23,Reporting,feature_used,146,Web
+2025-01-23,Search,session_start,180,Web
+2025-01-23,Security & Compliance,feature_used,60,Web
+2025-01-24,API,feature_used,168,Web
+2025-01-24,Billing,session_start,103,Web
+2025-01-24,Dark Mode,feature_used,105,Mobile
+2025-01-24,Dashboard,error,371,Web
+2025-01-24,Export,export_click,208,Web
+2025-01-24,Mobile App,feature_used,198,Web
+2025-01-24,Notifications,feature_used,149,Web
+2025-01-24,Onboarding,session_start,255,Web
+2025-01-24,Reporting,export_click,141,Web
+2025-01-24,Search,export_click,154,Web
+2025-01-24,Security & Compliance,click,65,Web
+2025-01-25,API,error,117,Web
+2025-01-25,Billing,feature_used,76,Web
+2025-01-25,Dark Mode,session_start,55,Mobile
+2025-01-25,Dashboard,feature_used,192,Web
+2025-01-25,Export,feature_used,129,Mobile
+2025-01-25,Mobile App,feature_used,117,Mobile
+2025-01-25,Notifications,feature_used,83,Mobile
+2025-01-25,Onboarding,feature_used,153,Web
+2025-01-25,Reporting,feature_used,68,Web
+2025-01-25,Search,feature_used,105,Web
+2025-01-25,Security & Compliance,feature_used,37,Web
+2025-01-26,API,feature_used,93,Web
+2025-01-26,Billing,click,62,Mobile
+2025-01-26,Dark Mode,feature_used,69,Mobile
+2025-01-26,Dashboard,feature_used,169,Mobile
+2025-01-26,Export,click,113,Web
+2025-01-26,Mobile App,error,91,Web
+2025-01-26,Notifications,feature_used,77,Mobile
+2025-01-26,Onboarding,feature_used,129,Web
+2025-01-26,Reporting,feature_used,56,Mobile
+2025-01-26,Search,feature_used,73,Web
+2025-01-26,Security & Compliance,session_start,38,Mobile
+2025-01-27,API,feature_used,129,Mobile
+2025-01-27,Billing,feature_used,90,Web
+2025-01-27,Dark Mode,session_start,104,Web
+2025-01-27,Dashboard,click,312,Web
+2025-01-27,Export,feature_used,167,Mobile
+2025-01-27,Mobile App,click,158,Web
+2025-01-27,Notifications,session_start,114,Web
+2025-01-27,Onboarding,feature_used,208,Web
+2025-01-27,Reporting,feature_used,122,Web
+2025-01-27,Search,feature_used,151,Web
+2025-01-27,Security & Compliance,feature_used,73,Web
+2025-01-28,API,feature_used,131,Web
+2025-01-28,Billing,feature_used,89,Web
+2025-01-28,Dark Mode,click,79,Mobile
+2025-01-28,Dashboard,feature_used,268,Web
+2025-01-28,Export,feature_used,169,Web
+2025-01-28,Mobile App,export_click,160,Web
+2025-01-28,Notifications,feature_used,111,Web
+2025-01-28,Onboarding,feature_used,218,Mobile
+2025-01-28,Reporting,feature_used,97,Web
+2025-01-28,Search,click,135,Mobile
+2025-01-28,Security & Compliance,click,51,Web
+2025-01-29,API,click,124,Web
+2025-01-29,Billing,feature_used,89,Web
+2025-01-29,Dark Mode,click,95,Mobile
+2025-01-29,Dashboard,feature_used,227,Mobile
+2025-01-29,Export,feature_used,157,Mobile
+2025-01-29,Mobile App,feature_used,150,Web
+2025-01-29,Notifications,session_start,109,Web
+2025-01-29,Onboarding,error,189,Web
+2025-01-29,Reporting,feature_used,115,Web
+2025-01-29,Search,feature_used,121,Web
+2025-01-29,Security & Compliance,feature_used,55,Web
+2025-01-30,API,feature_used,124,Web
+2025-01-30,Billing,click,83,Web
+2025-01-30,Dark Mode,feature_used,96,Web
+2025-01-30,Dashboard,feature_used,260,Mobile
+2025-01-30,Export,session_start,144,Web
+2025-01-30,Mobile App,feature_used,147,Mobile
+2025-01-30,Notifications,feature_used,90,Web
+2025-01-30,Onboarding,session_start,183,Mobile
+2025-01-30,Reporting,feature_used,113,Web
+2025-01-30,Search,feature_used,118,Web
+2025-01-30,Security & Compliance,click,47,Web
+2025-01-31,API,session_start,131,Web
+2025-01-31,Billing,feature_used,85,Mobile
+2025-01-31,Dark Mode,export_click,80,Web
+2025-01-31,Dashboard,session_start,256,Web
+2025-01-31,Export,feature_used,147,Web
+2025-01-31,Mobile App,error,139,Web
+2025-01-31,Notifications,export_click,117,Mobile
+2025-01-31,Onboarding,feature_used,163,Web
+2025-01-31,Reporting,session_start,101,Web
+2025-01-31,Search,click,101,Web
+2025-01-31,Security & Compliance,session_start,71,Web
+2025-02-01,API,feature_used,70,Web
+2025-02-01,Billing,export_click,57,Web
+2025-02-01,Dark Mode,click,50,Web
+2025-02-01,Dashboard,export_click,132,Web
+2025-02-01,Export,click,95,Mobile
+2025-02-01,Mobile App,feature_used,89,Web
+2025-02-01,Notifications,export_click,52,Mobile
+2025-02-01,Onboarding,feature_used,89,Web
+2025-02-01,Reporting,export_click,51,Web
+2025-02-01,Search,feature_used,61,Web
+2025-02-01,Security & Compliance,feature_used,16,Mobile
+2025-02-02,API,feature_used,89,Web
+2025-02-02,Billing,feature_used,50,Mobile
+2025-02-02,Dark Mode,feature_used,55,Web
+2025-02-02,Dashboard,feature_used,137,Web
+2025-02-02,Export,click,101,Web
+2025-02-02,Mobile App,session_start,80,Web
+2025-02-02,Notifications,session_start,60,Web
+2025-02-02,Onboarding,session_start,90,Web
+2025-02-02,Reporting,feature_used,61,Web
+2025-02-02,Search,feature_used,79,Mobile
+2025-02-02,Security & Compliance,feature_used,30,Web
+2025-02-03,API,feature_used,108,Web
+2025-02-03,Billing,session_start,95,Web
+2025-02-03,Dark Mode,feature_used,74,Web
+2025-02-03,Dashboard,click,230,Web
+2025-02-03,Export,feature_used,143,Web
+2025-02-03,Mobile App,feature_used,154,Mobile
+2025-02-03,Notifications,session_start,91,Web
+2025-02-03,Onboarding,session_start,150,Web
+2025-02-03,Reporting,click,106,Web
+2025-02-03,Search,click,92,Web
+2025-02-03,Security & Compliance,feature_used,47,Web
+2025-02-04,API,click,137,Web
+2025-02-04,Billing,feature_used,67,Web
+2025-02-04,Dark Mode,feature_used,72,Web
+2025-02-04,Dashboard,feature_used,225,Web
+2025-02-04,Export,feature_used,120,Web
+2025-02-04,Mobile App,error,142,Web
+2025-02-04,Notifications,click,83,Mobile
+2025-02-04,Onboarding,export_click,157,Web
+2025-02-04,Reporting,feature_used,99,Web
+2025-02-04,Search,feature_used,127,Web
+2025-02-04,Security & Compliance,session_start,49,Mobile
+2025-02-05,API,feature_used,121,Mobile
+2025-02-05,Billing,click,92,Web
+2025-02-05,Dark Mode,feature_used,77,Web
+2025-02-05,Dashboard,click,276,Web
+2025-02-05,Export,click,126,Web
+2025-02-05,Mobile App,export_click,130,Web
+2025-02-05,Notifications,feature_used,96,Web
+2025-02-05,Onboarding,session_start,192,Mobile
+2025-02-05,Reporting,error,102,Web
+2025-02-05,Search,feature_used,103,Mobile
+2025-02-05,Security & Compliance,click,45,Web
+2025-02-06,API,feature_used,117,Web
+2025-02-06,Billing,click,76,Web
+2025-02-06,Dark Mode,feature_used,69,Web
+2025-02-06,Dashboard,feature_used,261,Web
+2025-02-06,Export,feature_used,129,Mobile
+2025-02-06,Mobile App,export_click,134,Web
+2025-02-06,Notifications,click,95,Web
+2025-02-06,Onboarding,feature_used,196,Web
+2025-02-06,Reporting,session_start,108,Web
+2025-02-06,Search,click,124,Web
+2025-02-06,Security & Compliance,feature_used,62,Mobile
+2025-02-07,API,click,114,Web
+2025-02-07,Billing,error,98,Mobile
+2025-02-07,Dark Mode,session_start,104,Web
+2025-02-07,Dashboard,click,261,Mobile
+2025-02-07,Export,session_start,136,Web
+2025-02-07,Mobile App,feature_used,169,Web
+2025-02-07,Notifications,feature_used,110,Web
+2025-02-07,Onboarding,export_click,168,Web
+2025-02-07,Reporting,feature_used,100,Web
+2025-02-07,Search,feature_used,128,Web
+2025-02-07,Security & Compliance,feature_used,51,Web
+2025-02-08,API,feature_used,95,Web
+2025-02-08,Billing,feature_used,52,Web
+2025-02-08,Dark Mode,feature_used,45,Web
+2025-02-08,Dashboard,click,177,Web
+2025-02-08,Export,feature_used,92,Web
+2025-02-08,Mobile App,session_start,92,Web
+2025-02-08,Notifications,session_start,55,Mobile
+2025-02-08,Onboarding,session_start,120,Web
+2025-02-08,Reporting,feature_used,70,Web
+2025-02-08,Search,session_start,79,Web
+2025-02-08,Security & Compliance,error,26,Web
+2025-02-09,API,feature_used,90,Web
+2025-02-09,Billing,feature_used,63,Web
+2025-02-09,Dark Mode,feature_used,61,Web
+2025-02-09,Dashboard,feature_used,159,Web
+2025-02-09,Export,click,107,Web
+2025-02-09,Mobile App,session_start,100,Web
+2025-02-09,Notifications,click,75,Web
+2025-02-09,Onboarding,export_click,109,Web
+2025-02-09,Reporting,feature_used,83,Web
+2025-02-09,Search,feature_used,87,Web
+2025-02-09,Security & Compliance,feature_used,35,Web
+2025-02-10,API,feature_used,149,Mobile
+2025-02-10,Billing,click,103,Mobile
+2025-02-10,Dark Mode,feature_used,95,Web
+2025-02-10,Dashboard,feature_used,327,Mobile
+2025-02-10,Export,feature_used,165,Web
+2025-02-10,Mobile App,feature_used,157,Web
+2025-02-10,Notifications,export_click,125,Web
+2025-02-10,Onboarding,feature_used,221,Web
+2025-02-10,Reporting,feature_used,137,Web
+2025-02-10,Search,feature_used,140,Web
+2025-02-10,Security & Compliance,feature_used,57,Web
+2025-02-10,Slack Integration,feature_used,42,Web
+2025-02-11,API,session_start,176,Web
+2025-02-11,Billing,click,107,Mobile
+2025-02-11,Dark Mode,feature_used,109,Web
+2025-02-11,Dashboard,click,290,Web
+2025-02-11,Export,session_start,165,Web
+2025-02-11,Mobile App,session_start,155,Web
+2025-02-11,Notifications,session_start,132,Mobile
+2025-02-11,Onboarding,session_start,213,Web
+2025-02-11,Reporting,feature_used,117,Web
+2025-02-11,Search,feature_used,147,Web
+2025-02-11,Security & Compliance,feature_used,80,Web
+2025-02-11,Slack Integration,click,46,Mobile
+2025-02-12,API,session_start,174,Web
+2025-02-12,Billing,session_start,123,Mobile
+2025-02-12,Dark Mode,feature_used,91,Web
+2025-02-12,Dashboard,feature_used,316,Web
+2025-02-12,Export,click,182,Mobile
+2025-02-12,Mobile App,click,194,Web
+2025-02-12,Notifications,feature_used,142,Web
+2025-02-12,Onboarding,click,268,Mobile
+2025-02-12,Reporting,click,148,Web
+2025-02-12,Search,session_start,154,Web
+2025-02-12,Security & Compliance,feature_used,70,Mobile
+2025-02-12,Slack Integration,error,41,Web
+2025-02-13,API,feature_used,148,Web
+2025-02-13,Billing,feature_used,118,Web
+2025-02-13,Dark Mode,session_start,107,Mobile
+2025-02-13,Dashboard,feature_used,348,Web
+2025-02-13,Export,click,211,Web
+2025-02-13,Mobile App,feature_used,202,Web
+2025-02-13,Notifications,click,140,Web
+2025-02-13,Onboarding,feature_used,282,Mobile
+2025-02-13,Reporting,feature_used,136,Mobile
+2025-02-13,Search,feature_used,165,Web
+2025-02-13,Security & Compliance,session_start,78,Web
+2025-02-13,Slack Integration,session_start,63,Mobile
+2025-02-14,API,feature_used,189,Web
+2025-02-14,Billing,feature_used,142,Mobile
+2025-02-14,Dark Mode,feature_used,137,Web
+2025-02-14,Dashboard,feature_used,365,Web
+2025-02-14,Export,feature_used,203,Web
+2025-02-14,Mobile App,feature_used,213,Mobile
+2025-02-14,Notifications,feature_used,141,Web
+2025-02-14,Onboarding,export_click,238,Web
+2025-02-14,Reporting,session_start,144,Web
+2025-02-14,Search,session_start,180,Web
+2025-02-14,Security & Compliance,error,76,Web
+2025-02-14,Slack Integration,session_start,49,Web
+2025-02-15,API,feature_used,111,Web
+2025-02-15,Billing,feature_used,74,Web
+2025-02-15,Dark Mode,session_start,83,Web
+2025-02-15,Dashboard,session_start,211,Web
+2025-02-15,Export,session_start,132,Mobile
+2025-02-15,Mobile App,feature_used,122,Mobile
+2025-02-15,Notifications,feature_used,78,Mobile
+2025-02-15,Onboarding,feature_used,157,Web
+2025-02-15,Reporting,click,102,Web
+2025-02-15,Search,feature_used,109,Mobile
+2025-02-15,Security & Compliance,feature_used,47,Web
+2025-02-15,Slack Integration,feature_used,37,Mobile
+2025-02-16,API,feature_used,119,Web
+2025-02-16,Billing,feature_used,84,Web
+2025-02-16,Dark Mode,feature_used,73,Mobile
+2025-02-16,Dashboard,session_start,256,Mobile
+2025-02-16,Export,feature_used,117,Web
+2025-02-16,Mobile App,click,157,Web
+2025-02-16,Notifications,feature_used,109,Web
+2025-02-16,Onboarding,feature_used,169,Web
+2025-02-16,Reporting,session_start,84,Web
+2025-02-16,Search,feature_used,125,Mobile
+2025-02-16,Security & Compliance,feature_used,50,Mobile
+2025-02-16,Slack Integration,feature_used,36,Web
+2025-02-17,API,feature_used,211,Web
+2025-02-17,Billing,session_start,164,Web
+2025-02-17,Dark Mode,feature_used,140,Web
+2025-02-17,Dashboard,feature_used,453,Web
+2025-02-17,Export,feature_used,244,Web
+2025-02-17,Mobile App,export_click,223,Web
+2025-02-17,Notifications,feature_used,180,Web
+2025-02-17,Onboarding,export_click,320,Web
+2025-02-17,Reporting,feature_used,166,Web
+2025-02-17,Search,feature_used,193,Web
+2025-02-17,Security & Compliance,feature_used,86,Mobile
+2025-02-17,Slack Integration,feature_used,54,Web
+2025-02-18,API,session_start,246,Web
+2025-02-18,Billing,feature_used,167,Web
+2025-02-18,Dark Mode,session_start,145,Mobile
+2025-02-18,Dashboard,feature_used,473,Web
+2025-02-18,Export,session_start,240,Web
+2025-02-18,Mobile App,click,261,Mobile
+2025-02-18,Notifications,feature_used,195,Web
+2025-02-18,Onboarding,session_start,322,Mobile
+2025-02-18,Reporting,feature_used,187,Web
+2025-02-18,Search,feature_used,210,Web
+2025-02-18,Security & Compliance,feature_used,89,Web
+2025-02-18,Slack Integration,feature_used,62,Web
+2025-02-19,API,click,238,Web
+2025-02-19,Billing,click,154,Web
+2025-02-19,Dark Mode,feature_used,162,Mobile
+2025-02-19,Dashboard,feature_used,447,Web
+2025-02-19,Export,feature_used,233,Mobile
+2025-02-19,Mobile App,session_start,249,Web
+2025-02-19,Notifications,session_start,192,Web
+2025-02-19,Onboarding,feature_used,266,Web
+2025-02-19,Reporting,feature_used,173,Mobile
+2025-02-19,Search,feature_used,231,Web
+2025-02-19,Security & Compliance,feature_used,99,Web
+2025-02-19,Slack Integration,error,64,Web
+2025-02-20,API,feature_used,260,Web
+2025-02-20,Billing,session_start,171,Mobile
+2025-02-20,Bulk CSV Export,feature_used,68,Mobile
+2025-02-20,Dark Mode,feature_used,150,Web
+2025-02-20,Dashboard,feature_used,478,Web
+2025-02-20,Export,feature_used,250,Web
+2025-02-20,Mobile App,feature_used,293,Web
+2025-02-20,Notifications,feature_used,177,Web
+2025-02-20,Onboarding,feature_used,318,Web
+2025-02-20,Reporting,session_start,203,Web
+2025-02-20,Search,click,223,Mobile
+2025-02-20,Security & Compliance,session_start,96,Mobile
+2025-02-20,Slack Integration,session_start,62,Mobile
+2025-02-21,API,feature_used,251,Mobile
+2025-02-21,Billing,feature_used,153,Web
+2025-02-21,Bulk CSV Export,session_start,76,Web
+2025-02-21,Dark Mode,session_start,170,Web
+2025-02-21,Dashboard,click,450,Web
+2025-02-21,Export,feature_used,287,Web
+2025-02-21,Mobile App,session_start,282,Mobile
+2025-02-21,Notifications,session_start,198,Mobile
+2025-02-21,Onboarding,click,343,Web
+2025-02-21,Reporting,click,184,Web
+2025-02-21,Search,session_start,230,Web
+2025-02-21,Security & Compliance,session_start,80,Web
+2025-02-21,Slack Integration,feature_used,55,Web
+2025-02-22,API,feature_used,183,Mobile
+2025-02-22,Billing,session_start,115,Web
+2025-02-22,Bulk CSV Export,export_click,58,Mobile
+2025-02-22,Dark Mode,feature_used,85,Web
+2025-02-22,Dashboard,feature_used,286,Web
+2025-02-22,Export,feature_used,155,Web
+2025-02-22,Mobile App,feature_used,181,Web
+2025-02-22,Notifications,export_click,110,Mobile
+2025-02-22,Onboarding,click,184,Web
+2025-02-22,Reporting,feature_used,104,Mobile
+2025-02-22,Search,feature_used,138,Web
+2025-02-22,Security & Compliance,feature_used,71,Web
+2025-02-22,Slack Integration,feature_used,34,Web
+2025-02-23,API,export_click,154,Web
+2025-02-23,Billing,feature_used,97,Web
+2025-02-23,Bulk CSV Export,feature_used,36,Web
+2025-02-23,Dark Mode,feature_used,84,Mobile
+2025-02-23,Dashboard,session_start,316,Web
+2025-02-23,Export,export_click,169,Web
+2025-02-23,Mobile App,feature_used,173,Web
+2025-02-23,Notifications,session_start,117,Web
+2025-02-23,Onboarding,feature_used,221,Web
+2025-02-23,Reporting,session_start,92,Mobile
+2025-02-23,Search,session_start,148,Web
+2025-02-23,Security & Compliance,feature_used,58,Web
+2025-02-23,Slack Integration,session_start,43,Mobile
+2025-02-24,API,session_start,210,Web
+2025-02-24,Billing,click,178,Mobile
+2025-02-24,Bulk CSV Export,session_start,90,Mobile
+2025-02-24,Dark Mode,feature_used,164,Web
+2025-02-24,Dashboard,feature_used,488,Web
+2025-02-24,Export,session_start,285,Web
+2025-02-24,Mobile App,feature_used,286,Mobile
+2025-02-24,Notifications,click,185,Mobile
+2025-02-24,Onboarding,feature_used,339,Web
+2025-02-24,Reporting,feature_used,204,Web
+2025-02-24,Search,session_start,221,Web
+2025-02-24,Security & Compliance,feature_used,107,Web
+2025-02-24,Slack Integration,click,57,Web
+2025-02-25,API,feature_used,278,Web
+2025-02-25,Billing,click,172,Web
+2025-02-25,Bulk CSV Export,click,93,Web
+2025-02-25,Dark Mode,export_click,154,Web
+2025-02-25,Dashboard,feature_used,505,Mobile
+2025-02-25,Export,session_start,283,Mobile
+2025-02-25,Mobile App,feature_used,286,Web
+2025-02-25,Notifications,session_start,195,Web
+2025-02-25,Onboarding,feature_used,370,Mobile
+2025-02-25,Reporting,feature_used,216,Web
+2025-02-25,Search,session_start,233,Web
+2025-02-25,Security & Compliance,session_start,109,Web
+2025-02-25,Slack Integration,feature_used,66,Web
+2025-02-26,API,feature_used,259,Web
+2025-02-26,Billing,click,158,Web
+2025-02-26,Bulk CSV Export,click,91,Mobile
+2025-02-26,Dark Mode,feature_used,163,Web
+2025-02-26,Dashboard,session_start,493,Web
+2025-02-26,Export,session_start,265,Web
+2025-02-26,Mobile App,click,277,Web
+2025-02-26,Notifications,feature_used,201,Web
+2025-02-26,Onboarding,feature_used,378,Web
+2025-02-26,Reporting,feature_used,180,Mobile
+2025-02-26,Search,session_start,218,Web
+2025-02-26,Security & Compliance,feature_used,104,Web
+2025-02-26,Slack Integration,feature_used,69,Web
+2025-02-27,API,session_start,270,Web
+2025-02-27,Billing,feature_used,161,Web
+2025-02-27,Bulk CSV Export,feature_used,76,Web
+2025-02-27,Dark Mode,feature_used,137,Web
+2025-02-27,Dashboard,session_start,525,Web
+2025-02-27,Export,feature_used,275,Web
+2025-02-27,Mobile App,click,269,Web
+2025-02-27,Notifications,export_click,205,Web
+2025-02-27,Onboarding,feature_used,314,Web
+2025-02-27,Reporting,session_start,217,Web
+2025-02-27,Search,session_start,249,Mobile
+2025-02-27,Security & Compliance,feature_used,110,Web
+2025-02-27,Slack Integration,error,76,Web
+2025-02-28,API,feature_used,240,Mobile
+2025-02-28,Billing,session_start,175,Web
+2025-02-28,Bulk CSV Export,feature_used,77,Web
+2025-02-28,Dark Mode,feature_used,157,Web
+2025-02-28,Dashboard,feature_used,502,Web
+2025-02-28,Export,feature_used,253,Mobile
+2025-02-28,Mobile App,click,283,Web
+2025-02-28,Notifications,feature_used,192,Web
+2025-02-28,Onboarding,feature_used,331,Mobile
+2025-02-28,Reporting,click,193,Web
+2025-02-28,Search,click,216,Web
+2025-02-28,Security & Compliance,click,101,Web
+2025-02-28,Slack Integration,session_start,75,Web
+2025-03-01,API,feature_used,132,Mobile
+2025-03-01,Billing,error,103,Web
+2025-03-01,Bulk CSV Export,feature_used,50,Web
+2025-03-01,Dark Mode,feature_used,83,Web
+2025-03-01,Dashboard,session_start,320,Web
+2025-03-01,Export,feature_used,138,Web
+2025-03-01,Mobile App,feature_used,170,Web
+2025-03-01,Notifications,export_click,110,Web
+2025-03-01,Onboarding,feature_used,203,Web
+2025-03-01,Reporting,feature_used,118,Web
+2025-03-01,Search,session_start,155,Web
+2025-03-01,Security & Compliance,feature_used,65,Mobile
+2025-03-01,Slack Integration,feature_used,37,Web
+2025-03-02,API,export_click,140,Mobile
+2025-03-02,Billing,feature_used,85,Mobile
+2025-03-02,Bulk CSV Export,feature_used,35,Web
+2025-03-02,Dark Mode,session_start,98,Web
+2025-03-02,Dashboard,session_start,287,Mobile
+2025-03-02,Export,feature_used,157,Web
+2025-03-02,Mobile App,feature_used,177,Web
+2025-03-02,Notifications,feature_used,95,Web
+2025-03-02,Onboarding,error,186,Web
+2025-03-02,Reporting,feature_used,113,Mobile
+2025-03-02,Search,session_start,125,Web
+2025-03-02,Security & Compliance,feature_used,61,Web
+2025-03-02,Slack Integration,session_start,41,Web
+2025-03-03,API,session_start,212,Web
+2025-03-03,Billing,feature_used,135,Mobile
+2025-03-03,Bulk CSV Export,feature_used,77,Web
+2025-03-03,Dark Mode,error,140,Web
+2025-03-03,Dashboard,feature_used,414,Web
+2025-03-03,Export,feature_used,259,Web
+2025-03-03,Mobile App,feature_used,284,Web
+2025-03-03,Notifications,feature_used,210,Web
+2025-03-03,Onboarding,session_start,323,Web
+2025-03-03,Reporting,feature_used,177,Mobile
+2025-03-03,Search,feature_used,209,Web
+2025-03-03,Security & Compliance,feature_used,106,Web
+2025-03-03,Slack Integration,click,69,Web
+2025-03-04,API,session_start,216,Web
+2025-03-04,Billing,feature_used,142,Web
+2025-03-04,Bulk CSV Export,feature_used,71,Web
+2025-03-04,Dark Mode,click,146,Mobile
+2025-03-04,Dashboard,click,435,Web
+2025-03-04,Export,export_click,234,Web
+2025-03-04,Mobile App,session_start,263,Web
+2025-03-04,Notifications,click,188,Mobile
+2025-03-04,Onboarding,session_start,334,Mobile
+2025-03-04,Reporting,session_start,167,Mobile
+2025-03-04,Search,session_start,199,Web
+2025-03-04,Security & Compliance,session_start,92,Web
+2025-03-04,Slack Integration,feature_used,71,Web
+2025-03-05,API,feature_used,211,Web
+2025-03-05,Billing,feature_used,140,Web
+2025-03-05,Bulk CSV Export,export_click,54,Web
+2025-03-05,Custom Dashboard Widgets,feature_used,36,Web
+2025-03-05,Dark Mode,feature_used,154,Web
+2025-03-05,Dashboard,export_click,411,Web
+2025-03-05,Export,feature_used,233,Web
+2025-03-05,Mobile App,feature_used,246,Web
+2025-03-05,Notifications,feature_used,165,Web
+2025-03-05,Onboarding,session_start,288,Web
+2025-03-05,Reporting,feature_used,184,Web
+2025-03-05,Search,click,208,Web
+2025-03-05,Security & Compliance,session_start,92,Mobile
+2025-03-05,Slack Integration,session_start,71,Web
+2025-03-06,API,session_start,182,Mobile
+2025-03-06,Billing,feature_used,125,Web
+2025-03-06,Bulk CSV Export,session_start,56,Web
+2025-03-06,Custom Dashboard Widgets,click,33,Web
+2025-03-06,Dark Mode,feature_used,129,Web
+2025-03-06,Dashboard,session_start,384,Web
+2025-03-06,Export,feature_used,194,Web
+2025-03-06,Mobile App,feature_used,269,Web
+2025-03-06,Notifications,feature_used,163,Mobile
+2025-03-06,Onboarding,click,295,Web
+2025-03-06,Reporting,feature_used,147,Web
+2025-03-06,Search,export_click,214,Web
+2025-03-06,Security & Compliance,session_start,89,Web
+2025-03-06,Slack Integration,feature_used,67,Web
+2025-03-07,API,feature_used,183,Mobile
+2025-03-07,Billing,error,149,Web
+2025-03-07,Bulk CSV Export,feature_used,67,Web
+2025-03-07,Custom Dashboard Widgets,feature_used,35,Web
+2025-03-07,Dark Mode,session_start,132,Mobile
+2025-03-07,Dashboard,feature_used,399,Web
+2025-03-07,Export,feature_used,207,Web
+2025-03-07,Mobile App,export_click,251,Web
+2025-03-07,Notifications,session_start,135,Web
+2025-03-07,Onboarding,feature_used,312,Web
+2025-03-07,Reporting,feature_used,152,Mobile
+2025-03-07,Search,feature_used,159,Web
+2025-03-07,Security & Compliance,feature_used,77,Mobile
+2025-03-07,Slack Integration,export_click,75,Web
+2025-03-08,API,feature_used,139,Mobile
+2025-03-08,Billing,feature_used,82,Web
+2025-03-08,Bulk CSV Export,feature_used,32,Mobile
+2025-03-08,Custom Dashboard Widgets,feature_used,19,Mobile
+2025-03-08,Dark Mode,feature_used,91,Web
+2025-03-08,Dashboard,session_start,208,Web
+2025-03-08,Export,feature_used,100,Web
+2025-03-08,Mobile App,feature_used,139,Web
+2025-03-08,Notifications,feature_used,89,Web
+2025-03-08,Onboarding,feature_used,159,Mobile
+2025-03-08,Reporting,session_start,96,Mobile
+2025-03-08,Search,feature_used,111,Web
+2025-03-08,Security & Compliance,export_click,50,Mobile
+2025-03-08,Slack Integration,feature_used,31,Web
+2025-03-09,API,feature_used,116,Web
+2025-03-09,Billing,feature_used,75,Web
+2025-03-09,Bulk CSV Export,session_start,24,Web
+2025-03-09,Custom Dashboard Widgets,error,14,Web
+2025-03-09,Dark Mode,feature_used,70,Web
+2025-03-09,Dashboard,feature_used,195,Web
+2025-03-09,Export,click,122,Web
+2025-03-09,Mobile App,session_start,124,Web
+2025-03-09,Notifications,click,96,Web
+2025-03-09,Onboarding,feature_used,113,Web
+2025-03-09,Reporting,feature_used,85,Mobile
+2025-03-09,Search,feature_used,99,Mobile
+2025-03-09,Security & Compliance,feature_used,49,Web
+2025-03-09,Slack Integration,feature_used,41,Web
+2025-03-10,API,feature_used,180,Mobile
+2025-03-10,Billing,session_start,128,Web
+2025-03-10,Bulk CSV Export,session_start,60,Web
+2025-03-10,Custom Dashboard Widgets,feature_used,30,Web
+2025-03-10,Dark Mode,session_start,104,Web
+2025-03-10,Dashboard,feature_used,301,Mobile
+2025-03-10,Export,feature_used,194,Web
+2025-03-10,Mobile App,feature_used,196,Web
+2025-03-10,Notifications,session_start,152,Web
+2025-03-10,Onboarding,session_start,235,Web
+2025-03-10,Reporting,feature_used,127,Web
+2025-03-10,Search,feature_used,134,Web
+2025-03-10,Security & Compliance,feature_used,62,Mobile
+2025-03-10,Slack Integration,session_start,59,Mobile
+2025-03-11,API,feature_used,173,Web
+2025-03-11,Billing,click,111,Web
+2025-03-11,Bulk CSV Export,click,41,Web
+2025-03-11,Custom Dashboard Widgets,feature_used,21,Web
+2025-03-11,Dark Mode,feature_used,105,Mobile
+2025-03-11,Dashboard,session_start,315,Web
+2025-03-11,Export,click,169,Mobile
+2025-03-11,Mobile App,session_start,201,Web
+2025-03-11,Notifications,feature_used,121,Web
+2025-03-11,Onboarding,feature_used,250,Web
+2025-03-11,Reporting,export_click,135,Web
+2025-03-11,Search,feature_used,156,Mobile
+2025-03-11,Security & Compliance,session_start,57,Mobile
+2025-03-11,Slack Integration,session_start,59,Web
+2025-03-12,API,click,140,Web
+2025-03-12,Billing,feature_used,98,Mobile
+2025-03-12,Bulk CSV Export,click,47,Web
+2025-03-12,Custom Dashboard Widgets,export_click,26,Mobile
+2025-03-12,Dark Mode,click,106,Mobile
+2025-03-12,Dashboard,feature_used,262,Web
+2025-03-12,Export,feature_used,165,Web
+2025-03-12,Mobile App,feature_used,195,Web
+2025-03-12,Notifications,export_click,125,Web
+2025-03-12,Onboarding,click,194,Web
+2025-03-12,Reporting,feature_used,131,Web
+2025-03-12,Search,click,155,Web
+2025-03-12,Security & Compliance,session_start,65,Web
+2025-03-12,Slack Integration,click,41,Web
+2025-03-13,API,session_start,138,Web
+2025-03-13,Billing,session_start,101,Web
+2025-03-13,Bulk CSV Export,feature_used,44,Mobile
+2025-03-13,Custom Dashboard Widgets,click,23,Web
+2025-03-13,Dark Mode,click,104,Web
+2025-03-13,Dashboard,click,304,Web
+2025-03-13,Export,export_click,165,Web
+2025-03-13,Mobile App,feature_used,193,Web
+2025-03-13,Notifications,feature_used,116,Mobile
+2025-03-13,Onboarding,feature_used,191,Web
+2025-03-13,Reporting,feature_used,121,Mobile
+2025-03-13,Search,click,139,Web
+2025-03-13,Security & Compliance,feature_used,58,Mobile
+2025-03-13,Slack Integration,session_start,45,Web
+2025-03-14,API,feature_used,132,Web
+2025-03-14,Billing,feature_used,89,Web
+2025-03-14,Bulk CSV Export,feature_used,31,Web
+2025-03-14,Custom Dashboard Widgets,session_start,32,Web
+2025-03-14,Dark Mode,feature_used,84,Web
+2025-03-14,Dashboard,feature_used,264,Web
+2025-03-14,Export,feature_used,136,Web
+2025-03-14,Mobile App,feature_used,178,Web
+2025-03-14,Notifications,feature_used,114,Web
+2025-03-14,Onboarding,feature_used,210,Mobile
+2025-03-14,Reporting,feature_used,114,Web
+2025-03-14,Search,feature_used,116,Mobile
+2025-03-14,Security & Compliance,feature_used,55,Web
+2025-03-14,Slack Integration,click,31,Web
+2025-03-15,API,export_click,88,Mobile
+2025-03-15,Billing,feature_used,55,Mobile
+2025-03-15,Bulk CSV Export,session_start,26,Web
+2025-03-15,Custom Dashboard Widgets,feature_used,8,Mobile
+2025-03-15,Dark Mode,export_click,46,Web
+2025-03-15,Dashboard,click,155,Mobile
+2025-03-15,Export,export_click,88,Web
+2025-03-15,Mobile App,export_click,102,Web
+2025-03-15,Mobile Push Notifications,click,22,Web
+2025-03-15,Notifications,click,54,Web
+2025-03-15,Onboarding,click,114,Web
+2025-03-15,Reporting,feature_used,59,Web
+2025-03-15,Search,feature_used,59,Mobile
+2025-03-15,Security & Compliance,click,29,Web
+2025-03-15,Slack Integration,feature_used,23,Web
+2025-03-16,API,session_start,81,Mobile
+2025-03-16,Billing,feature_used,50,Web
+2025-03-16,Bulk CSV Export,feature_used,23,Web
+2025-03-16,Custom Dashboard Widgets,feature_used,21,Web
+2025-03-16,Dark Mode,feature_used,55,Web
+2025-03-16,Dashboard,click,160,Mobile
+2025-03-16,Export,export_click,64,Web
+2025-03-16,Mobile App,feature_used,85,Web
+2025-03-16,Mobile Push Notifications,click,21,Web
+2025-03-16,Notifications,export_click,63,Mobile
+2025-03-16,Onboarding,export_click,107,Web
+2025-03-16,Reporting,feature_used,60,Web
+2025-03-16,Search,session_start,72,Web
+2025-03-16,Security & Compliance,feature_used,29,Web
+2025-03-16,Slack Integration,feature_used,27,Web
+2025-03-17,API,session_start,141,Web
+2025-03-17,Billing,session_start,83,Web
+2025-03-17,Bulk CSV Export,feature_used,44,Web
+2025-03-17,Custom Dashboard Widgets,feature_used,20,Web
+2025-03-17,Dark Mode,export_click,81,Web
+2025-03-17,Dashboard,session_start,256,Web
+2025-03-17,Export,session_start,156,Web
+2025-03-17,Mobile App,session_start,140,Web
+2025-03-17,Mobile Push Notifications,feature_used,32,Web
+2025-03-17,Notifications,feature_used,99,Web
+2025-03-17,Onboarding,feature_used,162,Web
+2025-03-17,Reporting,error,107,Web
+2025-03-17,Search,error,100,Web
+2025-03-17,Security & Compliance,session_start,69,Web
+2025-03-17,Slack Integration,feature_used,48,Web
+2025-03-18,API,feature_used,114,Web
+2025-03-18,Billing,feature_used,83,Web
+2025-03-18,Bulk CSV Export,feature_used,40,Web
+2025-03-18,Custom Dashboard Widgets,feature_used,26,Web
+2025-03-18,Dark Mode,feature_used,66,Web
+2025-03-18,Dashboard,feature_used,264,Web
+2025-03-18,Export,session_start,126,Web
+2025-03-18,Mobile App,feature_used,132,Mobile
+2025-03-18,Mobile Push Notifications,feature_used,43,Web
+2025-03-18,Notifications,feature_used,77,Web
+2025-03-18,Onboarding,feature_used,158,Mobile
+2025-03-18,Reporting,feature_used,112,Mobile
+2025-03-18,Search,feature_used,102,Web
+2025-03-18,Security & Compliance,feature_used,49,Web
+2025-03-18,Slack Integration,feature_used,49,Web
+2025-03-19,API,feature_used,108,Web
+2025-03-19,Billing,feature_used,68,Web
+2025-03-19,Bulk CSV Export,session_start,40,Web
+2025-03-19,Custom Dashboard Widgets,feature_used,25,Mobile
+2025-03-19,Dark Mode,feature_used,71,Mobile
+2025-03-19,Dashboard,feature_used,215,Web
+2025-03-19,Export,feature_used,124,Web
+2025-03-19,Mobile App,error,132,Mobile
+2025-03-19,Mobile Push Notifications,feature_used,23,Mobile
+2025-03-19,Notifications,feature_used,95,Web
+2025-03-19,Onboarding,feature_used,172,Web
+2025-03-19,Reporting,session_start,117,Web
+2025-03-19,Search,feature_used,101,Web
+2025-03-19,Security & Compliance,click,57,Web
+2025-03-19,Slack Integration,feature_used,32,Web
+2025-03-20,API,feature_used,140,Mobile
+2025-03-20,Billing,export_click,80,Web
+2025-03-20,Bulk CSV Export,feature_used,47,Web
+2025-03-20,Custom Dashboard Widgets,feature_used,14,Mobile
+2025-03-20,Dark Mode,feature_used,81,Web
+2025-03-20,Dashboard,feature_used,239,Mobile
+2025-03-20,Export,feature_used,111,Web
+2025-03-20,Mobile App,feature_used,170,Web
+2025-03-20,Mobile Push Notifications,session_start,32,Mobile
+2025-03-20,Notifications,export_click,88,Web
+2025-03-20,Onboarding,feature_used,160,Web
+2025-03-20,Reporting,feature_used,103,Web
+2025-03-20,Search,feature_used,110,Web
+2025-03-20,Security & Compliance,feature_used,44,Mobile
+2025-03-20,Slack Integration,session_start,35,Web
+2025-03-21,API,feature_used,133,Web
+2025-03-21,Billing,error,97,Web
+2025-03-21,Bulk CSV Export,feature_used,51,Web
+2025-03-21,Custom Dashboard Widgets,session_start,22,Web
+2025-03-21,Dark Mode,feature_used,79,Web
+2025-03-21,Dashboard,session_start,239,Web
+2025-03-21,Export,session_start,145,Web
+2025-03-21,Mobile App,click,156,Web
+2025-03-21,Mobile Push Notifications,click,31,Web
+2025-03-21,Notifications,feature_used,103,Web
+2025-03-21,Onboarding,feature_used,195,Mobile
+2025-03-21,Reporting,feature_used,107,Web
+2025-03-21,Search,feature_used,116,Mobile
+2025-03-21,Security & Compliance,click,54,Mobile
+2025-03-21,Slack Integration,feature_used,37,Web
+2025-03-22,API,export_click,86,Mobile
+2025-03-22,Billing,feature_used,41,Web
+2025-03-22,Bulk CSV Export,feature_used,20,Web
+2025-03-22,Custom Dashboard Widgets,session_start,15,Web
+2025-03-22,Dark Mode,feature_used,54,Web
+2025-03-22,Dashboard,feature_used,158,Web
+2025-03-22,Export,export_click,79,Web
+2025-03-22,Mobile App,session_start,94,Web
+2025-03-22,Mobile Push Notifications,session_start,15,Web
+2025-03-22,Notifications,feature_used,54,Mobile
+2025-03-22,Onboarding,session_start,116,Mobile
+2025-03-22,Reporting,session_start,50,Mobile
+2025-03-22,Search,feature_used,62,Mobile
+2025-03-22,Security & Compliance,session_start,23,Mobile
+2025-03-22,Slack Integration,feature_used,18,Web
+2025-03-23,API,click,90,Web
+2025-03-23,Billing,feature_used,47,Web
+2025-03-23,Bulk CSV Export,error,34,Web
+2025-03-23,Custom Dashboard Widgets,click,16,Web
+2025-03-23,Dark Mode,feature_used,47,Web
+2025-03-23,Dashboard,error,161,Web
+2025-03-23,Export,feature_used,87,Web
+2025-03-23,Mobile App,feature_used,102,Web
+2025-03-23,Mobile Push Notifications,feature_used,12,Web
+2025-03-23,Notifications,export_click,80,Mobile
+2025-03-23,Onboarding,feature_used,107,Web
+2025-03-23,Reporting,click,62,Mobile
+2025-03-23,Search,session_start,68,Web
+2025-03-23,Security & Compliance,click,28,Web
+2025-03-23,Slack Integration,feature_used,20,Mobile
+2025-03-24,API,click,169,Web
+2025-03-24,Billing,session_start,104,Web
+2025-03-24,Bulk CSV Export,feature_used,60,Web
+2025-03-24,Custom Dashboard Widgets,click,29,Web
+2025-03-24,Dark Mode,feature_used,91,Web
+2025-03-24,Dashboard,feature_used,293,Web
+2025-03-24,Export,feature_used,141,Web
+2025-03-24,Mobile App,feature_used,163,Mobile
+2025-03-24,Mobile Push Notifications,session_start,29,Mobile
+2025-03-24,Notifications,feature_used,91,Web
+2025-03-24,Onboarding,export_click,194,Web
+2025-03-24,Reporting,feature_used,112,Web
+2025-03-24,Search,feature_used,141,Web
+2025-03-24,Security & Compliance,feature_used,52,Web
+2025-03-24,Slack Integration,session_start,43,Mobile
+2025-03-25,API,feature_used,153,Web
+2025-03-25,Billing,session_start,92,Web
+2025-03-25,Bulk CSV Export,session_start,43,Web
+2025-03-25,Custom Dashboard Widgets,feature_used,28,Web
+2025-03-25,Dark Mode,feature_used,102,Mobile
+2025-03-25,Dashboard,feature_used,303,Web
+2025-03-25,Export,feature_used,132,Web
+2025-03-25,Mobile App,click,179,Web
+2025-03-25,Mobile Push Notifications,feature_used,37,Web
+2025-03-25,Notifications,feature_used,107,Mobile
+2025-03-25,Onboarding,session_start,202,Web
+2025-03-25,Reporting,export_click,116,Web
+2025-03-25,Search,click,121,Web
+2025-03-25,Security & Compliance,feature_used,54,Web
+2025-03-25,Slack Integration,feature_used,53,Web
+2025-03-26,API,feature_used,143,Web
+2025-03-26,Billing,click,105,Mobile
+2025-03-26,Bulk CSV Export,click,59,Web
+2025-03-26,Custom Dashboard Widgets,click,28,Web
+2025-03-26,Dark Mode,feature_used,99,Web
+2025-03-26,Dashboard,feature_used,291,Mobile
+2025-03-26,Export,session_start,168,Web
+2025-03-26,Mobile App,click,145,Mobile
+2025-03-26,Mobile Push Notifications,feature_used,34,Mobile
+2025-03-26,Notifications,feature_used,104,Mobile
+2025-03-26,Onboarding,feature_used,228,Web
+2025-03-26,Reporting,feature_used,112,Web
+2025-03-26,Search,feature_used,139,Mobile
+2025-03-26,Security & Compliance,feature_used,69,Web
+2025-03-26,Slack Integration,session_start,58,Web
+2025-03-27,API,click,173,Web
+2025-03-27,Billing,feature_used,94,Web
+2025-03-27,Bulk CSV Export,feature_used,58,Web
+2025-03-27,Custom Dashboard Widgets,error,28,Web
+2025-03-27,Dark Mode,feature_used,92,Web
+2025-03-27,Dashboard,feature_used,310,Web
+2025-03-27,Export,feature_used,178,Web
+2025-03-27,Mobile App,click,186,Web
+2025-03-27,Mobile Push Notifications,click,35,Web
+2025-03-27,Notifications,session_start,133,Web
+2025-03-27,Onboarding,feature_used,229,Web
+2025-03-27,Reporting,session_start,140,Web
+2025-03-27,Search,feature_used,158,Web
+2025-03-27,Security & Compliance,feature_used,76,Web
+2025-03-27,Slack Integration,session_start,49,Mobile
+2025-03-28,API,session_start,179,Mobile
+2025-03-28,Billing,feature_used,120,Mobile
+2025-03-28,Bulk CSV Export,feature_used,54,Mobile
+2025-03-28,Custom Dashboard Widgets,feature_used,29,Web
+2025-03-28,Dark Mode,session_start,124,Web
+2025-03-28,Dashboard,feature_used,328,Web
+2025-03-28,Export,session_start,181,Web
+2025-03-28,Mobile App,click,217,Web
+2025-03-28,Mobile Push Notifications,click,32,Web
+2025-03-28,Notifications,feature_used,138,Mobile
+2025-03-28,Onboarding,feature_used,228,Web
+2025-03-28,Reporting,error,142,Web
+2025-03-28,Search,feature_used,155,Web
+2025-03-28,Security & Compliance,feature_used,77,Web
+2025-03-28,Slack Integration,click,57,Web
+2025-03-29,API,feature_used,132,Web
+2025-03-29,Billing,feature_used,83,Web
+2025-03-29,Bulk CSV Export,error,40,Web
+2025-03-29,Custom Dashboard Widgets,export_click,13,Web
+2025-03-29,Dark Mode,feature_used,74,Web
+2025-03-29,Dashboard,feature_used,201,Web
+2025-03-29,Export,session_start,102,Web
+2025-03-29,Mobile App,feature_used,116,Web
+2025-03-29,Mobile Push Notifications,click,23,Web
+2025-03-29,Notifications,session_start,84,Mobile
+2025-03-29,Onboarding,feature_used,144,Web
+2025-03-29,Reporting,click,97,Web
+2025-03-29,Search,session_start,98,Web
+2025-03-29,Security & Compliance,click,44,Web
+2025-03-29,Slack Integration,feature_used,26,Web
+2025-03-30,API,feature_used,102,Web
+2025-03-30,Billing,session_start,85,Mobile
+2025-03-30,Bulk CSV Export,feature_used,42,Web
+2025-03-30,Custom Dashboard Widgets,feature_used,16,Web
+2025-03-30,Dark Mode,session_start,88,Web
+2025-03-30,Dashboard,session_start,226,Mobile
+2025-03-30,Export,feature_used,110,Web
+2025-03-30,Mobile App,feature_used,128,Web
+2025-03-30,Mobile Push Notifications,click,27,Web
+2025-03-30,Notifications,feature_used,87,Web
+2025-03-30,Onboarding,error,159,Web
+2025-03-30,Reporting,session_start,101,Web
+2025-03-30,Search,feature_used,98,Web
+2025-03-30,Security & Compliance,feature_used,50,Web
+2025-03-30,Slack Integration,feature_used,32,Web
+2025-03-31,API,session_start,197,Web
+2025-03-31,Billing,feature_used,132,Web
+2025-03-31,Bulk CSV Export,feature_used,65,Mobile
+2025-03-31,Custom Dashboard Widgets,feature_used,36,Web
+2025-03-31,Dark Mode,click,103,Web
+2025-03-31,Dashboard,feature_used,378,Web
+2025-03-31,Export,feature_used,223,Mobile
+2025-03-31,Mobile App,session_start,231,Web
+2025-03-31,Mobile Push Notifications,feature_used,47,Web
+2025-03-31,Notifications,feature_used,145,Web
+2025-03-31,Onboarding,export_click,276,Web
+2025-03-31,Reporting,feature_used,154,Web
+2025-03-31,Search,feature_used,184,Mobile
+2025-03-31,Security & Compliance,export_click,101,Mobile
+2025-03-31,Slack Integration,feature_used,71,Web
+2025-04-01,API,feature_used,213,Web
+2025-04-01,Billing,click,124,Web
+2025-04-01,Bulk CSV Export,feature_used,73,Web
+2025-04-01,Custom Dashboard Widgets,feature_used,39,Web
+2025-04-01,Dark Mode,feature_used,141,Web
+2025-04-01,Dashboard,session_start,419,Web
+2025-04-01,Export,feature_used,214,Web
+2025-04-01,Mobile App,session_start,249,Web
+2025-04-01,Mobile Push Notifications,session_start,42,Web
+2025-04-01,Notifications,feature_used,142,Mobile
+2025-04-01,Onboarding,click,271,Mobile
+2025-04-01,Reporting,feature_used,167,Web
+2025-04-01,Scheduled Report Emails,feature_used,23,Web
+2025-04-01,Search,click,180,Web
+2025-04-01,Security & Compliance,feature_used,83,Web
+2025-04-01,Slack Integration,feature_used,65,Mobile
+2025-04-02,API,session_start,214,Web
+2025-04-02,Billing,session_start,163,Web
+2025-04-02,Bulk CSV Export,click,74,Web
+2025-04-02,Custom Dashboard Widgets,feature_used,44,Web
+2025-04-02,Dark Mode,click,151,Web
+2025-04-02,Dashboard,feature_used,461,Web
+2025-04-02,Export,feature_used,203,Web
+2025-04-02,Mobile App,feature_used,278,Web
+2025-04-02,Mobile Push Notifications,feature_used,57,Web
+2025-04-02,Notifications,session_start,158,Web
+2025-04-02,Onboarding,feature_used,312,Web
+2025-04-02,Reporting,feature_used,167,Web
+2025-04-02,Scheduled Report Emails,session_start,30,Mobile
+2025-04-02,Search,feature_used,226,Web
+2025-04-02,Security & Compliance,feature_used,80,Mobile
+2025-04-02,Slack Integration,session_start,60,Web
+2025-04-03,API,feature_used,245,Mobile
+2025-04-03,Billing,feature_used,155,Web
+2025-04-03,Bulk CSV Export,feature_used,79,Web
+2025-04-03,Custom Dashboard Widgets,click,28,Web
+2025-04-03,Dark Mode,click,136,Web
+2025-04-03,Dashboard,click,434,Web
+2025-04-03,Export,feature_used,217,Web
+2025-04-03,Mobile App,feature_used,259,Web
+2025-04-03,Mobile Push Notifications,session_start,55,Web
+2025-04-03,Notifications,session_start,164,Web
+2025-04-03,Onboarding,feature_used,313,Web
+2025-04-03,Reporting,session_start,191,Web
+2025-04-03,Scheduled Report Emails,feature_used,25,Web
+2025-04-03,Search,feature_used,234,Mobile
+2025-04-03,Security & Compliance,feature_used,113,Web
+2025-04-03,Slack Integration,feature_used,61,Web
+2025-04-04,API,click,271,Mobile
+2025-04-04,Billing,feature_used,147,Web
+2025-04-04,Bulk CSV Export,feature_used,76,Web
+2025-04-04,Custom Dashboard Widgets,feature_used,41,Web
+2025-04-04,Dark Mode,feature_used,156,Web
+2025-04-04,Dashboard,click,504,Web
+2025-04-04,Export,feature_used,236,Web
+2025-04-04,Mobile App,session_start,236,Web
+2025-04-04,Mobile Push Notifications,click,71,Web
+2025-04-04,Notifications,session_start,165,Web
+2025-04-04,Onboarding,feature_used,329,Mobile
+2025-04-04,Reporting,feature_used,193,Web
+2025-04-04,Scheduled Report Emails,feature_used,25,Web
+2025-04-04,Search,feature_used,231,Web
+2025-04-04,Security & Compliance,feature_used,92,Mobile
+2025-04-04,Slack Integration,export_click,68,Web
+2025-04-05,API,feature_used,166,Web
+2025-04-05,Billing,feature_used,97,Web
+2025-04-05,Bulk CSV Export,click,44,Web
+2025-04-05,Custom Dashboard Widgets,session_start,23,Web
+2025-04-05,Dark Mode,feature_used,107,Web
+2025-04-05,Dashboard,feature_used,322,Mobile
+2025-04-05,Export,error,136,Web
+2025-04-05,Mobile App,feature_used,172,Web
+2025-04-05,Mobile Push Notifications,feature_used,35,Web
+2025-04-05,Notifications,session_start,87,Web
+2025-04-05,Onboarding,click,208,Mobile
+2025-04-05,Reporting,export_click,115,Mobile
+2025-04-05,Scheduled Report Emails,session_start,26,Web
+2025-04-05,Search,session_start,131,Web
+2025-04-05,Security & Compliance,session_start,51,Mobile
+2025-04-05,Slack Integration,feature_used,41,Web
+2025-04-06,API,feature_used,143,Web
+2025-04-06,Billing,session_start,99,Web
+2025-04-06,Bulk CSV Export,feature_used,44,Web
+2025-04-06,Custom Dashboard Widgets,feature_used,27,Web
+2025-04-06,Dark Mode,feature_used,78,Web
+2025-04-06,Dashboard,feature_used,287,Web
+2025-04-06,Export,session_start,129,Web
+2025-04-06,Mobile App,click,183,Web
+2025-04-06,Mobile Push Notifications,feature_used,28,Web
+2025-04-06,Notifications,click,97,Mobile
+2025-04-06,Onboarding,feature_used,199,Web
+2025-04-06,Reporting,feature_used,111,Web
+2025-04-06,Scheduled Report Emails,feature_used,13,Web
+2025-04-06,Search,click,135,Web
+2025-04-06,Security & Compliance,session_start,75,Web
+2025-04-06,Slack Integration,feature_used,39,Mobile
+2025-04-07,API,feature_used,242,Web
+2025-04-07,Billing,click,159,Mobile
+2025-04-07,Bulk CSV Export,click,73,Web
+2025-04-07,Custom Dashboard Widgets,error,66,Web
+2025-04-07,Dark Mode,feature_used,166,Web
+2025-04-07,Dashboard,session_start,496,Web
+2025-04-07,Export,feature_used,229,Web
+2025-04-07,Mobile App,feature_used,294,Web
+2025-04-07,Mobile Push Notifications,click,71,Web
+2025-04-07,Notifications,feature_used,195,Mobile
+2025-04-07,Onboarding,feature_used,324,Web
+2025-04-07,Reporting,export_click,227,Mobile
+2025-04-07,Scheduled Report Emails,feature_used,31,Web
+2025-04-07,Search,feature_used,226,Mobile
+2025-04-07,Security & Compliance,feature_used,111,Web
+2025-04-07,Slack Integration,feature_used,88,Mobile
+2025-04-08,API,feature_used,265,Web
+2025-04-08,Billing,feature_used,187,Web
+2025-04-08,Bulk CSV Export,feature_used,86,Mobile
+2025-04-08,Custom Dashboard Widgets,session_start,61,Web
+2025-04-08,Dark Mode,session_start,174,Web
+2025-04-08,Dashboard,session_start,493,Web
+2025-04-08,Export,feature_used,259,Web
+2025-04-08,Mobile App,feature_used,292,Web
+2025-04-08,Mobile Push Notifications,click,60,Web
+2025-04-08,Notifications,feature_used,203,Web
+2025-04-08,Onboarding,feature_used,333,Web
+2025-04-08,Reporting,feature_used,222,Web
+2025-04-08,Scheduled Report Emails,feature_used,37,Mobile
+2025-04-08,Search,session_start,229,Web
+2025-04-08,Security & Compliance,feature_used,112,Web
+2025-04-08,Slack Integration,feature_used,92,Web
+2025-04-09,API,error,275,Web
+2025-04-09,Billing,feature_used,170,Web
+2025-04-09,Bulk CSV Export,feature_used,101,Web
+2025-04-09,Custom Dashboard Widgets,export_click,56,Web
+2025-04-09,Dark Mode,feature_used,151,Web
+2025-04-09,Dashboard,feature_used,523,Web
+2025-04-09,Export,feature_used,235,Web
+2025-04-09,Mobile App,feature_used,273,Mobile
+2025-04-09,Mobile Push Notifications,export_click,71,Web
+2025-04-09,Notifications,session_start,188,Web
+2025-04-09,Onboarding,feature_used,372,Mobile
+2025-04-09,Reporting,feature_used,197,Web
+2025-04-09,Scheduled Report Emails,session_start,38,Web
+2025-04-09,Search,feature_used,230,Mobile
+2025-04-09,Security & Compliance,session_start,116,Web
+2025-04-09,Slack Integration,feature_used,87,Mobile
+2025-04-10,API,feature_used,256,Web
+2025-04-10,Billing,feature_used,180,Web
+2025-04-10,Bulk CSV Export,feature_used,74,Web
+2025-04-10,Custom Dashboard Widgets,export_click,59,Web
+2025-04-10,Dark Mode,feature_used,160,Web
+2025-04-10,Dashboard,click,485,Web
+2025-04-10,Export,click,291,Web
+2025-04-10,Mobile App,export_click,316,Web
+2025-04-10,Mobile Push Notifications,feature_used,70,Web
+2025-04-10,Notifications,export_click,199,Web
+2025-04-10,Onboarding,feature_used,358,Web
+2025-04-10,Reporting,feature_used,159,Web
+2025-04-10,Scheduled Report Emails,feature_used,43,Web
+2025-04-10,Search,feature_used,246,Web
+2025-04-10,Security & Compliance,feature_used,120,Web
+2025-04-10,Slack Integration,feature_used,94,Web
+2025-04-11,API,feature_used,265,Web
+2025-04-11,Billing,feature_used,187,Web
+2025-04-11,Bulk CSV Export,feature_used,75,Web
+2025-04-11,Custom Dashboard Widgets,session_start,63,Web
+2025-04-11,Dark Mode,feature_used,191,Web
+2025-04-11,Dashboard,feature_used,512,Mobile
+2025-04-11,Export,feature_used,232,Web
+2025-04-11,Mobile App,feature_used,291,Web
+2025-04-11,Mobile Push Notifications,session_start,72,Web
+2025-04-11,Notifications,session_start,197,Web
+2025-04-11,Onboarding,feature_used,352,Web
+2025-04-11,Reporting,session_start,202,Mobile
+2025-04-11,Scheduled Report Emails,feature_used,35,Web
+2025-04-11,Search,feature_used,245,Web
+2025-04-11,Security & Compliance,export_click,106,Web
+2025-04-11,Slack Integration,session_start,76,Web
+2025-04-12,API,feature_used,165,Web
+2025-04-12,Billing,feature_used,117,Web
+2025-04-12,Bulk CSV Export,feature_used,34,Mobile
+2025-04-12,Custom Dashboard Widgets,feature_used,22,Web
+2025-04-12,Dark Mode,feature_used,97,Web
+2025-04-12,Dashboard,session_start,297,Mobile
+2025-04-12,Export,feature_used,150,Web
+2025-04-12,Mobile App,export_click,183,Web
+2025-04-12,Mobile Push Notifications,feature_used,38,Web
+2025-04-12,Notifications,session_start,108,Web
+2025-04-12,Onboarding,session_start,208,Web
+2025-04-12,Reporting,session_start,122,Web
+2025-04-12,Scheduled Report Emails,session_start,25,Web
+2025-04-12,Search,session_start,139,Web
+2025-04-12,Security & Compliance,feature_used,49,Web
+2025-04-12,Slack Integration,feature_used,53,Web
+2025-04-13,API,session_start,151,Mobile
+2025-04-13,Billing,feature_used,104,Web
+2025-04-13,Bulk CSV Export,feature_used,36,Web
+2025-04-13,Custom Dashboard Widgets,click,36,Web
+2025-04-13,Dark Mode,feature_used,106,Mobile
+2025-04-13,Dashboard,session_start,326,Web
+2025-04-13,Export,export_click,138,Mobile
+2025-04-13,Mobile App,feature_used,179,Web
+2025-04-13,Mobile Push Notifications,click,27,Mobile
+2025-04-13,Notifications,click,121,Web
+2025-04-13,Onboarding,feature_used,190,Web
+2025-04-13,Reporting,click,102,Mobile
+2025-04-13,Scheduled Report Emails,error,24,Web
+2025-04-13,Search,feature_used,126,Web
+2025-04-13,Security & Compliance,feature_used,65,Web
+2025-04-13,Slack Integration,feature_used,49,Mobile
+2025-04-14,API,click,274,Mobile
+2025-04-14,Billing,feature_used,172,Mobile
+2025-04-14,Bulk CSV Export,feature_used,80,Web
+2025-04-14,Custom Dashboard Widgets,session_start,53,Web
+2025-04-14,Dark Mode,feature_used,151,Web
+2025-04-14,Dashboard,click,460,Web
+2025-04-14,Export,export_click,244,Web
+2025-04-14,Mobile App,export_click,297,Web
+2025-04-14,Mobile Push Notifications,click,50,Web
+2025-04-14,Notifications,feature_used,168,Web
+2025-04-14,Onboarding,session_start,329,Mobile
+2025-04-14,Reporting,feature_used,199,Web
+2025-04-14,Scheduled Report Emails,click,40,Web
+2025-04-14,Search,session_start,202,Mobile
+2025-04-14,Security & Compliance,feature_used,114,Web
+2025-04-14,Slack Integration,click,75,Mobile
+2025-04-15,API,feature_used,266,Mobile
+2025-04-15,Billing,feature_used,154,Web
+2025-04-15,Bulk CSV Export,error,66,Mobile
+2025-04-15,Custom Dashboard Widgets,export_click,47,Web
+2025-04-15,Dark Mode,feature_used,152,Web
+2025-04-15,Dashboard,session_start,484,Web
+2025-04-15,Export,click,227,Web
+2025-04-15,Mobile App,feature_used,251,Web
+2025-04-15,Mobile Push Notifications,session_start,60,Web
+2025-04-15,Notifications,session_start,175,Web
+2025-04-15,Onboarding,session_start,334,Mobile
+2025-04-15,Reporting,feature_used,189,Web
+2025-04-15,Scheduled Report Emails,session_start,34,Web
+2025-04-15,Search,session_start,224,Web
+2025-04-15,Security & Compliance,session_start,109,Web
+2025-04-15,Slack Integration,feature_used,89,Web
+2025-04-16,API,click,241,Mobile
+2025-04-16,Billing,feature_used,156,Web
+2025-04-16,Bulk CSV Export,click,86,Web
+2025-04-16,Custom Dashboard Widgets,feature_used,47,Web
+2025-04-16,Dark Mode,export_click,145,Web
+2025-04-16,Dashboard,click,481,Web
+2025-04-16,Export,session_start,204,Web
+2025-04-16,Mobile App,session_start,282,Web
+2025-04-16,Mobile Push Notifications,click,58,Mobile
+2025-04-16,Notifications,feature_used,176,Mobile
+2025-04-16,Onboarding,feature_used,300,Web
+2025-04-16,Reporting,feature_used,205,Mobile
+2025-04-16,Scheduled Report Emails,session_start,31,Web
+2025-04-16,Search,feature_used,196,Web
+2025-04-16,Security & Compliance,export_click,112,Web
+2025-04-16,Slack Integration,session_start,74,Web
+2025-04-17,API,feature_used,200,Web
+2025-04-17,Billing,feature_used,147,Web
+2025-04-17,Bulk CSV Export,session_start,84,Web
+2025-04-17,Custom Dashboard Widgets,feature_used,37,Web
+2025-04-17,Dark Mode,click,184,Web
+2025-04-17,Dashboard,error,483,Web
+2025-04-17,Export,feature_used,208,Web
+2025-04-17,Mobile App,feature_used,278,Mobile
+2025-04-17,Mobile Push Notifications,session_start,56,Mobile
+2025-04-17,Notifications,session_start,171,Web
+2025-04-17,Onboarding,session_start,300,Mobile
+2025-04-17,Reporting,session_start,195,Mobile
+2025-04-17,Scheduled Report Emails,feature_used,43,Web
+2025-04-17,Search,session_start,209,Web
+2025-04-17,Security & Compliance,feature_used,96,Web
+2025-04-17,Slack Integration,feature_used,70,Mobile
+2025-04-18,API,feature_used,213,Mobile
+2025-04-18,Billing,click,130,Mobile
+2025-04-18,Bulk CSV Export,click,61,Mobile
+2025-04-18,Custom Dashboard Widgets,feature_used,51,Web
+2025-04-18,Dark Mode,feature_used,134,Web
+2025-04-18,Dashboard,feature_used,464,Web
+2025-04-18,Export,feature_used,211,Web
+2025-04-18,Mobile App,feature_used,271,Web
+2025-04-18,Mobile Push Notifications,feature_used,49,Web
+2025-04-18,Notifications,feature_used,158,Web
+2025-04-18,Onboarding,click,310,Mobile
+2025-04-18,Reporting,click,175,Mobile
+2025-04-18,Scheduled Report Emails,feature_used,32,Web
+2025-04-18,Search,feature_used,225,Web
+2025-04-18,Security & Compliance,export_click,82,Web
+2025-04-18,Slack Integration,feature_used,71,Web
+2025-04-19,API,feature_used,134,Web
+2025-04-19,Billing,session_start,66,Web
+2025-04-19,Bulk CSV Export,feature_used,29,Web
+2025-04-19,Custom Dashboard Widgets,session_start,14,Web
+2025-04-19,Dark Mode,click,79,Web
+2025-04-19,Dashboard,export_click,242,Web
+2025-04-19,Export,session_start,130,Web
+2025-04-19,Mobile App,feature_used,151,Mobile
+2025-04-19,Mobile Push Notifications,feature_used,34,Web
+2025-04-19,Notifications,click,95,Mobile
+2025-04-19,Onboarding,feature_used,149,Web
+2025-04-19,Reporting,feature_used,98,Web
+2025-04-19,Scheduled Report Emails,feature_used,18,Web
+2025-04-19,Search,error,114,Web
+2025-04-19,Security & Compliance,session_start,40,Web
+2025-04-19,Slack Integration,feature_used,36,Mobile
+2025-04-20,API,feature_used,124,Web
+2025-04-20,Billing,feature_used,79,Mobile
+2025-04-20,Bulk CSV Export,feature_used,47,Web
+2025-04-20,Custom Dashboard Widgets,session_start,27,Web
+2025-04-20,Dark Mode,feature_used,87,Web
+2025-04-20,Dashboard,feature_used,279,Web
+2025-04-20,Export,feature_used,103,Web
+2025-04-20,Mobile App,click,163,Web
+2025-04-20,Mobile Push Notifications,session_start,29,Web
+2025-04-20,Notifications,session_start,103,Web
+2025-04-20,Onboarding,click,170,Web
+2025-04-20,Reporting,feature_used,94,Mobile
+2025-04-20,Scheduled Report Emails,click,7,Web
+2025-04-20,Search,error,106,Web
+2025-04-20,Security & Compliance,feature_used,56,Web
+2025-04-20,Slack Integration,feature_used,43,Web
+2025-04-21,API,feature_used,205,Web
+2025-04-21,Billing,export_click,126,Web
+2025-04-21,Bulk CSV Export,feature_used,74,Web
+2025-04-21,Custom Dashboard Widgets,feature_used,41,Web
+2025-04-21,Dark Mode,export_click,122,Mobile
+2025-04-21,Dashboard,feature_used,359,Web
+2025-04-21,Export,feature_used,175,Web
+2025-04-21,Mobile App,session_start,223,Web
+2025-04-21,Mobile Push Notifications,feature_used,28,Web
+2025-04-21,Notifications,click,139,Web
+2025-04-21,Onboarding,feature_used,265,Web
+2025-04-21,Reporting,export_click,141,Mobile
+2025-04-21,Scheduled Report Emails,feature_used,25,Mobile
+2025-04-21,Search,feature_used,181,Mobile
+2025-04-21,Security & Compliance,feature_used,91,Web
+2025-04-21,Slack Integration,click,64,Web
+2025-04-22,API,session_start,187,Mobile
+2025-04-22,Billing,click,106,Web
+2025-04-22,Bulk CSV Export,feature_used,58,Mobile
+2025-04-22,Custom Dashboard Widgets,click,38,Web
+2025-04-22,Dark Mode,click,109,Web
+2025-04-22,Dashboard,feature_used,368,Web
+2025-04-22,Export,session_start,159,Web
+2025-04-22,Mobile App,feature_used,231,Mobile
+2025-04-22,Mobile Push Notifications,feature_used,42,Web
+2025-04-22,Notifications,session_start,142,Mobile
+2025-04-22,Onboarding,feature_used,264,Web
+2025-04-22,Reporting,session_start,175,Web
+2025-04-22,Scheduled Report Emails,session_start,25,Web
+2025-04-22,Search,feature_used,161,Mobile
+2025-04-22,Security & Compliance,feature_used,69,Web
+2025-04-22,Slack Integration,feature_used,59,Web
+2025-04-23,API,feature_used,177,Web
+2025-04-23,Billing,feature_used,110,Web
+2025-04-23,Bulk CSV Export,click,59,Web
+2025-04-23,Custom Dashboard Widgets,feature_used,27,Web
+2025-04-23,Dark Mode,error,105,Web
+2025-04-23,Dashboard,click,369,Web
+2025-04-23,Export,export_click,153,Web
+2025-04-23,Mobile App,feature_used,215,Web
+2025-04-23,Mobile Push Notifications,export_click,35,Web
+2025-04-23,Notifications,click,129,Web
+2025-04-23,Onboarding,click,237,Mobile
+2025-04-23,Reporting,session_start,132,Mobile
+2025-04-23,Scheduled Report Emails,feature_used,24,Web
+2025-04-23,Search,feature_used,150,Mobile
+2025-04-23,Security & Compliance,feature_used,85,Web
+2025-04-23,Slack Integration,feature_used,59,Mobile
+2025-04-24,API,feature_used,152,Web
+2025-04-24,Billing,feature_used,107,Web
+2025-04-24,Bulk CSV Export,session_start,47,Web
+2025-04-24,Custom Dashboard Widgets,feature_used,32,Web
+2025-04-24,Dark Mode,session_start,106,Web
+2025-04-24,Dashboard,feature_used,335,Mobile
+2025-04-24,Export,feature_used,150,Web
+2025-04-24,Mobile App,session_start,187,Mobile
+2025-04-24,Mobile Push Notifications,error,37,Web
+2025-04-24,Notifications,click,121,Web
+2025-04-24,Onboarding,click,223,Web
+2025-04-24,Reporting,session_start,122,Web
+2025-04-24,Scheduled Report Emails,feature_used,23,Web
+2025-04-24,Search,click,150,Mobile
+2025-04-24,Security & Compliance,session_start,58,Web
+2025-04-24,Slack Integration,feature_used,57,Web
+2025-04-25,API,click,156,Web
+2025-04-25,Billing,feature_used,115,Web
+2025-04-25,Bulk CSV Export,feature_used,47,Web
+2025-04-25,Custom Dashboard Widgets,feature_used,18,Mobile
+2025-04-25,Dark Mode,export_click,91,Web
+2025-04-25,Dashboard,click,285,Web
+2025-04-25,Export,click,135,Web
+2025-04-25,Mobile App,feature_used,173,Mobile
+2025-04-25,Mobile Push Notifications,feature_used,29,Web
+2025-04-25,Notifications,click,117,Web
+2025-04-25,Onboarding,error,233,Mobile
+2025-04-25,Reporting,feature_used,136,Mobile
+2025-04-25,Scheduled Report Emails,feature_used,24,Web
+2025-04-25,Search,session_start,167,Web
+2025-04-25,Security & Compliance,export_click,63,Web
+2025-04-25,Slack Integration,session_start,42,Web
+2025-04-26,API,click,107,Web
+2025-04-26,Billing,feature_used,58,Mobile
+2025-04-26,Bulk CSV Export,error,28,Web
+2025-04-26,Custom Dashboard Widgets,feature_used,23,Web
+2025-04-26,Dark Mode,feature_used,57,Mobile
+2025-04-26,Dashboard,export_click,196,Web
+2025-04-26,Export,feature_used,75,Web
+2025-04-26,Mobile App,feature_used,116,Web
+2025-04-26,Mobile Push Notifications,session_start,18,Web
+2025-04-26,Notifications,session_start,68,Web
+2025-04-26,Onboarding,click,129,Web
+2025-04-26,Reporting,export_click,70,Mobile
+2025-04-26,Scheduled Report Emails,feature_used,9,Web
+2025-04-26,Search,feature_used,85,Web
+2025-04-26,Security & Compliance,session_start,37,Web
+2025-04-26,Slack Integration,session_start,34,Web
+2025-04-27,API,feature_used,94,Web
+2025-04-27,Billing,click,60,Web
+2025-04-27,Bulk CSV Export,feature_used,33,Mobile
+2025-04-27,Custom Dashboard Widgets,feature_used,12,Web
+2025-04-27,Dark Mode,feature_used,62,Mobile
+2025-04-27,Dashboard,feature_used,185,Web
+2025-04-27,Export,feature_used,84,Web
+2025-04-27,Mobile App,feature_used,110,Web
+2025-04-27,Mobile Push Notifications,feature_used,23,Mobile
+2025-04-27,Notifications,feature_used,69,Mobile
+2025-04-27,Onboarding,feature_used,113,Web
+2025-04-27,Reporting,export_click,53,Web
+2025-04-27,Scheduled Report Emails,feature_used,10,Web
+2025-04-27,Search,session_start,69,Web
+2025-04-27,Security & Compliance,feature_used,42,Web
+2025-04-27,Slack Integration,feature_used,30,Web
+2025-04-28,API,session_start,139,Web
+2025-04-28,Billing,error,82,Web
+2025-04-28,Bulk CSV Export,session_start,51,Web
+2025-04-28,Custom Dashboard Widgets,click,31,Web
+2025-04-28,Dark Mode,feature_used,85,Web
+2025-04-28,Dashboard,session_start,278,Mobile
+2025-04-28,Export,export_click,115,Mobile
+2025-04-28,Mobile App,feature_used,178,Web
+2025-04-28,Mobile Push Notifications,feature_used,34,Web
+2025-04-28,Notifications,feature_used,102,Mobile
+2025-04-28,Onboarding,feature_used,188,Web
+2025-04-28,Reporting,session_start,117,Web
+2025-04-28,Scheduled Report Emails,feature_used,10,Web
+2025-04-28,Search,session_start,118,Mobile
+2025-04-28,Security & Compliance,feature_used,57,Web
+2025-04-28,Slack Integration,feature_used,42,Web
+2025-04-29,API,feature_used,135,Mobile
+2025-04-29,Billing,feature_used,87,Web
+2025-04-29,Bulk CSV Export,feature_used,42,Web
+2025-04-29,Custom Dashboard Widgets,click,26,Mobile
+2025-04-29,Dark Mode,feature_used,86,Web
+2025-04-29,Dashboard,click,258,Mobile
+2025-04-29,Export,feature_used,118,Web
+2025-04-29,Mobile App,click,168,Web
+2025-04-29,Mobile Push Notifications,feature_used,33,Mobile
+2025-04-29,Notifications,session_start,99,Web
+2025-04-29,Onboarding,feature_used,201,Web
+2025-04-29,Reporting,session_start,102,Web
+2025-04-29,Scheduled Report Emails,feature_used,16,Web
+2025-04-29,Search,click,118,Mobile
+2025-04-29,Security & Compliance,feature_used,53,Web
+2025-04-29,Slack Integration,click,45,Web
+2025-04-30,API,session_start,144,Web
+2025-04-30,Billing,feature_used,76,Mobile
+2025-04-30,Bulk CSV Export,export_click,40,Mobile
+2025-04-30,Custom Dashboard Widgets,feature_used,28,Web
+2025-04-30,Dark Mode,feature_used,81,Web
+2025-04-30,Dashboard,feature_used,262,Web
+2025-04-30,Export,feature_used,119,Mobile
+2025-04-30,Mobile App,feature_used,147,Web
+2025-04-30,Mobile Push Notifications,feature_used,32,Web
+2025-04-30,Notifications,feature_used,85,Web
+2025-04-30,Onboarding,feature_used,180,Web
+2025-04-30,Reporting,feature_used,104,Web
+2025-04-30,Scheduled Report Emails,session_start,17,Web
+2025-04-30,Search,feature_used,107,Web
+2025-04-30,Security & Compliance,feature_used,59,Web
+2025-04-30,Slack Integration,session_start,44,Web
+2025-05-01,API,session_start,143,Web
+2025-05-01,Billing,feature_used,79,Web
+2025-05-01,Bulk CSV Export,session_start,32,Web
+2025-05-01,Custom Dashboard Widgets,session_start,29,Mobile
+2025-05-01,Dark Mode,feature_used,82,Mobile
+2025-05-01,Dashboard,export_click,232,Web
+2025-05-01,Export,feature_used,118,Web
+2025-05-01,Mobile App,error,158,Web
+2025-05-01,Mobile Push Notifications,session_start,27,Web
+2025-05-01,Notifications,feature_used,87,Mobile
+2025-05-01,Onboarding,feature_used,180,Mobile
+2025-05-01,Reporting,export_click,106,Web
+2025-05-01,Scheduled Report Emails,feature_used,14,Mobile
+2025-05-01,Search,session_start,106,Web
+2025-05-01,Security & Compliance,feature_used,59,Web
+2025-05-01,Slack Integration,session_start,29,Web
+2025-05-02,API,feature_used,126,Web
+2025-05-02,Billing,feature_used,85,Web
+2025-05-02,Bulk CSV Export,session_start,43,Mobile
+2025-05-02,Custom Dashboard Widgets,feature_used,23,Web
+2025-05-02,Dark Mode,feature_used,78,Web
+2025-05-02,Dashboard,feature_used,225,Web
+2025-05-02,Export,click,117,Web
+2025-05-02,Mobile App,export_click,159,Mobile
+2025-05-02,Mobile Push Notifications,click,21,Mobile
+2025-05-02,Notifications,session_start,100,Web
+2025-05-02,Onboarding,click,174,Web
+2025-05-02,Reporting,click,104,Web
+2025-05-02,Scheduled Report Emails,feature_used,13,Web
+2025-05-02,Search,session_start,128,Mobile
+2025-05-02,Security & Compliance,export_click,44,Web
+2025-05-02,Slack Integration,feature_used,48,Web
+2025-05-03,API,feature_used,71,Web
+2025-05-03,Billing,session_start,47,Mobile
+2025-05-03,Bulk CSV Export,session_start,22,Web
+2025-05-03,Custom Dashboard Widgets,feature_used,15,Web
+2025-05-03,Dark Mode,session_start,57,Web
+2025-05-03,Dashboard,feature_used,157,Web
+2025-05-03,Export,feature_used,66,Web
+2025-05-03,Mobile App,session_start,101,Web
+2025-05-03,Mobile Push Notifications,export_click,16,Web
+2025-05-03,Notifications,click,50,Web
+2025-05-03,Onboarding,feature_used,100,Web
+2025-05-03,Reporting,session_start,64,Web
+2025-05-03,Scheduled Report Emails,session_start,8,Web
+2025-05-03,Search,click,77,Web
+2025-05-03,Security & Compliance,session_start,31,Web
+2025-05-03,Slack Integration,feature_used,19,Web
+2025-05-04,API,feature_used,81,Web
+2025-05-04,Billing,feature_used,46,Web
+2025-05-04,Bulk CSV Export,feature_used,29,Web
+2025-05-04,Custom Dashboard Widgets,export_click,16,Web
+2025-05-04,Dark Mode,session_start,43,Web
+2025-05-04,Dashboard,click,160,Mobile
+2025-05-04,Export,feature_used,67,Web
+2025-05-04,Mobile App,click,86,Web
+2025-05-04,Mobile Push Notifications,feature_used,16,Mobile
+2025-05-04,Notifications,click,62,Web
+2025-05-04,Onboarding,export_click,102,Mobile
+2025-05-04,Reporting,error,63,Web
+2025-05-04,Scheduled Report Emails,session_start,11,Web
+2025-05-04,Search,session_start,66,Web
+2025-05-04,Security & Compliance,feature_used,37,Web
+2025-05-04,Slack Integration,click,30,Mobile
+2025-05-05,API,session_start,126,Web
+2025-05-05,Billing,feature_used,83,Mobile
+2025-05-05,Bulk CSV Export,feature_used,45,Web
+2025-05-05,Custom Dashboard Widgets,feature_used,23,Web
+2025-05-05,Dark Mode,feature_used,89,Web
+2025-05-05,Dashboard,feature_used,291,Web
+2025-05-05,Export,feature_used,125,Web
+2025-05-05,Mobile App,session_start,157,Web
+2025-05-05,Mobile Push Notifications,feature_used,34,Mobile
+2025-05-05,Notifications,feature_used,85,Mobile
+2025-05-05,Onboarding,feature_used,171,Web
+2025-05-05,Reporting,feature_used,112,Web
+2025-05-05,Scheduled Report Emails,session_start,18,Web
+2025-05-05,Search,click,125,Web
+2025-05-05,Security & Compliance,feature_used,59,Web
+2025-05-05,Slack Integration,feature_used,37,Web
+2025-05-06,API,session_start,148,Web
+2025-05-06,Billing,export_click,85,Web
+2025-05-06,Bulk CSV Export,feature_used,46,Mobile
+2025-05-06,Custom Dashboard Widgets,click,27,Web
+2025-05-06,Dark Mode,export_click,93,Web
+2025-05-06,Dashboard,click,295,Web
+2025-05-06,Export,click,124,Web
+2025-05-06,Mobile App,click,170,Mobile
+2025-05-06,Mobile Push Notifications,feature_used,30,Web
+2025-05-06,Notifications,session_start,102,Web
+2025-05-06,Onboarding,feature_used,189,Mobile
+2025-05-06,Reporting,session_start,120,Web
+2025-05-06,Scheduled Report Emails,feature_used,13,Web
+2025-05-06,Search,export_click,112,Mobile
+2025-05-06,Security & Compliance,feature_used,63,Web
+2025-05-06,Slack Integration,click,42,Web
+2025-05-07,API,feature_used,158,Mobile
+2025-05-07,Billing,click,95,Web
+2025-05-07,Bulk CSV Export,feature_used,48,Mobile
+2025-05-07,Custom Dashboard Widgets,feature_used,26,Mobile
+2025-05-07,Dark Mode,feature_used,82,Mobile
+2025-05-07,Dashboard,feature_used,282,Web
+2025-05-07,Export,session_start,125,Web
+2025-05-07,Mobile App,feature_used,163,Mobile
+2025-05-07,Mobile Push Notifications,feature_used,46,Mobile
+2025-05-07,Notifications,feature_used,96,Web
+2025-05-07,Onboarding,feature_used,186,Mobile
+2025-05-07,Reporting,feature_used,122,Web
+2025-05-07,Scheduled Report Emails,feature_used,19,Web
+2025-05-07,Search,feature_used,157,Web
+2025-05-07,Security & Compliance,feature_used,56,Web
+2025-05-07,Slack Integration,click,47,Mobile
+2025-05-08,API,export_click,162,Web
+2025-05-08,Billing,click,101,Web
+2025-05-08,Bulk CSV Export,feature_used,52,Web
+2025-05-08,Custom Dashboard Widgets,feature_used,34,Web
+2025-05-08,Dark Mode,feature_used,81,Mobile
+2025-05-08,Dashboard,feature_used,301,Web
+2025-05-08,Export,feature_used,126,Web
+2025-05-08,Mobile App,feature_used,179,Web
+2025-05-08,Mobile Push Notifications,session_start,49,Mobile
+2025-05-08,Notifications,feature_used,98,Web
+2025-05-08,Onboarding,feature_used,222,Web
+2025-05-08,Reporting,error,129,Web
+2025-05-08,Scheduled Report Emails,feature_used,17,Web
+2025-05-08,Search,feature_used,119,Web
+2025-05-08,Security & Compliance,session_start,51,Mobile
+2025-05-08,Slack Integration,session_start,57,Web
+2025-05-09,API,feature_used,169,Mobile
+2025-05-09,Billing,session_start,103,Mobile
+2025-05-09,Bulk CSV Export,click,57,Web
+2025-05-09,Custom Dashboard Widgets,session_start,34,Web
+2025-05-09,Dark Mode,export_click,103,Mobile
+2025-05-09,Dashboard,feature_used,289,Web
+2025-05-09,Export,feature_used,169,Web
+2025-05-09,Mobile App,feature_used,181,Web
+2025-05-09,Mobile Push Notifications,feature_used,36,Web
+2025-05-09,Notifications,export_click,101,Mobile
+2025-05-09,Onboarding,feature_used,229,Mobile
+2025-05-09,Reporting,session_start,122,Web
+2025-05-09,Scheduled Report Emails,feature_used,20,Web
+2025-05-09,Search,click,154,Web
+2025-05-09,Security & Compliance,feature_used,62,Web
+2025-05-09,Slack Integration,feature_used,52,Web
+2025-05-10,API,feature_used,109,Web
+2025-05-10,Billing,click,54,Web
+2025-05-10,Bulk CSV Export,feature_used,34,Mobile
+2025-05-10,Custom Dashboard Widgets,feature_used,17,Mobile
+2025-05-10,Dark Mode,feature_used,77,Web
+2025-05-10,Dashboard,feature_used,211,Web
+2025-05-10,Export,feature_used,75,Web
+2025-05-10,Mobile App,export_click,104,Web
+2025-05-10,Mobile Push Notifications,session_start,28,Mobile
+2025-05-10,Notifications,click,67,Mobile
+2025-05-10,Onboarding,feature_used,131,Mobile
+2025-05-10,Reporting,feature_used,75,Web
+2025-05-10,Scheduled Report Emails,feature_used,15,Mobile
+2025-05-10,Search,feature_used,107,Web
+2025-05-10,Security & Compliance,session_start,39,Mobile
+2025-05-10,Slack Integration,feature_used,23,Mobile
+2025-05-11,API,feature_used,110,Web
+2025-05-11,Billing,feature_used,75,Web
+2025-05-11,Bulk CSV Export,click,29,Mobile
+2025-05-11,Custom Dashboard Widgets,feature_used,26,Web
+2025-05-11,Dark Mode,feature_used,52,Web
+2025-05-11,Dashboard,feature_used,201,Web
+2025-05-11,Export,click,94,Mobile
+2025-05-11,Mobile App,session_start,134,Web
+2025-05-11,Mobile Push Notifications,click,18,Web
+2025-05-11,Notifications,click,76,Web
+2025-05-11,Onboarding,feature_used,155,Mobile
+2025-05-11,Reporting,feature_used,87,Mobile
+2025-05-11,Scheduled Report Emails,feature_used,10,Mobile
+2025-05-11,Search,feature_used,82,Mobile
+2025-05-11,Security & Compliance,feature_used,35,Web
+2025-05-11,Slack Integration,session_start,32,Web
+2025-05-12,API,feature_used,200,Web
+2025-05-12,Billing,feature_used,118,Web
+2025-05-12,Bulk CSV Export,feature_used,71,Web
+2025-05-12,Custom Dashboard Widgets,feature_used,32,Web
+2025-05-12,Dark Mode,click,121,Web
+2025-05-12,Dashboard,error,377,Web
+2025-05-12,Export,feature_used,189,Web
+2025-05-12,Mobile App,feature_used,218,Mobile
+2025-05-12,Mobile Push Notifications,click,40,Web
+2025-05-12,Notifications,session_start,120,Web
+2025-05-12,Onboarding,error,279,Web
+2025-05-12,Reporting,feature_used,145,Mobile
+2025-05-12,Scheduled Report Emails,session_start,27,Web
+2025-05-12,Search,feature_used,166,Web
+2025-05-12,Security & Compliance,feature_used,74,Web
+2025-05-12,Slack Integration,feature_used,60,Web
+2025-05-13,API,feature_used,233,Mobile
+2025-05-13,Billing,feature_used,112,Web
+2025-05-13,Bulk CSV Export,feature_used,70,Web
+2025-05-13,Custom Dashboard Widgets,feature_used,44,Web
+2025-05-13,Dark Mode,feature_used,126,Mobile
+2025-05-13,Dashboard,feature_used,404,Web
+2025-05-13,Export,click,173,Mobile
+2025-05-13,Mobile App,click,222,Web
+2025-05-13,Mobile Push Notifications,feature_used,43,Mobile
+2025-05-13,Notifications,session_start,145,Web
+2025-05-13,Onboarding,feature_used,282,Web
+2025-05-13,Reporting,feature_used,164,Mobile
+2025-05-13,Scheduled Report Emails,feature_used,29,Mobile
+2025-05-13,Search,feature_used,149,Mobile
+2025-05-13,Security & Compliance,feature_used,79,Web
+2025-05-13,Slack Integration,click,57,Web
+2025-05-14,API,feature_used,228,Web
+2025-05-14,Billing,click,145,Web
+2025-05-14,Bulk CSV Export,feature_used,71,Web
+2025-05-14,Custom Dashboard Widgets,click,36,Web
+2025-05-14,Dark Mode,feature_used,135,Mobile
+2025-05-14,Dashboard,feature_used,401,Web
+2025-05-14,Export,export_click,193,Web
+2025-05-14,Mobile App,session_start,246,Web
+2025-05-14,Mobile Push Notifications,feature_used,49,Web
+2025-05-14,Notifications,session_start,138,Web
+2025-05-14,Onboarding,session_start,259,Web
+2025-05-14,Reporting,feature_used,147,Web
+2025-05-14,Scheduled Report Emails,feature_used,33,Web
+2025-05-14,Search,feature_used,205,Web
+2025-05-14,Security & Compliance,session_start,73,Web
+2025-05-14,Slack Integration,feature_used,61,Mobile
+2025-05-15,API,feature_used,241,Mobile
+2025-05-15,Billing,feature_used,123,Web
+2025-05-15,Bulk CSV Export,feature_used,81,Web
+2025-05-15,Custom Dashboard Widgets,click,47,Web
+2025-05-15,Dark Mode,export_click,155,Web
+2025-05-15,Dashboard,feature_used,413,Web
+2025-05-15,Export,error,195,Mobile
+2025-05-15,Mobile App,feature_used,222,Web
+2025-05-15,Mobile Push Notifications,feature_used,52,Web
+2025-05-15,Notifications,export_click,148,Web
+2025-05-15,Onboarding,feature_used,282,Web
+2025-05-15,Reporting,error,174,Web
+2025-05-15,Scheduled Report Emails,feature_used,26,Web
+2025-05-15,Search,session_start,229,Mobile
+2025-05-15,Security & Compliance,export_click,94,Web
+2025-05-15,Slack Integration,export_click,70,Mobile
+2025-05-16,API,feature_used,259,Web
+2025-05-16,Billing,feature_used,129,Web
+2025-05-16,Bulk CSV Export,feature_used,76,Web
+2025-05-16,Custom Dashboard Widgets,feature_used,32,Web
+2025-05-16,Dark Mode,session_start,151,Mobile
+2025-05-16,Dashboard,feature_used,428,Web
+2025-05-16,Export,session_start,205,Web
+2025-05-16,Mobile App,click,273,Web
+2025-05-16,Mobile Push Notifications,export_click,60,Web
+2025-05-16,Notifications,feature_used,160,Web
+2025-05-16,Onboarding,feature_used,339,Mobile
+2025-05-16,Reporting,feature_used,202,Mobile
+2025-05-16,Scheduled Report Emails,feature_used,36,Mobile
+2025-05-16,Search,feature_used,210,Web
+2025-05-16,Security & Compliance,feature_used,101,Mobile
+2025-05-16,Slack Integration,export_click,83,Mobile
+2025-05-17,API,session_start,154,Web
+2025-05-17,Billing,feature_used,89,Mobile
+2025-05-17,Bulk CSV Export,feature_used,45,Web
+2025-05-17,Custom Dashboard Widgets,feature_used,39,Web
+2025-05-17,Dark Mode,feature_used,94,Mobile
+2025-05-17,Dashboard,feature_used,287,Web
+2025-05-17,Export,feature_used,131,Web
+2025-05-17,Mobile App,feature_used,156,Web
+2025-05-17,Mobile Push Notifications,export_click,25,Web
+2025-05-17,Notifications,session_start,118,Mobile
+2025-05-17,Onboarding,export_click,177,Web
+2025-05-17,Reporting,export_click,130,Web
+2025-05-17,Scheduled Report Emails,feature_used,15,Web
+2025-05-17,Search,feature_used,129,Mobile
+2025-05-17,Security & Compliance,click,51,Web
+2025-05-17,Slack Integration,session_start,49,Mobile
+2025-05-18,API,feature_used,160,Web
+2025-05-18,Billing,feature_used,115,Mobile
+2025-05-18,Bulk CSV Export,feature_used,50,Web
+2025-05-18,Custom Dashboard Widgets,feature_used,26,Web
+2025-05-18,Dark Mode,click,95,Web
+2025-05-18,Dashboard,feature_used,286,Web
+2025-05-18,Export,feature_used,106,Mobile
+2025-05-18,Mobile App,feature_used,179,Mobile
+2025-05-18,Mobile Push Notifications,session_start,35,Mobile
+2025-05-18,Notifications,session_start,99,Web
+2025-05-18,Onboarding,session_start,184,Web
+2025-05-18,Reporting,session_start,120,Mobile
+2025-05-18,Scheduled Report Emails,feature_used,25,Web
+2025-05-18,Search,feature_used,156,Web
+2025-05-18,Security & Compliance,feature_used,64,Web
+2025-05-18,Slack Integration,feature_used,55,Web
+2025-05-19,API,feature_used,272,Mobile
+2025-05-19,Billing,feature_used,166,Web
+2025-05-19,Bulk CSV Export,session_start,80,Web
+2025-05-19,Custom Dashboard Widgets,session_start,49,Mobile
+2025-05-19,Dark Mode,feature_used,151,Web
+2025-05-19,Dashboard,feature_used,524,Web
+2025-05-19,Export,feature_used,211,Web
+2025-05-19,Mobile App,export_click,278,Web
+2025-05-19,Mobile Push Notifications,feature_used,55,Mobile
+2025-05-19,Notifications,feature_used,172,Web
+2025-05-19,Onboarding,session_start,332,Mobile
+2025-05-19,Reporting,session_start,222,Web
+2025-05-19,Scheduled Report Emails,click,30,Web
+2025-05-19,Search,session_start,231,Mobile
+2025-05-19,Security & Compliance,feature_used,98,Web
+2025-05-19,Slack Integration,feature_used,82,Mobile
+2025-05-20,API,feature_used,283,Mobile
+2025-05-20,Billing,feature_used,193,Web
+2025-05-20,Bulk CSV Export,feature_used,101,Web
+2025-05-20,Custom Dashboard Widgets,feature_used,47,Web
+2025-05-20,Dark Mode,error,163,Web
+2025-05-20,Dashboard,feature_used,495,Web
+2025-05-20,Export,export_click,229,Web
+2025-05-20,Mobile App,export_click,327,Web
+2025-05-20,Mobile Push Notifications,feature_used,56,Web
+2025-05-20,Notifications,session_start,190,Web
+2025-05-20,Onboarding,export_click,331,Web
+2025-05-20,Reporting,click,199,Mobile
+2025-05-20,Scheduled Report Emails,feature_used,34,Web
+2025-05-20,Search,click,244,Web
+2025-05-20,Security & Compliance,feature_used,105,Web
+2025-05-20,Slack Integration,session_start,104,Web
+2025-05-21,API,click,274,Web
+2025-05-21,Billing,export_click,156,Mobile
+2025-05-21,Bulk CSV Export,click,100,Web
+2025-05-21,Custom Dashboard Widgets,session_start,62,Web
+2025-05-21,Dark Mode,session_start,152,Web
+2025-05-21,Dashboard,session_start,513,Web
+2025-05-21,Export,feature_used,232,Web
+2025-05-21,Mobile App,session_start,321,Web
+2025-05-21,Mobile Push Notifications,feature_used,71,Mobile
+2025-05-21,Notifications,session_start,201,Web
+2025-05-21,Onboarding,feature_used,364,Web
+2025-05-21,Reporting,feature_used,184,Web
+2025-05-21,Scheduled Report Emails,session_start,37,Web
+2025-05-21,Search,feature_used,250,Web
+2025-05-21,Security & Compliance,feature_used,104,Web
+2025-05-21,Slack Integration,feature_used,98,Web
+2025-05-22,API,feature_used,280,Web
+2025-05-22,Billing,feature_used,152,Web
+2025-05-22,Bulk CSV Export,feature_used,106,Web
+2025-05-22,Custom Dashboard Widgets,feature_used,57,Mobile
+2025-05-22,Dark Mode,session_start,187,Web
+2025-05-22,Dashboard,session_start,522,Mobile
+2025-05-22,Export,feature_used,206,Web
+2025-05-22,Mobile App,session_start,319,Mobile
+2025-05-22,Mobile Push Notifications,click,57,Web
+2025-05-22,Notifications,feature_used,184,Web
+2025-05-22,Onboarding,feature_used,353,Web
+2025-05-22,Reporting,session_start,212,Mobile
+2025-05-22,Scheduled Report Emails,session_start,33,Mobile
+2025-05-22,Search,error,240,Mobile
+2025-05-22,Security & Compliance,session_start,110,Web
+2025-05-22,Slack Integration,feature_used,107,Web
+2025-05-23,API,export_click,262,Web
+2025-05-23,Billing,export_click,159,Mobile
+2025-05-23,Bulk CSV Export,click,107,Web
+2025-05-23,Custom Dashboard Widgets,click,63,Mobile
+2025-05-23,Dark Mode,feature_used,162,Web
+2025-05-23,Dashboard,click,559,Mobile
+2025-05-23,Export,export_click,224,Web
+2025-05-23,Mobile App,feature_used,337,Web
+2025-05-23,Mobile Push Notifications,feature_used,62,Mobile
+2025-05-23,Notifications,session_start,193,Web
+2025-05-23,Onboarding,feature_used,376,Web
+2025-05-23,Reporting,feature_used,211,Web
+2025-05-23,Scheduled Report Emails,session_start,35,Web
+2025-05-23,Search,feature_used,235,Web
+2025-05-23,Security & Compliance,export_click,118,Web
+2025-05-23,Slack Integration,click,84,Web
+2025-05-24,API,session_start,174,Web
+2025-05-24,Billing,click,91,Web
+2025-05-24,Bulk CSV Export,click,48,Web
+2025-05-24,Custom Dashboard Widgets,feature_used,36,Mobile
+2025-05-24,Dark Mode,click,112,Web
+2025-05-24,Dashboard,session_start,297,Web
+2025-05-24,Export,export_click,139,Mobile
+2025-05-24,Mobile App,export_click,185,Web
+2025-05-24,Mobile Push Notifications,session_start,40,Mobile
+2025-05-24,Notifications,feature_used,120,Mobile
+2025-05-24,Onboarding,feature_used,207,Mobile
+2025-05-24,Reporting,session_start,123,Web
+2025-05-24,Scheduled Report Emails,click,21,Web
+2025-05-24,Search,feature_used,127,Web
+2025-05-24,Security & Compliance,session_start,74,Web
+2025-05-24,Slack Integration,session_start,60,Web
+2025-05-25,API,click,173,Web
+2025-05-25,Billing,session_start,85,Web
+2025-05-25,Bulk CSV Export,feature_used,51,Web
+2025-05-25,Custom Dashboard Widgets,feature_used,30,Mobile
+2025-05-25,Dark Mode,feature_used,122,Web
+2025-05-25,Dashboard,export_click,334,Web
+2025-05-25,Export,session_start,140,Web
+2025-05-25,Mobile App,feature_used,172,Web
+2025-05-25,Mobile Push Notifications,feature_used,37,Mobile
+2025-05-25,Notifications,feature_used,117,Web
+2025-05-25,Onboarding,click,218,Web
+2025-05-25,Reporting,feature_used,133,Web
+2025-05-25,Scheduled Report Emails,feature_used,15,Web
+2025-05-25,Search,feature_used,135,Web
+2025-05-25,Security & Compliance,feature_used,66,Web
+2025-05-25,Slack Integration,feature_used,56,Web
+2025-05-26,API,feature_used,288,Web
+2025-05-26,Billing,feature_used,147,Web
+2025-05-26,Bulk CSV Export,feature_used,78,Web
+2025-05-26,Custom Dashboard Widgets,feature_used,46,Web
+2025-05-26,Dark Mode,feature_used,181,Web
+2025-05-26,Dashboard,feature_used,476,Web
+2025-05-26,Export,feature_used,232,Web
+2025-05-26,Mobile App,feature_used,304,Web
+2025-05-26,Mobile Push Notifications,click,65,Web
+2025-05-26,Notifications,click,167,Web
+2025-05-26,Onboarding,error,348,Web
+2025-05-26,Reporting,click,201,Web
+2025-05-26,Scheduled Report Emails,feature_used,29,Web
+2025-05-26,Search,feature_used,252,Web
+2025-05-26,Security & Compliance,feature_used,115,Web
+2025-05-26,Slack Integration,feature_used,90,Web
+2025-05-27,API,click,275,Web
+2025-05-27,Billing,click,170,Web
+2025-05-27,Bulk CSV Export,session_start,91,Web
+2025-05-27,Custom Dashboard Widgets,feature_used,56,Mobile
+2025-05-27,Dark Mode,feature_used,158,Web
+2025-05-27,Dashboard,feature_used,495,Web
+2025-05-27,Export,session_start,235,Mobile
+2025-05-27,Mobile App,feature_used,285,Web
+2025-05-27,Mobile Push Notifications,export_click,62,Web
+2025-05-27,Notifications,click,190,Web
+2025-05-27,Onboarding,error,353,Web
+2025-05-27,Reporting,feature_used,191,Web
+2025-05-27,Scheduled Report Emails,click,35,Web
+2025-05-27,Search,click,246,Mobile
+2025-05-27,Security & Compliance,session_start,99,Web
+2025-05-27,Slack Integration,session_start,86,Web
+2025-05-28,API,feature_used,259,Web
+2025-05-28,Billing,feature_used,177,Mobile
+2025-05-28,Bulk CSV Export,click,73,Web
+2025-05-28,Custom Dashboard Widgets,feature_used,45,Web
+2025-05-28,Dark Mode,session_start,160,Web
+2025-05-28,Dashboard,session_start,523,Web
+2025-05-28,Export,click,209,Mobile
+2025-05-28,Mobile App,feature_used,302,Web
+2025-05-28,Mobile Push Notifications,feature_used,56,Web
+2025-05-28,Notifications,click,196,Mobile
+2025-05-28,Onboarding,session_start,337,Web
+2025-05-28,Reporting,session_start,225,Mobile
+2025-05-28,Scheduled Report Emails,click,42,Mobile
+2025-05-28,Search,session_start,226,Web
+2025-05-28,Security & Compliance,export_click,111,Web
+2025-05-28,Slack Integration,feature_used,69,Web
+2025-05-29,API,feature_used,273,Mobile
+2025-05-29,Billing,feature_used,179,Web
+2025-05-29,Bulk CSV Export,session_start,79,Web
+2025-05-29,Custom Dashboard Widgets,feature_used,50,Web
+2025-05-29,Dark Mode,export_click,171,Web
+2025-05-29,Dashboard,click,499,Mobile
+2025-05-29,Export,feature_used,199,Web
+2025-05-29,Mobile App,feature_used,268,Web
+2025-05-29,Mobile Push Notifications,feature_used,67,Web
+2025-05-29,Notifications,click,144,Web
+2025-05-29,Onboarding,feature_used,361,Web
+2025-05-29,Reporting,feature_used,196,Web
+2025-05-29,Scheduled Report Emails,feature_used,34,Web
+2025-05-29,Search,click,239,Web
+2025-05-29,Security & Compliance,feature_used,110,Web
+2025-05-29,Slack Integration,feature_used,80,Mobile
+2025-05-30,API,feature_used,277,Web
+2025-05-30,Billing,feature_used,155,Web
+2025-05-30,Bulk CSV Export,feature_used,93,Web
+2025-05-30,Custom Dashboard Widgets,session_start,54,Web
+2025-05-30,Dark Mode,feature_used,164,Web
+2025-05-30,Dashboard,session_start,478,Mobile
+2025-05-30,Export,session_start,199,Web
+2025-05-30,Mobile App,feature_used,267,Mobile
+2025-05-30,Mobile Push Notifications,feature_used,65,Web
+2025-05-30,Notifications,session_start,159,Web
+2025-05-30,Onboarding,feature_used,313,Mobile
+2025-05-30,Reporting,click,218,Web
+2025-05-30,Scheduled Report Emails,click,33,Web
+2025-05-30,Search,feature_used,214,Web
+2025-05-30,Security & Compliance,session_start,103,Web
+2025-05-30,Slack Integration,feature_used,93,Web
+2025-05-31,API,feature_used,163,Web
+2025-05-31,Billing,feature_used,86,Mobile
+2025-05-31,Bulk CSV Export,session_start,40,Web
+2025-05-31,Custom Dashboard Widgets,session_start,27,Web
+2025-05-31,Dark Mode,feature_used,90,Web
+2025-05-31,Dashboard,session_start,257,Web
+2025-05-31,Export,click,116,Web
+2025-05-31,Mobile App,session_start,188,Web
+2025-05-31,Mobile Push Notifications,feature_used,31,Web
+2025-05-31,Notifications,feature_used,94,Web
+2025-05-31,Onboarding,session_start,197,Mobile
+2025-05-31,Reporting,error,106,Web
+2025-05-31,Scheduled Report Emails,click,23,Web
+2025-05-31,Search,feature_used,123,Web
+2025-05-31,Security & Compliance,export_click,59,Web
+2025-05-31,Slack Integration,export_click,37,Mobile
+2025-06-01,API,session_start,146,Web
+2025-06-01,Billing,click,78,Web
+2025-06-01,Bulk CSV Export,feature_used,39,Web
+2025-06-01,Custom Dashboard Widgets,feature_used,27,Web
+2025-06-01,Dark Mode,feature_used,87,Web
+2025-06-01,Dashboard,feature_used,258,Web
+2025-06-01,Export,feature_used,119,Web
+2025-06-01,Mobile App,feature_used,163,Web
+2025-06-01,Mobile Push Notifications,feature_used,30,Web
+2025-06-01,Notifications,session_start,83,Mobile
+2025-06-01,Onboarding,feature_used,172,Web
+2025-06-01,Reporting,feature_used,101,Web
+2025-06-01,Scheduled Report Emails,feature_used,17,Mobile
+2025-06-01,Search,click,126,Web
+2025-06-01,Security & Compliance,feature_used,58,Mobile
+2025-06-01,Slack Integration,feature_used,36,Web
+2025-06-02,API,click,235,Web
+2025-06-02,Billing,feature_used,137,Mobile
+2025-06-02,Bulk CSV Export,error,79,Web
+2025-06-02,Custom Dashboard Widgets,feature_used,60,Web
+2025-06-02,Dark Mode,feature_used,143,Web
+2025-06-02,Dashboard,feature_used,414,Mobile
+2025-06-02,Export,feature_used,188,Web
+2025-06-02,Mobile App,feature_used,240,Web
+2025-06-02,Mobile Push Notifications,feature_used,55,Mobile
+2025-06-02,Notifications,feature_used,149,Web
+2025-06-02,Onboarding,feature_used,299,Web
+2025-06-02,Reporting,feature_used,166,Mobile
+2025-06-02,Scheduled Report Emails,feature_used,28,Mobile
+2025-06-02,Search,session_start,195,Web
+2025-06-02,Security & Compliance,click,100,Web
+2025-06-02,Slack Integration,feature_used,73,Mobile
+2025-06-03,API,feature_used,230,Web
+2025-06-03,Billing,click,141,Web
+2025-06-03,Bulk CSV Export,feature_used,80,Web
+2025-06-03,Custom Dashboard Widgets,feature_used,43,Web
+2025-06-03,Dark Mode,export_click,126,Mobile
+2025-06-03,Dashboard,feature_used,418,Web
+2025-06-03,Export,click,167,Mobile
+2025-06-03,Mobile App,feature_used,240,Web
+2025-06-03,Mobile Push Notifications,feature_used,39,Mobile
+2025-06-03,Notifications,feature_used,151,Web
+2025-06-03,Onboarding,feature_used,270,Web
+2025-06-03,Reporting,export_click,142,Web
+2025-06-03,Scheduled Report Emails,session_start,28,Web
+2025-06-03,Search,export_click,186,Mobile
+2025-06-03,Security & Compliance,feature_used,89,Web
+2025-06-03,Slack Integration,click,74,Web
+2025-06-04,API,click,235,Web
+2025-06-04,Billing,feature_used,135,Web
+2025-06-04,Bulk CSV Export,session_start,62,Web
+2025-06-04,Custom Dashboard Widgets,click,45,Web
+2025-06-04,Dark Mode,feature_used,131,Mobile
+2025-06-04,Dashboard,click,401,Web
+2025-06-04,Export,feature_used,154,Web
+2025-06-04,Mobile App,feature_used,223,Mobile
+2025-06-04,Mobile Push Notifications,click,47,Web
+2025-06-04,Notifications,session_start,111,Web
+2025-06-04,Onboarding,feature_used,260,Web
+2025-06-04,Reporting,session_start,156,Web
+2025-06-04,Scheduled Report Emails,feature_used,29,Web
+2025-06-04,Search,session_start,173,Mobile
+2025-06-04,Security & Compliance,feature_used,83,Web
+2025-06-04,Slack Integration,click,50,Web
+2025-06-05,API,feature_used,203,Web
+2025-06-05,Billing,feature_used,136,Web
+2025-06-05,Bulk CSV Export,session_start,45,Web
+2025-06-05,Custom Dashboard Widgets,feature_used,47,Web
+2025-06-05,Dark Mode,feature_used,115,Mobile
+2025-06-05,Dashboard,click,384,Mobile
+2025-06-05,Export,session_start,173,Mobile
+2025-06-05,Mobile App,feature_used,216,Web
+2025-06-05,Mobile Push Notifications,feature_used,46,Web
+2025-06-05,Notifications,session_start,138,Mobile
+2025-06-05,Onboarding,error,257,Web
+2025-06-05,Reporting,session_start,152,Web
+2025-06-05,Scheduled Report Emails,feature_used,28,Web
+2025-06-05,Search,session_start,181,Web
+2025-06-05,Security & Compliance,session_start,83,Web
+2025-06-05,Slack Integration,session_start,65,Web
+2025-06-06,API,export_click,183,Web
+2025-06-06,Billing,feature_used,125,Web
+2025-06-06,Bulk CSV Export,feature_used,46,Web
+2025-06-06,Custom Dashboard Widgets,click,36,Web
+2025-06-06,Dark Mode,session_start,122,Web
+2025-06-06,Dashboard,click,358,Web
+2025-06-06,Export,feature_used,139,Web
+2025-06-06,Mobile App,feature_used,221,Web
+2025-06-06,Mobile Push Notifications,session_start,42,Web
+2025-06-06,Notifications,feature_used,138,Web
+2025-06-06,Onboarding,session_start,244,Web
+2025-06-06,Reporting,feature_used,149,Web
+2025-06-06,Scheduled Report Emails,session_start,28,Web
+2025-06-06,Search,session_start,148,Web
+2025-06-06,Security & Compliance,session_start,67,Mobile
+2025-06-06,Slack Integration,feature_used,63,Web
+2025-06-07,API,feature_used,93,Web
+2025-06-07,Billing,feature_used,73,Web
+2025-06-07,Bulk CSV Export,session_start,22,Web
+2025-06-07,Custom Dashboard Widgets,session_start,22,Web
+2025-06-07,Dark Mode,feature_used,55,Web
+2025-06-07,Dashboard,session_start,211,Web
+2025-06-07,Export,feature_used,76,Mobile
+2025-06-07,Mobile App,feature_used,139,Web
+2025-06-07,Mobile Push Notifications,feature_used,16,Web
+2025-06-07,Notifications,session_start,80,Web
+2025-06-07,Onboarding,feature_used,153,Web
+2025-06-07,Reporting,feature_used,86,Web
+2025-06-07,Scheduled Report Emails,feature_used,11,Web
+2025-06-07,Search,session_start,90,Web
+2025-06-07,Security & Compliance,export_click,60,Web
+2025-06-07,Slack Integration,session_start,45,Web
+2025-06-08,API,export_click,112,Web
+2025-06-08,Billing,feature_used,61,Web
+2025-06-08,Bulk CSV Export,export_click,27,Web
+2025-06-08,Custom Dashboard Widgets,click,30,Web
+2025-06-08,Dark Mode,feature_used,64,Web
+2025-06-08,Dashboard,feature_used,161,Web
+2025-06-08,Export,session_start,67,Web
+2025-06-08,Mobile App,click,109,Web
+2025-06-08,Mobile Push Notifications,session_start,23,Web
+2025-06-08,Notifications,feature_used,71,Mobile
+2025-06-08,Onboarding,click,120,Mobile
+2025-06-08,Reporting,session_start,96,Web
+2025-06-08,Scheduled Report Emails,session_start,10,Web
+2025-06-08,Search,error,87,Web
+2025-06-08,Security & Compliance,feature_used,45,Web
+2025-06-08,Slack Integration,feature_used,21,Web
+2025-06-09,API,export_click,163,Web
+2025-06-09,Billing,feature_used,94,Mobile
+2025-06-09,Bulk CSV Export,feature_used,56,Web
+2025-06-09,Custom Dashboard Widgets,feature_used,23,Web
+2025-06-09,Dark Mode,click,85,Mobile
+2025-06-09,Dashboard,click,314,Web
+2025-06-09,Export,feature_used,139,Web
+2025-06-09,Mobile App,click,166,Mobile
+2025-06-09,Mobile Push Notifications,error,23,Web
+2025-06-09,Notifications,feature_used,123,Mobile
+2025-06-09,Onboarding,click,192,Mobile
+2025-06-09,Reporting,feature_used,125,Web
+2025-06-09,Scheduled Report Emails,feature_used,21,Web
+2025-06-09,Search,feature_used,159,Web
+2025-06-09,Security & Compliance,export_click,51,Mobile
+2025-06-09,Slack Integration,export_click,55,Web
+2025-06-10,API,session_start,158,Mobile
+2025-06-10,Billing,session_start,85,Mobile
+2025-06-10,Bulk CSV Export,session_start,58,Web
+2025-06-10,Custom Dashboard Widgets,feature_used,35,Web
+2025-06-10,Dark Mode,session_start,88,Web
+2025-06-10,Dashboard,click,279,Mobile
+2025-06-10,Export,click,128,Web
+2025-06-10,Mobile App,click,163,Web
+2025-06-10,Mobile Push Notifications,feature_used,36,Web
+2025-06-10,Notifications,feature_used,82,Web
+2025-06-10,Onboarding,feature_used,214,Web
+2025-06-10,Reporting,click,119,Mobile
+2025-06-10,Scheduled Report Emails,feature_used,20,Web
+2025-06-10,Search,feature_used,135,Web
+2025-06-10,Security & Compliance,error,57,Web
+2025-06-10,Slack Integration,click,54,Web
+2025-06-11,API,feature_used,141,Web
+2025-06-11,Billing,feature_used,63,Web
+2025-06-11,Bulk CSV Export,feature_used,57,Web
+2025-06-11,Custom Dashboard Widgets,feature_used,30,Web
+2025-06-11,Dark Mode,click,87,Mobile
+2025-06-11,Dashboard,click,288,Web
+2025-06-11,Export,session_start,99,Mobile
+2025-06-11,Mobile App,feature_used,167,Web
+2025-06-11,Mobile Push Notifications,feature_used,38,Web
+2025-06-11,Notifications,feature_used,101,Mobile
+2025-06-11,Onboarding,session_start,174,Web
+2025-06-11,Reporting,session_start,106,Web
+2025-06-11,Scheduled Report Emails,session_start,24,Web
+2025-06-11,Search,feature_used,132,Mobile
+2025-06-11,Security & Compliance,feature_used,44,Web
+2025-06-11,Slack Integration,feature_used,69,Web
+2025-06-12,API,feature_used,153,Web
+2025-06-12,Billing,feature_used,75,Mobile
+2025-06-12,Bulk CSV Export,session_start,46,Mobile
+2025-06-12,Custom Dashboard Widgets,feature_used,30,Mobile
+2025-06-12,Dark Mode,feature_used,93,Mobile
+2025-06-12,Dashboard,feature_used,272,Web
+2025-06-12,Export,click,100,Web
+2025-06-12,Mobile App,feature_used,155,Web
+2025-06-12,Mobile Push Notifications,feature_used,32,Mobile
+2025-06-12,Notifications,feature_used,82,Mobile
+2025-06-12,Onboarding,feature_used,177,Web
+2025-06-12,Reporting,feature_used,97,Web
+2025-06-12,Scheduled Report Emails,session_start,15,Web
+2025-06-12,Search,feature_used,126,Web
+2025-06-12,Security & Compliance,feature_used,42,Mobile
+2025-06-12,Slack Integration,feature_used,50,Mobile
+2025-06-13,API,click,149,Web
+2025-06-13,Billing,feature_used,68,Web
+2025-06-13,Bulk CSV Export,feature_used,41,Web
+2025-06-13,Custom Dashboard Widgets,feature_used,27,Mobile
+2025-06-13,Dark Mode,feature_used,91,Web
+2025-06-13,Dashboard,feature_used,253,Web
+2025-06-13,Export,feature_used,121,Web
+2025-06-13,Mobile App,session_start,145,Web
+2025-06-13,Mobile Push Notifications,session_start,32,Mobile
+2025-06-13,Notifications,export_click,98,Web
+2025-06-13,Onboarding,feature_used,180,Mobile
+2025-06-13,Reporting,session_start,116,Web
+2025-06-13,Scheduled Report Emails,error,22,Web
+2025-06-13,Search,feature_used,128,Web
+2025-06-13,Security & Compliance,feature_used,66,Web
+2025-06-13,Slack Integration,session_start,53,Web
+2025-06-14,API,session_start,81,Web
+2025-06-14,Billing,feature_used,43,Web
+2025-06-14,Bulk CSV Export,feature_used,33,Web
+2025-06-14,Custom Dashboard Widgets,error,19,Mobile
+2025-06-14,Dark Mode,session_start,59,Mobile
+2025-06-14,Dashboard,feature_used,136,Web
+2025-06-14,Export,feature_used,71,Web
+2025-06-14,Mobile App,feature_used,88,Web
+2025-06-14,Mobile Push Notifications,export_click,19,Web
+2025-06-14,Notifications,export_click,35,Web
+2025-06-14,Onboarding,feature_used,98,Web
+2025-06-14,Reporting,feature_used,54,Mobile
+2025-06-14,Scheduled Report Emails,feature_used,12,Web
+2025-06-14,Search,feature_used,73,Web
+2025-06-14,Security & Compliance,session_start,27,Web
+2025-06-14,Slack Integration,export_click,22,Web
+2025-06-15,API,feature_used,79,Web
+2025-06-15,Billing,session_start,51,Web
+2025-06-15,Bulk CSV Export,feature_used,23,Web
+2025-06-15,Custom Dashboard Widgets,feature_used,22,Web
+2025-06-15,Dark Mode,session_start,63,Web
+2025-06-15,Dashboard,click,161,Web
+2025-06-15,Export,click,73,Web
+2025-06-15,Mobile App,feature_used,84,Mobile
+2025-06-15,Mobile Push Notifications,feature_used,10,Web
+2025-06-15,Notifications,session_start,56,Mobile
+2025-06-15,Onboarding,feature_used,107,Mobile
+2025-06-15,Reporting,click,53,Web
+2025-06-15,Scheduled Report Emails,feature_used,18,Web
+2025-06-15,Search,session_start,60,Web
+2025-06-15,Security & Compliance,feature_used,33,Mobile
+2025-06-15,Slack Integration,error,21,Mobile
+2025-06-16,API,feature_used,136,Mobile
+2025-06-16,Billing,feature_used,81,Mobile
+2025-06-16,Bulk CSV Export,feature_used,52,Web
+2025-06-16,Custom Dashboard Widgets,feature_used,19,Web
+2025-06-16,Dark Mode,feature_used,96,Web
+2025-06-16,Dashboard,feature_used,240,Mobile
+2025-06-16,Export,click,90,Web
+2025-06-16,Mobile App,feature_used,164,Web
+2025-06-16,Mobile Push Notifications,export_click,25,Web
+2025-06-16,Notifications,feature_used,88,Web
+2025-06-16,Onboarding,session_start,175,Web
+2025-06-16,Reporting,export_click,90,Mobile
+2025-06-16,Scheduled Report Emails,session_start,8,Web
+2025-06-16,Search,feature_used,104,Web
+2025-06-16,Security & Compliance,feature_used,37,Web
+2025-06-16,Slack Integration,feature_used,56,Web
+2025-06-17,API,feature_used,136,Web
+2025-06-17,Billing,session_start,90,Web
+2025-06-17,Bulk CSV Export,feature_used,29,Mobile
+2025-06-17,Custom Dashboard Widgets,feature_used,24,Mobile
+2025-06-17,Dark Mode,feature_used,81,Web
+2025-06-17,Dashboard,feature_used,253,Mobile
+2025-06-17,Export,session_start,90,Mobile
+2025-06-17,Mobile App,feature_used,165,Web
+2025-06-17,Mobile Push Notifications,feature_used,37,Mobile
+2025-06-17,Notifications,session_start,95,Web
+2025-06-17,Onboarding,feature_used,184,Web
+2025-06-17,Reporting,feature_used,107,Web
+2025-06-17,Scheduled Report Emails,session_start,26,Web
+2025-06-17,Search,feature_used,127,Web
+2025-06-17,Security & Compliance,click,41,Web
+2025-06-17,Slack Integration,click,53,Web
+2025-06-18,API,feature_used,155,Mobile
+2025-06-18,Billing,click,78,Mobile
+2025-06-18,Bulk CSV Export,feature_used,52,Web
+2025-06-18,Custom Dashboard Widgets,error,27,Web
+2025-06-18,Dark Mode,feature_used,93,Web
+2025-06-18,Dashboard,feature_used,239,Web
+2025-06-18,Export,click,107,Web
+2025-06-18,Mobile App,session_start,149,Web
+2025-06-18,Mobile Push Notifications,feature_used,28,Mobile
+2025-06-18,Notifications,feature_used,104,Web
+2025-06-18,Onboarding,session_start,191,Web
+2025-06-18,Reporting,session_start,101,Web
+2025-06-18,Scheduled Report Emails,feature_used,15,Web
+2025-06-18,Search,session_start,130,Mobile
+2025-06-18,Security & Compliance,feature_used,58,Mobile
+2025-06-18,Slack Integration,feature_used,57,Web
+2025-06-19,API,feature_used,156,Web
+2025-06-19,Billing,session_start,89,Web
+2025-06-19,Bulk CSV Export,session_start,48,Web
+2025-06-19,Custom Dashboard Widgets,session_start,23,Mobile
+2025-06-19,Dark Mode,session_start,98,Web
+2025-06-19,Dashboard,feature_used,283,Mobile
+2025-06-19,Export,feature_used,115,Web
+2025-06-19,Mobile App,feature_used,163,Web
+2025-06-19,Mobile Push Notifications,feature_used,41,Web
+2025-06-19,Notifications,click,78,Web
+2025-06-19,Onboarding,feature_used,185,Web
+2025-06-19,Reporting,session_start,121,Web
+2025-06-19,Scheduled Report Emails,export_click,11,Mobile
+2025-06-19,Search,feature_used,117,Web
+2025-06-19,Security & Compliance,feature_used,68,Web
+2025-06-19,Slack Integration,session_start,50,Web
+2025-06-20,API,feature_used,147,Web
+2025-06-20,Billing,feature_used,97,Mobile
+2025-06-20,Bulk CSV Export,feature_used,43,Web
+2025-06-20,Custom Dashboard Widgets,feature_used,32,Web
+2025-06-20,Dark Mode,feature_used,103,Mobile
+2025-06-20,Dashboard,click,277,Web
+2025-06-20,Export,feature_used,121,Web
+2025-06-20,Mobile App,feature_used,174,Web
+2025-06-20,Mobile Push Notifications,feature_used,31,Web
+2025-06-20,Notifications,feature_used,93,Mobile
+2025-06-20,Onboarding,feature_used,180,Mobile
+2025-06-20,Reporting,click,120,Web
+2025-06-20,Scheduled Report Emails,feature_used,21,Web
+2025-06-20,Search,feature_used,152,Web
+2025-06-20,Security & Compliance,feature_used,61,Web
+2025-06-20,Slack Integration,feature_used,35,Mobile
+2025-06-21,API,feature_used,117,Web
+2025-06-21,Billing,feature_used,63,Web
+2025-06-21,Bulk CSV Export,feature_used,28,Web
+2025-06-21,Custom Dashboard Widgets,session_start,13,Web
+2025-06-21,Dark Mode,export_click,71,Web
+2025-06-21,Dashboard,error,171,Web
+2025-06-21,Export,feature_used,81,Web
+2025-06-21,Mobile App,export_click,102,Web
+2025-06-21,Mobile Push Notifications,feature_used,29,Mobile
+2025-06-21,Notifications,feature_used,65,Mobile
+2025-06-21,Onboarding,error,110,Web
+2025-06-21,Reporting,feature_used,89,Web
+2025-06-21,Scheduled Report Emails,feature_used,15,Mobile
+2025-06-21,Search,feature_used,84,Web
+2025-06-21,Security & Compliance,click,32,Mobile
+2025-06-21,Slack Integration,export_click,34,Web
+2025-06-22,API,click,102,Web
+2025-06-22,Billing,feature_used,65,Mobile
+2025-06-22,Bulk CSV Export,feature_used,28,Mobile
+2025-06-22,Custom Dashboard Widgets,click,23,Web
+2025-06-22,Dark Mode,feature_used,52,Mobile
+2025-06-22,Dashboard,session_start,183,Web
+2025-06-22,Export,export_click,78,Web
+2025-06-22,Mobile App,click,113,Mobile
+2025-06-22,Mobile Push Notifications,click,17,Web
+2025-06-22,Notifications,click,64,Web
+2025-06-22,Onboarding,click,152,Mobile
+2025-06-22,Reporting,feature_used,86,Web
+2025-06-22,Scheduled Report Emails,feature_used,13,Mobile
+2025-06-22,Search,feature_used,96,Web
+2025-06-22,Security & Compliance,session_start,38,Web
+2025-06-22,Slack Integration,session_start,33,Mobile
+2025-06-23,API,export_click,194,Mobile
+2025-06-23,Billing,session_start,111,Mobile
+2025-06-23,Bulk CSV Export,export_click,52,Web
+2025-06-23,Custom Dashboard Widgets,feature_used,31,Mobile
+2025-06-23,Dark Mode,feature_used,101,Web
+2025-06-23,Dashboard,feature_used,345,Web
+2025-06-23,Export,export_click,134,Web
+2025-06-23,Mobile App,feature_used,222,Web
+2025-06-23,Mobile Push Notifications,click,38,Mobile
+2025-06-23,Notifications,session_start,108,Web
+2025-06-23,Onboarding,feature_used,231,Web
+2025-06-23,Reporting,feature_used,145,Web
+2025-06-23,Scheduled Report Emails,feature_used,24,Web
+2025-06-23,Search,feature_used,167,Web
+2025-06-23,Security & Compliance,feature_used,76,Mobile
+2025-06-23,Slack Integration,error,51,Mobile
+2025-06-24,API,feature_used,181,Web
+2025-06-24,Billing,click,120,Web
+2025-06-24,Bulk CSV Export,feature_used,67,Mobile
+2025-06-24,Custom Dashboard Widgets,export_click,43,Mobile
+2025-06-24,Dark Mode,feature_used,108,Web
+2025-06-24,Dashboard,click,371,Mobile
+2025-06-24,Export,feature_used,158,Web
+2025-06-24,Mobile App,click,236,Web
+2025-06-24,Mobile Push Notifications,session_start,44,Web
+2025-06-24,Notifications,feature_used,122,Web
+2025-06-24,Onboarding,feature_used,257,Web
+2025-06-24,Reporting,click,154,Mobile
+2025-06-24,Scheduled Report Emails,feature_used,25,Web
+2025-06-24,Search,feature_used,149,Web
+2025-06-24,Security & Compliance,session_start,77,Web
+2025-06-24,Slack Integration,session_start,65,Mobile
+2025-06-25,API,feature_used,207,Web
+2025-06-25,Billing,session_start,137,Web
+2025-06-25,Bulk CSV Export,session_start,52,Web
+2025-06-25,Custom Dashboard Widgets,feature_used,39,Web
+2025-06-25,Dark Mode,feature_used,124,Web
+2025-06-25,Dashboard,export_click,402,Mobile
+2025-06-25,Export,feature_used,137,Mobile
+2025-06-25,Mobile App,feature_used,243,Web
+2025-06-25,Mobile Push Notifications,feature_used,35,Web
+2025-06-25,Notifications,feature_used,137,Web
+2025-06-25,Onboarding,feature_used,264,Web
+2025-06-25,Reporting,feature_used,139,Web
+2025-06-25,Scheduled Report Emails,export_click,23,Web
+2025-06-25,Search,feature_used,197,Mobile
+2025-06-25,Security & Compliance,feature_used,80,Web
+2025-06-25,Slack Integration,session_start,56,Web
+2025-06-26,API,feature_used,209,Mobile
+2025-06-26,Billing,click,135,Web
+2025-06-26,Bulk CSV Export,click,55,Mobile
+2025-06-26,Custom Dashboard Widgets,feature_used,38,Mobile
+2025-06-26,Dark Mode,click,127,Web
+2025-06-26,Dashboard,session_start,412,Web
+2025-06-26,Export,feature_used,167,Web
+2025-06-26,Mobile App,click,220,Web
+2025-06-26,Mobile Push Notifications,feature_used,42,Web
+2025-06-26,Notifications,session_start,153,Web
+2025-06-26,Onboarding,feature_used,263,Web
+2025-06-26,Reporting,feature_used,154,Web
+2025-06-26,Scheduled Report Emails,feature_used,37,Mobile
+2025-06-26,Search,feature_used,188,Mobile
+2025-06-26,Security & Compliance,session_start,84,Web
+2025-06-26,Slack Integration,session_start,48,Mobile
+2025-06-27,API,session_start,242,Web
+2025-06-27,Billing,click,132,Web
+2025-06-27,Bulk CSV Export,export_click,67,Mobile
+2025-06-27,Custom Dashboard Widgets,feature_used,45,Mobile
+2025-06-27,Dark Mode,feature_used,141,Web
+2025-06-27,Dashboard,session_start,447,Mobile
+2025-06-27,Export,feature_used,156,Web
+2025-06-27,Mobile App,session_start,240,Web
+2025-06-27,Mobile Push Notifications,export_click,40,Web
+2025-06-27,Notifications,session_start,135,Mobile
+2025-06-27,Onboarding,feature_used,265,Web
+2025-06-27,Reporting,feature_used,179,Web
+2025-06-27,Scheduled Report Emails,feature_used,42,Mobile
+2025-06-27,Search,feature_used,210,Mobile
+2025-06-27,Security & Compliance,session_start,91,Web
+2025-06-27,Slack Integration,feature_used,84,Mobile
+2025-06-28,API,feature_used,140,Web
+2025-06-28,Billing,feature_used,90,Mobile
+2025-06-28,Bulk CSV Export,feature_used,45,Web
+2025-06-28,Custom Dashboard Widgets,error,32,Web
+2025-06-28,Dark Mode,session_start,81,Mobile
+2025-06-28,Dashboard,feature_used,266,Mobile
+2025-06-28,Export,session_start,106,Mobile
+2025-06-28,Mobile App,feature_used,157,Web
+2025-06-28,Mobile Push Notifications,feature_used,25,Mobile
+2025-06-28,Notifications,click,91,Mobile
+2025-06-28,Onboarding,session_start,201,Web
+2025-06-28,Reporting,click,117,Mobile
+2025-06-28,Scheduled Report Emails,export_click,18,Mobile
+2025-06-28,Search,feature_used,114,Mobile
+2025-06-28,Security & Compliance,session_start,51,Web
+2025-06-28,Slack Integration,click,53,Web
+2025-06-29,API,feature_used,148,Web
+2025-06-29,Billing,feature_used,100,Web
+2025-06-29,Bulk CSV Export,click,51,Web
+2025-06-29,Custom Dashboard Widgets,feature_used,33,Web
+2025-06-29,Dark Mode,feature_used,73,Mobile
+2025-06-29,Dashboard,feature_used,275,Web
+2025-06-29,Export,session_start,107,Mobile
+2025-06-29,Mobile App,click,170,Web
+2025-06-29,Mobile Push Notifications,click,24,Web
+2025-06-29,Notifications,feature_used,90,Web
+2025-06-29,Onboarding,session_start,224,Web
+2025-06-29,Reporting,export_click,109,Web
+2025-06-29,Scheduled Report Emails,session_start,21,Web
+2025-06-29,Search,click,114,Web
+2025-06-29,Security & Compliance,export_click,52,Web
+2025-06-29,Slack Integration,export_click,59,Web
+2025-06-30,API,export_click,262,Web
+2025-06-30,Billing,export_click,159,Web
+2025-06-30,Bulk CSV Export,feature_used,94,Web
+2025-06-30,Custom Dashboard Widgets,feature_used,46,Web
+2025-06-30,Dark Mode,feature_used,136,Web
+2025-06-30,Dashboard,click,488,Web
+2025-06-30,Export,feature_used,198,Web
+2025-06-30,Mobile App,feature_used,295,Web
+2025-06-30,Mobile Push Notifications,feature_used,61,Mobile
+2025-06-30,Notifications,feature_used,150,Mobile
+2025-06-30,Onboarding,feature_used,317,Web
+2025-06-30,Reporting,session_start,186,Web
+2025-06-30,Scheduled Report Emails,feature_used,28,Mobile
+2025-06-30,Search,feature_used,233,Web
+2025-06-30,Security & Compliance,feature_used,98,Mobile
+2025-06-30,Slack Integration,feature_used,75,Web
