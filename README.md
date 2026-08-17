@@ -35,10 +35,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The demo login screen (kept from the original frontend) uses:
-- Email: `sathvika@gmail.com`
-- Password: `sath`
-
 ### Enabling real Gemini AI features (optional)
 
 Without a key, PRD generation, impact scoring, executive summaries, and chat all fall back to
