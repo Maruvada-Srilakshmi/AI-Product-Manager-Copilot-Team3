@@ -52,6 +52,12 @@ def init_db():
             FOREIGN KEY (workspace_id) REFERENCES workspaces (id)
         )
     """)
+    # The "Full Name" collected at sign-up (screens/register.py) previously
+    # had nowhere to go, so the Profile page fell back to guessing a display
+    # name from the email's local part (e.g. "sri1234" for
+    # sri1234@gmail.com) -- reads nothing like an actual name. This column
+    # stores the real one so it round-trips correctly.
+    _ensure_column(c, "users", "name", "TEXT")
 
     # Module 2: Feedback & Support Tickets
     c.execute("""
@@ -189,16 +195,16 @@ def get_user_by_username(username):
     return dict(df.iloc[0])
 
 
-def create_user(username, password, role="Product Manager", workspace_id=None):
+def create_user(username, password, role="Product Manager", workspace_id=None, name=None):
     """
     Creates a new user with a hashed password. Returns the new user's id.
     Raises sqlite3.IntegrityError if the username already exists.
     """
     hashed = hash_password(password)
     return execute(
-        "INSERT INTO users (username, password, role, workspace_id, created_at) "
-        "VALUES (?, ?, ?, ?, ?)",
-        (username, hashed, role, workspace_id, now()),
+        "INSERT INTO users (username, password, role, workspace_id, created_at, name) "
+        "VALUES (?, ?, ?, ?, ?, ?)",
+        (username, hashed, role, workspace_id, now(), name),
     )
 
 

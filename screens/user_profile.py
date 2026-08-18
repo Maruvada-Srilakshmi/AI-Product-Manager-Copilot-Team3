@@ -11,13 +11,19 @@ def _seed_profile():
     """
     user = st.session_state.get("current_user") or {}
     username = user.get("username", "")
+    stored_name = (user.get("name") or "").strip()
 
-    # Users table has no separate display-name column, so derive a
-    # reasonable display name from the email/username the first time.
-    if username and "@" in username:
+    if stored_name:
+        # The real name collected at sign-up (or a name saved here before).
+        display_name = stored_name
+    elif username and "@" in username:
+        # Accounts created before the `users.name` column existed (or the
+        # login page's demo shortcut) have no stored name yet -- this is
+        # only ever a rough placeholder (e.g. "sri1234" for
+        # sri1234@gmail.com) until the person fills in and saves their own.
         display_name = username.split("@")[0].replace(".", " ").replace("_", " ").title()
     else:
-        display_name = username or "User"
+        display_name = username or ""
 
     return {
         "name": display_name,
@@ -76,8 +82,10 @@ def show_user_profile():
                     # navigating away and back).
                     user = st.session_state.get("current_user")
                     if user and user.get("id") is not None:
-                        execute("UPDATE users SET role = ? WHERE id = ?", (role, user["id"]))
+                        execute("UPDATE users SET role = ?, name = ? WHERE id = ?",
+                                (role, name.strip(), user["id"]))
                         user["role"] = role
+                        user["name"] = name.strip()
                         st.session_state.current_user = user
                         st.session_state["_profile_seeded_for"] = user.get("username")
 
