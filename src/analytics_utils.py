@@ -1,17 +1,3 @@
-"""
-Module 3: Product Analytics Data Integration Module
-
-Ingests product usage / event data (feature clicks, sessions, adoption
-counts, etc.) into the `analytics_events` table (already defined in
-src/db.py) and provides deterministic aggregation helpers the UI reads from.
-
-Mirrors the shape of src/nlp_utils.py: no LLM call needed here, everything
-is computed directly from the ingested rows, so the Product Analytics page
-never depends on an API key being configured. Column-agnostic CSV ingestion
-reuses the same guess_column()/ANALYTICS_ALIASES machinery in
-src/csv_utils.py that the Feedback Ingestion path already uses for the
-`feedback` table.
-"""
 import pandas as pd
 
 
@@ -116,26 +102,6 @@ def _tokens(text: str) -> set:
 
 
 def usage_vs_demand(events: pd.DataFrame, features_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Cross-references tracked product features (from analytics_events) with
-    customer-requested features (from feature_requests, i.e. Module 5's
-    Feature Request Aggregation output) by keyword overlap on their names.
-
-    For every requested feature this surfaces whether the team already has
-    usage data for it -- e.g. a heavily-requested feature with zero tracked
-    usage is either not shipped yet or shipped-but-undiscovered, while a
-    shipped feature with strong usage and few requests is quietly working.
-
-    Returns columns: requested_feature, votes, tracked_feature, usage,
-    status (one of "Shipped & used", "Shipped, low usage", "No usage data").
-
-    `requested_feature` is the full, untruncated feedback text (falling
-    back to the title only if no description was captured) -- feature_requests.title
-    is truncated to ~70 characters for use elsewhere in the app (e.g. the
-    Dashboard's "Top Requested Features" legend), which reads as a sentence
-    cut off mid-way when shown here at full width. Matching still runs
-    against the short title + theme, since that doesn't affect match quality.
-    """
     if features_df.empty:
         return pd.DataFrame(columns=["requested_feature", "votes", "tracked_feature", "usage", "status"])
 

@@ -481,7 +481,7 @@ def reload_dataset() -> dict:
     # has a FOREIGN KEY on feature_requests.id, so it must be cleared first or
     # SQLite raises "FOREIGN KEY constraint failed" when feature_requests rows
     # (still referenced by leftover prioritization rows) are deleted.
-    for table in ["prioritization", "feature_requests", "feedback"]:
+    for table in ["prioritization", "theme_validations", "feature_requests", "feedback"]:
         conn.execute(f"DELETE FROM {table} WHERE workspace_id = ?", (ws_id(),))
     conn.commit()
     conn.close()
@@ -641,6 +641,126 @@ def run_theme_agent_enrichment(top_n: int = 6, timeout: int = 45):
 
     from src.theme_agent import run_theme_extraction_agent
     return run_theme_extraction_agent(samples_by_theme, timeout=timeout)
+
+
+# ---------------- Accuracy Validation (issue detection + feature grouping) ----------------
+# Lets a reviewer confirm or correct the theme the TF-IDF/KMeans clustering
+# step (src/nlp_utils.extract_themes, run from ingest_and_classify) assigned
+# to a piece of feedback ("issue detection") or a feature request ("feature
+# grouping"), and reports the resulting accuracy — closing the loop the
+# app previously had no way to measure.
+
+VALIDATION_ITEM_TABLES = {
+    "feedback": {"table": "feedback", "label_col": "text", "theme_col": "theme"},
+    "feature_request": {"table": "feature_requests", "label_col": "title", "theme_col": "theme"},
+}
+
+
+def available_theme_labels() -> list:
+    """
+    Distinct themes already assigned across feedback and feature requests,
+    used to populate the "correct theme" choices when a reviewer marks an
+    item as incorrectly clustered/grouped.
+    """
+    feedback = fetch_feedback()
+    features = fetch_features()
+    themes = set()
+    if not feedback.empty and "theme" in feedback.columns:
+        themes.update(t for t in feedback["theme"].dropna().unique().tolist() if t)
+    if not features.empty and "theme" in features.columns:
+        themes.update(t for t in features["theme"].dropna().unique().tolist() if t)
+    return sorted(themes)
+
+
+def theme_validation_queue(item_type: str, limit: int = 10) -> pd.DataFrame:
+    """
+    Returns up to `limit` items of the given type ("feedback" or
+    "feature_request") that haven't been reviewed yet, alongside the theme
+    the clustering step assigned. Drives the review queue in the accuracy
+    validation panel so a reviewer works through unreviewed items instead of
+    re-seeing ones already validated.
+    """
+    spec = VALIDATION_ITEM_TABLES[item_type]
+    already_validated = fetch_df(
+        "SELECT item_id FROM theme_validations WHERE workspace_id = ? AND item_type = ?",
+        (ws_id(), item_type),
+    )
+    validated_ids = set(already_validated["item_id"].tolist()) if not already_validated.empty else set()
+
+    df = fetch_df(
+        f"SELECT id, {spec['label_col']} as label, {spec['theme_col']} as theme "
+        f"FROM {spec['table']} WHERE workspace_id = ? AND theme IS NOT NULL AND theme != ''",
+        (ws_id(),),
+    )
+    if df.empty:
+        return df
+    if validated_ids:
+        df = df[~df["id"].isin(validated_ids)]
+    return df.head(limit)
+
+
+def record_theme_validation(item_type: str, item_id: int, original_theme: str,
+                             is_correct: bool, corrected_theme: str = None):
+    """
+    Records a reviewer's verdict on a single item's AI-assigned theme.
+    Upserts on (workspace, item_type, item_id) so re-reviewing an item
+    updates its existing verdict instead of creating a duplicate. On an
+    "incorrect" verdict with a corrected theme supplied, also writes that
+    correction back onto the source row (feedback.theme or
+    feature_requests.theme) so the review actually fixes the grouping, not
+    just the accuracy tally.
+    """
+    spec = VALIDATION_ITEM_TABLES[item_type]
+    conn = get_conn()
+    conn.execute(
+        """INSERT INTO theme_validations
+           (workspace_id, item_type, item_id, original_theme, is_correct, corrected_theme, validated_at)
+           VALUES (?,?,?,?,?,?,?)
+           ON CONFLICT(workspace_id, item_type, item_id) DO UPDATE SET
+             original_theme = excluded.original_theme,
+             is_correct = excluded.is_correct,
+             corrected_theme = excluded.corrected_theme,
+             validated_at = excluded.validated_at""",
+        (ws_id(), item_type, int(item_id), original_theme, 1 if is_correct else 0,
+         corrected_theme, now()),
+    )
+    if not is_correct and corrected_theme:
+        conn.execute(
+            f"UPDATE {spec['table']} SET {spec['theme_col']} = ? WHERE id = ? AND workspace_id = ?",
+            (corrected_theme, int(item_id), ws_id()),
+        )
+    conn.commit()
+    conn.close()
+
+
+def theme_validation_summary() -> dict:
+    """
+    Aggregate accuracy metrics for issue detection (feedback theming) and
+    feature grouping (feature-request theming), plus an overall figure
+    across both, computed from every review recorded so far. Returns a dict
+    the accuracy validation panel renders as metric cards; every count is 0
+    and accuracy is None until at least one item has been reviewed.
+    """
+    rows = fetch_df(
+        "SELECT item_type, is_correct FROM theme_validations WHERE workspace_id = ?",
+        (ws_id(),),
+    )
+
+    def _bucket(df: pd.DataFrame) -> dict:
+        total = len(df)
+        correct = int(df["is_correct"].sum()) if total else 0
+        accuracy = round(100.0 * correct / total, 1) if total else None
+        return {"total": total, "correct": correct, "incorrect": total - correct, "accuracy": accuracy}
+
+    overall = _bucket(rows)
+    feedback_rows = rows[rows["item_type"] == "feedback"] if not rows.empty else rows
+    feature_rows = rows[rows["item_type"] == "feature_request"] if not rows.empty else rows
+
+    return {
+        "overall": overall,
+        "feedback": _bucket(feedback_rows),
+        "feature_request": _bucket(feature_rows),
+    }
 
 
 # ---------------- Prioritization (RICE) ----------------

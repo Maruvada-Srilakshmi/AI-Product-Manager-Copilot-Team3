@@ -1,40 +1,3 @@
-"""
-Theme Extraction Agent (Module: Theme Agent, per AI PM Copilot Multi-Agent
-System Design).
-
-Goal (from the architecture doc): "Discover recurring customer pain points."
-
-Responsibilities implemented here, matching the design doc's Theme Agent
-section:
- - Topic extraction
- - Theme classification
- - Sentiment analysis
- - Pain point identification
- - Intent detection
-
-Example output shape mirrors the doc:
-
-    | Theme               | Frequency |
-    |----------------------|-----------|
-    | Login Issues         | 124       |
-    | Dashboard Performance | 89       |
-    | Export Problems      | 61        |
-
-...extended per-theme with a sentiment label, a one-line pain-point summary,
-and a detected intent (Bug Report / Feature Request / Question / Complaint /
-Praise), so the Dashboard can surface more than a bare frequency count.
-
-This module is a standalone, single-responsibility agent (its own file,
-mirroring `orchestrator_agent.py` / `theme_agent.py` in the design doc's
-`backend/agents/` layout) built as a CrewAI single-agent crew on top of the
-same Gemini LLM + resilience/fallback plumbing already used by
-`src/agents.py` (auth errors fail fast, transient errors retry with
-backoff, model candidates are tried in order). It returns `None` on any
-failure — no API key, `crewai` missing, timeout, bad response — so callers
-can fall back to the offline TF-IDF/lexicon path in `src/nlp_utils.py`,
-which already powers the base theme/sentiment columns stored in the
-`feedback` table.
-"""
 import json
 import re
 
@@ -62,19 +25,6 @@ def _extract_json_array(text: str):
 
 
 def run_theme_extraction_agent(samples_by_theme: dict, timeout: int = 45):
-    """
-    Runs the Theme Extraction Agent over a dict of {theme_name: [sample feedback
-    strings]} (themes + frequencies are already known from the offline
-    clustering step — this agent enriches them with sentiment, pain points,
-    and intent, per the design doc's Theme Agent responsibilities).
-
-    Returns a (result, error) tuple:
-        result: list of {"theme", "sentiment", "pain_points", "intent"} dicts, or None
-        error:  None on success, otherwise a human-readable reason (no key,
-                crewai/litellm import error, the actual API error string, a
-                timeout message, or a parse failure) so callers can show the
-                *real* cause instead of a generic "unavailable" message.
-    """
     try:
         from crewai import Agent, Task, Crew, Process
     except Exception as e:

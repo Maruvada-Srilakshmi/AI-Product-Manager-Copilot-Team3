@@ -1,46 +1,12 @@
-"""
-CrewAI-based agent orchestration — this is what makes the AI Product Manager
-Copilot match its finalized architecture (CrewAI as the orchestration
-framework, Gemini as the sole LLM), rather than being plain single-shot API
-calls.
-
-Covers the three genuinely agent-shaped modules:
- - Module 6: AI-Based Prioritization & Impact Analysis (single-agent crew)
- - Module 7: PRD Generation (two-agent crew: Insights Analyst -> PRD Writer)
- - Module 9: Conversational Product Intelligence Assistant (single-agent crew)
-
-Every function here returns None on ANY failure (no key, crewai not
-installed, API error, timeout) so callers in llm.py can fall back to a
-direct single-shot Gemini call, and finally to an offline template — the
-same layered-fallback design already used throughout the app.
-
-Resilience, matching llm.py:
- - Every crew.kickoff() runs through a hard wall-clock timeout via a worker
-   thread, since CrewAI has no reliable built-in per-call timeout.
- - Transient errors (503 UNAVAILABLE / high demand, 429, 500) are retried
-   with backoff before giving up.
- - If the primary model is unavailable/overloaded after retries, we
-   automatically rebuild the crew against a secondary model.
- - Auth errors fail immediately — retrying won't fix a bad key.
-"""
 import os
 import time
 import concurrent.futures
 import streamlit as st
 
-# Disable CrewAI's anonymous telemetry/tracing (network calls to
-# telemetry.crewai.com) before crewai is ever imported. This is a local
-# product-management tool, not a shared SaaS deployment, and on networks
-# that block that host these calls otherwise produce noisy errors/hangs
-# on process exit with no functional benefit. setdefault() so an explicit
-# choice already set in the environment is respected.
 os.environ.setdefault("CREWAI_DISABLE_TELEMETRY", "true")
 os.environ.setdefault("OTEL_SDK_DISABLED", "true")
 os.environ.setdefault("CREWAI_TRACING_ENABLED", "false")
 
-# LiteLLM naming convention CrewAI expects: "<provider>/<model-id>".
-# Tried in order — if the first is overloaded/retired/unavailable, we
-# automatically rebuild the crew against the next one.
 GEMINI_MODEL_CANDIDATES = ["gemini/gemini-3.5-flash", "gemini/gemini-3.1-flash-lite"]
 
 _EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=4)
@@ -254,25 +220,6 @@ def run_impact_scoring_crew(feature_title: str, description: str, votes: int, ti
 
 
 def run_quick_prd_from_text_crew(raw_text: str, timeout: int = 60):
-    """
-    Four-agent crew, ported from the team's standalone FastAPI/CrewAI backend
-    (`Team3_AICopilot_backend/app/agents/orchestrator.py`), that takes raw,
-    unstructured customer feedback / support tickets pasted directly by a PM
-    and turns it into a mini-PRD in one pass — no need to have already
-    ingested/classified the feedback into the `feedback` table first:
-
-      1. Feedback Agent  — extracts pain points & sentiment from the raw text
-      2. Feature Agent   — groups the pain points into 2-3 feature concepts
-      3. Priority Agent  — scores those concepts High/Med/Low impact vs. effort
-      4. PRD Agent       — writes a mini-PRD (user stories + acceptance criteria)
-         for the top feature, grounded in the prior three agents' outputs
-
-    Returns a list of {"stage": str, "output": str} dicts (one per agent, in
-    order, so the UI can show each stage) or None on any failure — the same
-    None-on-failure contract as the other run_*_crew() helpers, so callers
-    can fall back to a direct single-shot Gemini call and then an offline
-    template.
-    """
     try:
         from crewai import Agent, Task, Crew, Process
     except Exception:

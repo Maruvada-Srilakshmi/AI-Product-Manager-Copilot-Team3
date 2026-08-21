@@ -1,30 +1,3 @@
-"""
-AI-Based Prioritization & Impact Analysis Engine
-(design doc: AI PM Copilot Multi-Agent System Design -> "7. Prioritization Agent")
-
-Responsibilities implemented here, matching the design doc's Prioritization
-Agent section:
- - Calculate RICE Score   -> compute_rice()          (deterministic tool)
- - Calculate ICE Score    -> compute_ice()           (deterministic tool)
- - Estimate effort        -> Impact & Risk Analyst agent (AI-assisted)
- - Assess risk             -> Impact & Risk Analyst agent (AI-assisted)
- - Recommend priority     -> recommend_priority()    (derived from the above)
-
-Like `src/theme_agent.py`, this is a standalone, single-responsibility
-module built as a CrewAI single-agent crew on top of the same Gemini LLM +
-resilience plumbing already used by `src/agents.py` (auth errors fail fast,
-transient errors retry with backoff, model candidates tried in order).
-Scoring runs as ONE batched crew call across every feature being analyzed
-(not one call per feature) to stay fast and within free-tier rate limits —
-the same batching approach `run_theme_extraction_agent` uses for themes.
-
-`run_prioritization_engine()` returns (result, error): result is None on
-any failure (no API key, crewai not installed, timeout, bad response) so
-callers — see `utils.helpers.run_ai_prioritization_engine` — can fall back
-to the existing votes-based heuristic already used by
-`utils.helpers.ensure_rice_score`, the same layered-fallback design used
-throughout the app.
-"""
 import json
 import re
 
@@ -96,22 +69,6 @@ def _extract_json_array(text: str):
 
 
 def run_prioritization_engine(features: list, timeout: int = 45):
-    """
-    Runs the Impact & Risk Analyst agent over a batch of feature requests.
-
-    `features` is a list of dicts, each shaped:
-        {"id": int, "title": str, "description": str, "theme": str,
-         "votes": int, "sample_feedback": [str, ...]}
-
-    Returns (result, error):
-        result: list of {"id", "impact", "effort", "confidence", "risk",
-                 "rationale"} dicts — impact 1-5, effort 1-5 (person-months
-                 scale), confidence 0-100, risk one of Low/Medium/High —
-                 or None on any failure.
-        error:  None on success, otherwise a human-readable reason (no key,
-                crewai/litellm import error, the actual API error string, a
-                timeout message, or a parse failure).
-    """
     try:
         from crewai import Agent, Task, Crew, Process
     except Exception as e:

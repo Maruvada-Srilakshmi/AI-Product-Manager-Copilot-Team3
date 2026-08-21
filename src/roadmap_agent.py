@@ -1,27 +1,3 @@
-"""
-Roadmap Planning Agent
-(design doc: AI PM Copilot Multi-Agent System Design -> "9. Roadmap Agent")
-
-Responsibilities implemented here, matching the design doc's Roadmap Agent
-section:
- - Dependency planning  -> AI-suggested depends_on_id per feature
- - Sprint allocation    -> AI-suggested sprint number within the quarter
- - Quarterly roadmap    -> AI-suggested target quarter
- - Milestone planning   -> AI-flagged milestone initiatives
- - Release sequencing   -> topological_sequence() (deterministic tool)
-
-Like src/theme_agent.py and src/prioritization_engine.py, this is a
-standalone module built as a single CrewAI agent on top of the same Gemini
-LLM and resilience plumbing already used across the app (src/agents.py):
-auth errors fail fast, transient errors retry with backoff, model
-candidates are tried in order. Planning runs as ONE batched crew call
-across every unscheduled feature being planned, not one call per feature.
-
-run_roadmap_planning_agent() returns (result, error): result is None on
-any failure, so callers (utils.helpers.run_ai_roadmap_planning) fall back
-to a deterministic heuristic, the same layered-fallback design used
-throughout the app.
-"""
 import json
 import re
 
@@ -33,13 +9,6 @@ VALID_QUARTERS = ["Q1", "Q2", "Q3", "Q4"]
 # ---------------- Deterministic tool: release sequencing ----------------
 
 def topological_sequence(items: list) -> list:
-    """
-    Orders items (each a dict with "id" and "depends_on_id") so that every
-    item appears after whatever it depends on, i.e. dependency-respecting
-    release sequencing (Kahn's algorithm). Any cyclic or unresolved
-    dependency is appended in its original position rather than raising,
-    since a stale dependency link should never break the roadmap view.
-    """
     by_id = {it["id"]: it for it in items}
     indegree = {it["id"]: 0 for it in items}
     graph = {it["id"]: [] for it in items}  # dependency id -> [dependent ids]
@@ -96,23 +65,6 @@ def _extract_json_array(text: str):
 
 
 def run_roadmap_planning_agent(features: list, current_quarter: str = "Q1", timeout: int = 45):
-    """
-    Runs the Roadmap Planner agent over a batch of prioritized, not-yet-
-    scheduled feature requests.
-
-    `features` is a list of dicts, each shaped:
-        {"id": int, "title": str, "theme": str, "rice_score": float|None,
-         "votes": int}
-
-    Returns (result, error):
-        result: list of {"id", "quarter", "sprint", "depends_on_id",
-                 "is_milestone", "rationale"} dicts, or None on failure.
-                 depends_on_id, if set, is the "id" of another feature in
-                 this same batch that should ship first.
-        error:  None on success, otherwise a human-readable reason (no key,
-                crewai/litellm import error, the actual API error string, a
-                timeout message, or a parse failure).
-    """
     try:
         from crewai import Agent, Task, Crew, Process
     except Exception as e:

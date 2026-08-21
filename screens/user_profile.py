@@ -132,7 +132,8 @@ def show_user_profile():
             with c1:
                 if st.button("Yes, delete all data", use_container_width=True):
                     for table in ["feedback", "feature_requests", "prioritization", "documents",
-                                  "roadmap_items", "chat_history", "analytics_events"]:
+                                  "roadmap_items", "chat_history", "analytics_events",
+                                  "theme_validations"]:
                         execute(f"DELETE FROM {table} WHERE workspace_id = ?", (ws["id"],))
                     for key in ["uploads_log", "file_previews", "analysis_results", "chat_history", "exec_summary"]:
                         st.session_state.pop(key, None)

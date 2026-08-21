@@ -172,6 +172,27 @@ def init_db():
         )
     """)
 
+    # Accuracy validation: lets a human confirm or correct the AI-assigned
+    # theme on individual feedback items and feature requests, so the app
+    # can report a real accuracy metric for issue detection (feedback.theme)
+    # and feature grouping (feature_requests.theme) instead of assuming the
+    # TF-IDF/KMeans clustering and LLM enrichment got it right. One row per
+    # validated item, keyed by (item_type, item_id) so re-validating an item
+    # updates its existing row rather than piling up duplicates.
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS theme_validations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            workspace_id INTEGER,
+            item_type TEXT NOT NULL,
+            item_id INTEGER NOT NULL,
+            original_theme TEXT,
+            is_correct INTEGER NOT NULL,
+            corrected_theme TEXT,
+            validated_at TEXT NOT NULL,
+            UNIQUE(workspace_id, item_type, item_id)
+        )
+    """)
+
     conn.commit()
     conn.close()
 

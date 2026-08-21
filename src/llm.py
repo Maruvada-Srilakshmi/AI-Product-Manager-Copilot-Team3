@@ -1,43 +1,12 @@
-"""
-Thin wrapper around the Google Gemini API (using the current `google-genai`
-SDK — the older `google-generativeai` package is deprecated by Google) used by:
- - Module 7: PRD & User Story Generation
- - Module 6: AI-assisted impact estimation
- - Module 8: Executive / roadmap summaries
- - Module 9: Conversational Product Intelligence Assistant
-
-If no GEMINI_API_KEY is configured, every function falls back to a
-deterministic, template-based response so the app still runs end-to-end
-for a demo without any API cost or key.
-
-Resilience layers, in order, for every real API call:
- 1. Hard wall-clock timeout (via a worker thread) — independent of the
-    SDK's own (sometimes unreliable) timeout handling, so a network
-    problem can never hang the Streamlit app.
- 2. Retry with backoff on TRANSIENT errors only (503 UNAVAILABLE, 429
-    RESOURCE_EXHAUSTED, 500) — Google's servers being temporarily
-    overloaded is not a reason to give up immediately.
- 3. Automatic fallback to a secondary model if the primary one is
-    unavailable/overloaded after retries, or doesn't exist for this key
-    (404 "no longer available", the same situation gemini-2.5-flash hit).
- 4. Auth errors (invalid key, permission denied) fail immediately with no
-    retries/model-switching, since they'll fail identically everywhere.
-"""
 import os
 import time
 import concurrent.futures
 import streamlit as st
 
-# Tried in order. If the first is overloaded/retired/unavailable, we
-# automatically fall through to the next before giving up on Gemini
-# entirely and dropping to the offline template.
 GEMINI_MODEL_CANDIDATES = ["gemini-3.5-flash", "gemini-3.1-flash-lite"]
 
 _EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=4)
 
-# Tracks *why* the last client-initialization attempt failed, so
-# check_connection() can show the real reason instead of every failure
-# looking identical to "no key configured".
 _LAST_INIT_ERROR = {"stage": None, "detail": None}
 
 _AUTH_ERROR_MARKERS = ["api_key_invalid", "api key not valid", "permission_denied", "unauthenticated", "401", "403"]
@@ -101,18 +70,6 @@ def _run_with_timeout(fn, timeout: int):
 
 
 def _request_with_resilience(make_request_fn, timeout_per_attempt: int = 20, retries_per_model: int = 2):
-    """
-    Tries each candidate model in order. For each model, retries up to
-    `retries_per_model` times (with short backoff) on TRANSIENT errors only.
-    Moves to the next model immediately on a model_unavailable error, or
-    after exhausting retries on a transient error. Stops immediately on an
-    auth error (retrying/switching models won't fix a bad key).
-
-    make_request_fn(model_name) -> should perform the request and return the
-    response object, raising an exception on failure.
-
-    Returns (response_or_None, last_error_detail_or_None).
-    """
     last_error = None
     for model_name in GEMINI_MODEL_CANDIDATES:
         for attempt in range(retries_per_model):
@@ -225,18 +182,6 @@ Customers in the **{theme}** theme have repeatedly raised related issues, includ
 
 
 def generate_quick_prd_from_feedback(raw_text: str) -> list:
-    """
-    Turns raw, unstructured customer feedback / support tickets (pasted
-    directly, not yet ingested into the `feedback` table) into a mini-PRD,
-    ported from the team's standalone FastAPI/CrewAI backend
-    (`Team3_AICopilot_backend`). Unlike `generate_prd()` (which works off an
-    already-classified feature request), this runs the raw text through the
-    full Feedback -> Feature -> Priority -> PRD agent chain in one go.
-
-    Returns a list of {"stage": str, "output": str} dicts, one per stage
-    (Feedback Analysis, Feature Proposals, Prioritization, PRD) so the UI can
-    show the intermediate reasoning as well as the final PRD.
-    """
     # 1) Try the CrewAI 4-agent crew first (matches the project's finalized
     #    architecture: CrewAI orchestration + Gemini).
     try:
@@ -414,12 +359,6 @@ def chat_response(history: list, context: str) -> str:
 
 
 def check_connection() -> dict:
-    """
-    Runs one real, minimal request against Gemini and reports what actually
-    happened. Returns {"status": "connected" | "no_key" | "error", "detail": str}.
-    Use this to see the real failure reason instead of guessing why AI
-    features fell back to offline templates.
-    """
     client = _get_client()
     if client is None:
         if _LAST_INIT_ERROR["stage"] == "key":

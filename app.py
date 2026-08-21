@@ -8,6 +8,7 @@ from screens.login import show_login
 from screens.register import show_register
 from screens.dashboard import show_dashboard
 from screens import theme_extraction_panel
+from screens import theme_validation
 from screens.prioritization_engine import show_prioritization_engine
 from screens.product_analytics import show_product_analytics
 from screens.ai_chat import show_ai_chat
@@ -159,7 +160,12 @@ else:
         st.subheader("Theme Insights")
         st.caption("Recurring pain points clustered from feedback, with optional AI enrichment "
                     "(sentiment, pain-point summary, intent) via the Theme Extraction Agent.")
-        theme_extraction_panel.render()
+
+        tab_clusters, tab_validate = st.tabs(["Theme Clusters", "Accuracy Validation"])
+        with tab_clusters:
+            theme_extraction_panel.render()
+        with tab_validate:
+            theme_validation.render()
 
     elif page == "Prioritization Engine":
         show_prioritization_engine()
