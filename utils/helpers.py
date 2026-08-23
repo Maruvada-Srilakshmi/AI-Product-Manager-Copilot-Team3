@@ -652,7 +652,12 @@ def run_theme_agent_enrichment(top_n: int = 6, timeout: int = 45):
 
 VALIDATION_ITEM_TABLES = {
     "feedback": {"table": "feedback", "label_col": "text", "theme_col": "theme"},
-    "feature_request": {"table": "feature_requests", "label_col": "title", "theme_col": "theme"},
+    # Feature requests store a shortened `title` (see _truncate_title above,
+    # used for compact display on the Dashboard/Reports/Prioritization
+    # Engine) separately from the full, untruncated `description`. The
+    # validation queue needs the reviewer to see the complete original
+    # feedback text, so it reads `description` here, not `title`.
+    "feature_request": {"table": "feature_requests", "label_col": "description", "theme_col": "theme"},
 }
 
 

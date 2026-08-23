@@ -113,8 +113,7 @@ def _render_review_queue(item_type: str):
     for _, row in queue.iterrows():
         item_id = int(row["id"])
         original_theme = row["theme"]
-        label_text = str(row["label"])
-        display_text = label_text if len(label_text) <= 160 else label_text[:160].rstrip() + "..."
+        display_text = str(row["label"])
 
         with st.container(border=True):
             st.markdown(f'<div class="validation-item-text">{display_text}</div>', unsafe_allow_html=True)
