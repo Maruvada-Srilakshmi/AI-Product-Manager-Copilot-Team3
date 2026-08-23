@@ -49,6 +49,33 @@ def score_sentiment(text: str):
     return label, round(float(score), 3)
 
 
+def _readable_theme_name(top_terms: list, cluster_id: int) -> str:
+    """
+    Turns a cluster's top TF-IDF terms into a short, readable theme name
+    instead of a raw slash-joined keyword dump like "Export / Search /
+    Support" (three unrelated top keywords stapled together, which reads
+    as a database export rather than a topic).
+
+    Two-word phrases (e.g. "response time", "search results") already
+    describe a topic on their own, so a phrase like that is preferred as
+    the whole name. Falls back to combining the top two single words with
+    "and" (e.g. "Export And Search") only when no phrase is available, and
+    never joins more than two terms so the result reads like a short
+    topic label rather than a keyword list.
+    """
+    if not top_terms:
+        return f"Theme {cluster_id + 1}"
+
+    phrases = [t for t in top_terms if " " in t]
+    words = [t for t in top_terms if " " not in t]
+
+    if phrases:
+        return phrases[0].title()
+    if len(words) >= 2:
+        return f"{words[0].title()} And {words[1].title()}"
+    return words[0].title()
+
+
 def extract_themes(texts: list, n_clusters: int = None):
     """
     Cluster a list of feedback strings into themes.
@@ -70,14 +97,17 @@ def extract_themes(texts: list, n_clusters: int = None):
     km = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
     sub_labels = km.fit_predict(X)
 
-    # Build human-readable theme names from top TF-IDF terms per cluster
+    # Build human-readable theme names from top TF-IDF terms per cluster.
+    # Look at a wider pool of candidate terms (8, not 3) so there's a
+    # decent chance of finding a natural two-word phrase to name the
+    # theme after, rather than always falling back to loose single words.
     terms = np.array(vectorizer.get_feature_names_out())
     theme_names = {}
     for cluster_id in range(n_clusters):
         centroid = km.cluster_centers_[cluster_id]
-        top_idx = centroid.argsort()[::-1][:3]
+        top_idx = centroid.argsort()[::-1][:8]
         top_terms = [t for t in terms[top_idx] if t]
-        theme_names[cluster_id] = " / ".join(top_terms).title() if top_terms else f"Theme {cluster_id + 1}"
+        theme_names[cluster_id] = _readable_theme_name(top_terms, cluster_id)
 
     labels = [0] * len(texts)
     for pos, orig_idx in enumerate(non_empty_idx):

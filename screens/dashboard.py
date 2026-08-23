@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from utils.helpers import (
-    fetch_feedback, fetch_features, fetch_documents, fetch_roadmap,
+    fetch_feedback, fetch_features, fetch_documents, fetch_roadmap, reload_dataset,
 )
 
 
@@ -217,12 +217,21 @@ def show_dashboard():
     docs = fetch_documents()
     roadmap = fetch_roadmap()
 
-    col_title, col_range = st.columns([3, 1])
+    col_title, col_range, col_reload = st.columns([3, 1, 1])
     with col_title:
         st.title("AI Product Manager Dashboard")
         st.caption("Live overview of your product's health, sourced from your ingested feedback and AI analysis.")
     with col_range:
         st.selectbox("Date Range", ["All time"], label_visibility="collapsed")
+    with col_reload:
+        if st.button("Reload Dataset", use_container_width=True, help="Re-ingest the bundled dataset if the underlying data has changed"):
+            with st.spinner("Reloading dataset..."):
+                result = reload_dataset()
+            if result.get("error"):
+                st.error(result["error"])
+            else:
+                st.success(f"Reloaded {result.get('ingested', 0)} feedback records.")
+                st.rerun()
 
     st.write("")
 
