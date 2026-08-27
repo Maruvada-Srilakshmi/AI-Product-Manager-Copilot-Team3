@@ -90,6 +90,16 @@ def show_prioritization_engine():
         st.caption("No prioritized features yet.")
         return
 
+    # The same underlying feedback can end up as more than one feature
+    # request row (e.g. once through normal ingestion and once through
+    # the "Quick PRD" flow on the PRD Generation page), which showed the
+    # same card twice here. Collapse those to a single card, keeping
+    # whichever copy is sorted first (highest RICE score, since the list
+    # above is already sorted that way).
+    normalized_text = (backlog["description"].fillna(backlog["title"]).astype(str)
+                        .str.strip().str.lower().str.split().str.join(" "))
+    backlog = backlog[~normalized_text.duplicated()]
+
     for _, row in backlog.iterrows():
         risk = row.get("risk_level") or "Medium"
         risk_color = _RISK_COLORS.get(risk, "#9CA3AF")
@@ -112,6 +122,22 @@ def show_prioritization_engine():
             with top_c3:
                 st.metric("ICE", f"{row['ice_score']:.1f}" if pd.notna(row.get("ice_score")) else "—")
 
+            _, prd_col = st.columns([3, 1])
+            with prd_col:
+                if st.button("Generate PRD", key=f"generate_prd_{int(row['feature_id'])}",
+                             use_container_width=True,
+                             help="Drafts a PRD for this feature on the PRD Generation page."):
+                    st.session_state["prd_target_feature_id"] = int(row["feature_id"])
+                    # Can't set st.session_state["nav_page"] directly here --
+                    # the sidebar radio (key="nav_page") was already created
+                    # earlier in this same run, and Streamlit forbids that.
+                    # "nav_target" is applied to nav_page at the top of
+                    # app.py on the next run, before the radio exists yet.
+                    st.session_state["nav_target"] = "PRD Generation"
+                    st.query_params["page"] = "PRD Generation"
+                    st.rerun()
+
+            st.write("")
             st.markdown(
                 f'<span class="prio-badge" style="background:{risk_color}22;color:{risk_color};">'
                 f'{risk} risk</span>'

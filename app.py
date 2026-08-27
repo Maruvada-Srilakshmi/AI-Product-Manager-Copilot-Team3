@@ -112,7 +112,7 @@ else:
         "Prioritization Engine",
         "Product Analytics",
         "AI Chat",
-        "Reports",
+        "PRD Generation",
         "Roadmap"
     ]
     # The currently selected page is also kept in the URL's query string, the
@@ -123,11 +123,28 @@ else:
     if remembered_page not in _NAV_PAGES:
         remembered_page = "Dashboard"
 
-    page = st.sidebar.radio(
-        "Navigation", _NAV_PAGES,
-        index=_NAV_PAGES.index(remembered_page),
-        key="nav_page",
-    )
+    # Seed the radio's own session-state value before it's created, instead
+    # of passing `index=` on every run. Once a keyed widget has been shown
+    # once, Streamlit resyncs st.session_state[key] from the browser's last
+    # rendered selection on every rerun -- so `index=` is silently ignored
+    # from then on, and a plain `st.session_state.pop("nav_page")` gets
+    # overwritten right back to the old selection before the script even
+    # starts. A programmatic redirect (e.g. the "Generate PRD" button on
+    # Prioritization Engine, or "View on Roadmap" on PRD Generation) can't
+    # set st.session_state["nav_page"] directly either -- Streamlit forbids
+    # touching a widget's session-state value once that widget has already
+    # been instantiated in the same run, which the sidebar radio below
+    # always has been by the time those buttons' code runs. Instead, those
+    # buttons set "nav_target", a plain (non-widget) session-state key,
+    # which is applied here at the very top of the *next* run, before the
+    # radio widget exists yet -- that's a legal place to set it.
+    nav_target = st.session_state.pop("nav_target", None)
+    if nav_target in _NAV_PAGES:
+        st.session_state["nav_page"] = nav_target
+    elif "nav_page" not in st.session_state:
+        st.session_state["nav_page"] = remembered_page
+
+    page = st.sidebar.radio("Navigation", _NAV_PAGES, key="nav_page")
     if st.query_params.get("page") != page:
         st.query_params["page"] = page
 
@@ -176,7 +193,7 @@ else:
     elif page == "AI Chat":
         show_ai_chat()
 
-    elif page == "Reports":
+    elif page == "PRD Generation":
         show_reports()
 
     elif page == "Roadmap":
