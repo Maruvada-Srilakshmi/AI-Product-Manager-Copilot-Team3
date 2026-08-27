@@ -63,10 +63,36 @@ def fetch_feedback() -> pd.DataFrame:
     return fetch_df("SELECT * FROM feedback WHERE workspace_id = ?", (ws_id(),))
 
 
+def _dedupe_by_feedback_text(df: pd.DataFrame, text_col: str = "description", title_col: str = "title") -> pd.DataFrame:
+    """
+    Collapses feature-request rows that represent the same underlying
+    customer feedback down to one row each. The same feedback can end up
+    inserted twice -- once through normal ingestion, and again through the
+    "Quick PRD" tool on the PRD Generation page if the same text gets
+    pasted in there -- because the two flows compute the row's `title`
+    differently (a different character-limit cut of the text), so a
+    title-only duplicate check misses it. This showed the same feature
+    request twice on the Dashboard, Prioritization Engine, Product
+    Analytics, and Reports, all of which read feature requests through
+    fetch_features() or fetch_prioritized_backlog() below.
+
+    Matches on the full feedback text instead (normalized: trimmed,
+    lowercased, whitespace-collapsed), and keeps whichever duplicate is
+    sorted first -- both callers already sort by votes/RICE descending,
+    so that's the more complete, higher-voted copy.
+    """
+    if df.empty:
+        return df
+    normalized = (df[text_col].fillna(df[title_col]).astype(str)
+                  .str.strip().str.lower().str.split().str.join(" "))
+    return df[~normalized.duplicated()]
+
+
 def fetch_features() -> pd.DataFrame:
-    return fetch_df(
+    df = fetch_df(
         "SELECT * FROM feature_requests WHERE workspace_id = ? ORDER BY votes DESC", (ws_id(),)
     )
+    return _dedupe_by_feedback_text(df)
 
 
 def fetch_documents() -> pd.DataFrame:
@@ -86,7 +112,7 @@ def fetch_analytics() -> pd.DataFrame:
 
 
 def fetch_prioritized_backlog() -> pd.DataFrame:
-    return fetch_df(
+    df = fetch_df(
         """SELECT f.id as feature_id, f.title, f.description, f.theme, f.votes, f.status,
                   p.reach, p.impact, p.confidence, p.effort, p.rice_score,
                   p.ice_score, p.risk_level, p.ai_rationale
@@ -94,6 +120,7 @@ def fetch_prioritized_backlog() -> pd.DataFrame:
            WHERE f.workspace_id = ? ORDER BY p.rice_score DESC""",
         (ws_id(),),
     )
+    return _dedupe_by_feedback_text(df)
 
 
 # ---------------- Roadmap Planning Agent ----------------

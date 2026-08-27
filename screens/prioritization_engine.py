@@ -90,16 +90,6 @@ def show_prioritization_engine():
         st.caption("No prioritized features yet.")
         return
 
-    # The same underlying feedback can end up as more than one feature
-    # request row (e.g. once through normal ingestion and once through
-    # the "Quick PRD" flow on the PRD Generation page), which showed the
-    # same card twice here. Collapse those to a single card, keeping
-    # whichever copy is sorted first (highest RICE score, since the list
-    # above is already sorted that way).
-    normalized_text = (backlog["description"].fillna(backlog["title"]).astype(str)
-                        .str.strip().str.lower().str.split().str.join(" "))
-    backlog = backlog[~normalized_text.duplicated()]
-
     for _, row in backlog.iterrows():
         risk = row.get("risk_level") or "Medium"
         risk_color = _RISK_COLORS.get(risk, "#9CA3AF")
