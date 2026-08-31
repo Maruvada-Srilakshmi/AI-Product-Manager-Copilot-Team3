@@ -1,7 +1,3 @@
-"""
-Central SQLite data layer for the AI Product Manager Copilot.
-Every module reads/writes through these helpers so the schema lives in one place.
-"""
 import sqlite3
 import os
 import datetime as dt

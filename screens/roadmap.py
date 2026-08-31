@@ -1,9 +1,3 @@
-"""
-Product Roadmap screen
-
-Reads an existing PRD and uses the AI to generate a separated, 
-standalone 2-Sprint Implementation Roadmap document.
-"""
 import streamlit as st
 from src.db import execute, now
 from utils.helpers import fetch_documents, fetch_features, ws_id

@@ -1,16 +1,3 @@
-"""
-AI-Based Prioritization & Impact Analysis Engine panel
-(design doc: AI PM Copilot Multi-Agent System Design -> "7. Prioritization Agent")
-
-Mirrors screens/theme_extraction_panel.py: a fast deterministic view (the
-backlog sorted by whatever RICE scores already exist — computed instantly
-via the votes-based heuristic in utils.helpers.ensure_rice_score, no LLM
-call needed) plus an optional "Run AI Impact Analysis" action that calls
-the CrewAI-based Impact & Risk Analyst agent in src/prioritization_engine.py
-(via utils.helpers.run_ai_prioritization_engine) to (re)score impact,
-effort, confidence, and risk for the top features by votes, then derives
-RICE, ICE, and a priority recommendation from those scores.
-"""
 import streamlit as st
 import pandas as pd
 

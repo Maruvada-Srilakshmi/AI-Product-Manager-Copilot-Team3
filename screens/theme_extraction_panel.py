@@ -1,29 +1,3 @@
-"""
-Theme Extraction Agent panel (design doc: Theme Agent — topic extraction,
-theme classification, sentiment analysis, pain point identification, intent
-detection).
-
-This module owns everything needed to render the Theme Extraction Agent as a
-self-contained panel: its own CSS, its own color maps, and its own render
-function. It has no dependency on any specific screen — `render()` can be
-dropped into the Dashboard, its own page, or anywhere else in the app by
-importing this module and calling `render()`.
-
-Data flow:
- - The base Theme | Frequency table renders instantly from feedback already
-   classified during ingestion (`utils.helpers.theme_frequency_table`) — no
-   LLM call needed.
- - An optional "Analyze with AI" action calls the CrewAI-based agent in
-   `src/theme_agent.py` (via `utils.helpers.run_theme_agent_enrichment`) to
-   add sentiment, a pain-point summary, and detected intent per theme.
-
-Redesign notes: the previous version packed sentiment, intent, and pain
-point into one crowded line per theme, used jargon ("Theme Clustering
-Agent", "Enrich with AI"), and surfaced a developer-facing error message
-straight to the user. This version gives each theme its own labeled card
-with one fact per line, uses plain-language headings, and moves technical
-error detail behind an optional "Technical details" expander.
-"""
 import streamlit as st
 
 from utils.helpers import theme_frequency_table, run_theme_agent_enrichment

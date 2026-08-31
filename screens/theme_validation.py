@@ -1,27 +1,3 @@
-"""
-Accuracy Validation panel.
-
-Closes the loop the app previously had no way to close: it clustered
-feedback into themes (issue detection) and grouped feature requests into
-themes (feature grouping) using TF-IDF/KMeans (src/nlp_utils.extract_themes),
-but never measured whether those assignments were actually correct.
-
-This panel lets a reviewer confirm or correct the AI-assigned theme on
-individual feedback items and feature requests, then reports the resulting
-accuracy so "how good is the clustering" has a real, measured answer instead
-of an assumption.
-
-Data flow:
- - The review queue (utils.helpers.theme_validation_queue) pulls items that
-   haven't been reviewed yet, one theme-assignment at a time.
- - Marking an item "Correct" or "Incorrect" writes a verdict
-   (utils.helpers.record_theme_validation). An "Incorrect" verdict can also
-   supply the right theme, which is written back onto the source row so the
-   correction actually fixes the grouping, not just the accuracy tally.
- - The accuracy dashboard (utils.helpers.theme_validation_summary) rolls up
-   every verdict recorded so far into overall / issue-detection /
-   feature-grouping accuracy percentages.
-"""
 import streamlit as st
 
 from utils.helpers import (

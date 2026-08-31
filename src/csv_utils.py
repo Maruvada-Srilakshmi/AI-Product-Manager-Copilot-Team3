@@ -1,14 +1,3 @@
-"""
-Column-agnostic CSV ingestion helpers.
-
-Lets the Data Ingestion page accept ANY CSV — regardless of what its columns
-are named — by:
- 1. Reading the file robustly (handles different delimiters/encodings).
- 2. Guessing which column corresponds to each expected field, using common
-    aliases first, then a content-based heuristic as a fallback.
- 3. Still letting the user override every guess via a dropdown before
-    ingesting, so nothing is ever silently mis-mapped.
-"""
 import io
 import pandas as pd
 

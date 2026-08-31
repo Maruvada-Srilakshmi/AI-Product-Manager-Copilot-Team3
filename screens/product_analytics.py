@@ -1,19 +1,3 @@
-"""
-Module 3: Product Analytics Data Integration Module
-
-Ingests and visualizes product usage/event data (feature adoption, session
-activity, click volume, etc.) alongside the rest of the workspace's data,
-and cross-references it with customer-requested features (Module 5) to
-show which requested features are actually catching on.
-
-Data flow mirrors the Feedback Ingestion path:
- - The bundled `data/product_analytics_dataset.csv` is auto-seeded into the
-   `analytics_events` table on first launch (utils.helpers.ensure_analytics_seeded,
-   called from app.py), so this page always has data to show.
- - All aggregation (usage by feature, usage trend, event mix, usage-vs-demand
-   correlation) is deterministic — src/analytics_utils.py — so this page
-   never depends on an LLM/API key being configured.
-"""
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
