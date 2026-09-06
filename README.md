@@ -1,71 +1,224 @@
-# AI Product Manager Copilot — Combined Build
+# AI Product Manager Copilot
 
-This build combines:
-- **Frontend UI** from `AI_Product_Manager_Copilot.zip` (the polished Streamlit screens: Dashboard,
-  AI Chat, Reports, Roadmap, Settings, Login).
-- **Complete backend** from `AI-Product-Manager-Copilot-Streamlit.zip` (`src/`: SQLite data layer,
-  TF-IDF/KMeans theme & sentiment classification, column-agnostic CSV ingestion, and Gemini/CrewAI-powered
-  PRD generation, impact scoring, executive summaries, and the chat assistant).
+An AI-native workspace that takes a product team from raw customer feedback all the way
+to a prioritized, sequenced roadmap with generated PRDs and user stories — built as a
+Streamlit application backed by Google Gemini and a CrewAI multi-agent pipeline.
 
-Every screen that previously used hardcoded/mock data now reads from and writes to the real SQLite
-workspace (`data/copilot.db`, created automatically on first run) and calls the real AI backend.
+Every AI-powered feature in the app follows a three-layer resilience pattern: try the
+CrewAI multi-agent crew first, fall back to a direct Gemini call if the crew fails, and
+fall back again to an offline template if no `GEMINI_API_KEY` is configured at all. This
+means the app is fully demoable and testable with zero API keys, while still producing
+real generative output whenever a key is present.
 
-There is **no manual upload screen**. `data/customer_feedback_dataset.csv` is bundled with the app and
-loaded straight into the database automatically the first time it runs — via `ensure_dataset_seeded()`
-in `utils/helpers.py`, which is called once at startup in `app.py`. That data is immediately run through
-the same AI pipeline (theme clustering, sentiment scoring, feature-request auto-promotion) and the
-Dashboard reads the processed results directly from the database. Settings → **Data** shows what's
-currently stored and has a "Reload dataset" button to wipe and re-run the pipeline on demand.
+---
 
-## What's wired up
+## Table of Contents
 
-| Screen | Backed by |
+- [Modules](#modules)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Data Model](#data-model)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Architecture Notes](#architecture-notes)
+- [Current Status](#current-status)
+
+---
+
+## Modules
+
+The app is organized around 10 planned modules. All 10 are implemented.
+
+### 1. User Authentication and Workspace Management
+Username/password login and registration (`screens/login.py`, `screens/register.py`)
+with hashed credentials, a default workspace created per user, and session persistence
+via `st.query_params` so a browser refresh doesn't log the user out. Workspace-level
+settings — renaming the workspace, light/dark appearance, a live Gemini connection test,
+and dataset status/reload controls — live in a dedicated **Settings** screen
+(`screens/settings.py`).
+
+### 2. Customer Feedback and Support Ticket Ingestion
+Feedback is ingested from a bundled CSV dataset (`data/customer_feedback_dataset.csv`)
+on first run via `ensure_dataset_seeded()`, or reloaded on demand from Settings. Each
+row is cleaned, sentiment-scored, and classified into a theme as part of ingestion.
+
+### 3. Product Analytics Data Integration
+A separate bundled analytics dataset (`data/product_analytics_dataset.csv`) is ingested
+into an `analytics_events` table and surfaced on the **Product Analytics** screen —
+feature usage over time, event mix, and a usage-vs-demand comparison against feature
+requests (`src/analytics_utils.py`).
+
+### 4. Feedback Classification and Theme Extraction Engine
+Feedback text is clustered into themes with a TF-IDF + KMeans pipeline
+(`src/nlp_utils.py`), enriched into plain-language theme names and summaries by a
+CrewAI/Gemini agent (`src/theme_agent.py`), and displayed on the **Theme Insights**
+screen (`screens/theme_extraction_panel.py`). A companion **accuracy validation** view
+(`screens/theme_validation.py`) lets a PM review and correct theme groupings, tracked in
+the `theme_validations` table.
+
+### 5. Feature Request Aggregation
+Feedback that reads as a feature request is aggregated into the `feature_requests`
+table, with matching/near-duplicate requests merged and their vote counts combined
+rather than creating duplicate entries.
+
+### 6. AI-Based Prioritization and Impact Analysis Engine
+RICE and ICE scoring (`src/prioritization_engine.py`) plus an AI impact-scoring crew
+(`run_impact_scoring_crew` in `src/agents.py`) that estimates reach, impact, confidence,
+and effort for each feature request, surfaced on the **Prioritization Engine** screen
+with High/Medium/Low priority buckets.
+
+### 7. PRD and User Story Generation
+A four-agent CrewAI pipeline (Feedback Agent → Feature Agent → Priority Agent → PRD
+Agent) drafts a full PRD for a feature request, and a second, focused generator produces
+a standalone **User Stories** document (3–5 Agile stories with acceptance criteria) for
+the same feature. Both live on the **Reports** screen (`screens/reports.py`) as
+independently generated, viewable, downloadable documents, alongside an AI-generated
+executive summary.
+
+### 8. Roadmap Planning and Visualization
+An AI roadmap agent (`src/roadmap_agent.py`) plans dependencies, allocates features to
+sprints, and topologically sequences releases; results are shown on the **Roadmap**
+screen (`screens/roadmap.py`). Generating a PRD automatically schedules that feature
+onto the roadmap.
+
+### 9. Conversational Product Intelligence Assistant
+A chat interface (`screens/ai_chat.py`) backed by `run_chat_crew` in `src/agents.py`,
+with conversation history persisted per workspace in the `chat_history` table.
+
+### 10. Reporting and Insights Dashboard
+The **Dashboard** screen (`screens/dashboard.py`) surfaces top-line metrics, feedback
+sentiment, top themes, and top requested features; **Reports** adds an AI-generated
+executive summary and a Feedback Insights tab (top issues, top requested features,
+sentiment breakdown).
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
 |---|---|
-| **Startup seeding** | `utils/helpers.ensure_dataset_seeded()` → reads `data/customer_feedback_dataset.csv`, ingests into `feedback` via the same pipeline as `ingest_and_classify` (theme clustering + sentiment via `src/nlp_utils.py`), auto-promotes feature-request-like feedback into `feature_requests` |
-| **Dashboard** | Live aggregates from `feedback`, `feature_requests`, `documents`, `roadmap_items` — reflects whatever is currently in the database |
-| **AI Chat** | `src/llm.chat_response` (CrewAI agent → direct Gemini call → offline fallback), grounded in your real feedback/feature/roadmap data |
-| **Reports** | PRD/User Story generation via `src/llm.generate_prd` / `generate_user_stories`; RICE prioritization stored in `prioritization` table; executive summary via `src/llm.generate_executive_summary`; **Quick PRD from raw feedback** via `src/llm.generate_quick_prd_from_feedback` (4-agent Feedback → Feature → Priority → PRD chain, ported from `Team3_AICopilot_backend`) |
-| **Roadmap** | Real `roadmap_items` table, quarter-grouped, with AI recommendations based on RICE-ranked unscheduled features |
-| **Settings** | Live Gemini connection test (`src/llm.check_connection`), editable workspace name persisted to `workspaces` table, **Data** tab to inspect/reload the seeded dataset |
+| UI | Streamlit |
+| Language | Python |
+| Database | SQLite |
+| AI orchestration | CrewAI (multi-agent crews) |
+| LLM | Google Gemini (`google-genai`) |
+| Data / ML | pandas, numpy, scikit-learn (TF-IDF + KMeans for theme clustering) |
+| Charts | Plotly |
+| Styling | Custom CSS via `src/style.py` and `assets/styles.css`, CSS variables for light/dark theming |
 
-## Running it
+See `requirements.txt` for exact version constraints.
+
+---
+
+## Project Structure
+
+```
+.
+├── app.py                       # Entry point: auth gate, nav, page routing
+├── requirements.txt
+├── data/
+│   ├── customer_feedback_dataset.csv
+│   └── product_analytics_dataset.csv
+├── src/
+│   ├── db.py                    # SQLite schema + query helpers
+│   ├── llm.py                   # Gemini calls + offline-template fallbacks
+│   ├── agents.py                # CrewAI crews (impact scoring, PRD, chat)
+│   ├── theme_agent.py           # Theme enrichment agent
+│   ├── prioritization_engine.py # RICE/ICE scoring
+│   ├── roadmap_agent.py         # Dependency planning + sprint sequencing
+│   ├── nlp_utils.py             # Sentiment scoring, TF-IDF/KMeans theming
+│   ├── analytics_utils.py       # Product analytics aggregations
+│   └── style.py                 # Theme CSS injection
+├── screens/
+│   ├── login.py / register.py
+│   ├── dashboard.py
+│   ├── theme_extraction_panel.py / theme_validation.py
+│   ├── prioritization_engine.py
+│   ├── product_analytics.py
+│   ├── ai_chat.py
+│   ├── reports.py                # PRD + User Stories + Executive Summary
+│   ├── roadmap.py
+│   ├── settings.py                # Workspace, appearance, AI connection, data
+│   └── user_profile.py
+└── utils/
+    └── helpers.py                # Cross-screen helpers (seeding, roadmap scheduling, etc.)
+```
+
+---
+
+## Data Model
+
+SQLite tables (all scoped by `workspace_id`):
+
+| Table | Purpose |
+|---|---|
+| `workspaces` | One row per workspace (name, created_at) |
+| `users` | Login credentials, linked to a default workspace |
+| `feedback` | Ingested customer feedback: text, sentiment, theme |
+| `analytics_events` | Product usage events for the Product Analytics module |
+| `feature_requests` | Aggregated feature requests with vote counts |
+| `prioritization` | RICE/ICE scores and priority tier per feature |
+| `documents` | Generated PRDs, User Stories, Executive Summaries, and Roadmap docs |
+| `roadmap_items` | Sprint-sequenced roadmap entries |
+| `chat_history` | Conversational assistant history |
+| `theme_validations` | PM corrections/approvals of AI theme groupings |
+
+---
+
+## Getting Started
 
 ```bash
+# 1. Create and activate a virtual environment
+python -m venv crew_env
+source crew_env/bin/activate      # Windows: crew_env\Scripts\activate
+
+# 2. Install dependencies
 pip install -r requirements.txt
+
+# 3. (Optional) Configure a Gemini API key for real generative output
+cp .streamlit/secrets.toml.example .streamlit/secrets.toml
+# then edit .streamlit/secrets.toml and set GEMINI_API_KEY
+
+# 4. Run the app
 streamlit run app.py
 ```
 
-### Enabling real Gemini AI features (optional)
+Without a `GEMINI_API_KEY`, the app still runs end-to-end: theme extraction falls back
+to TF-IDF/KMeans-only naming, and PRD/user-story/roadmap/chat/executive-summary
+generation fall back to their offline templates.
 
-Without a key, PRD generation, impact scoring, executive summaries, and chat all fall back to
-deterministic offline templates — the app runs end-to-end with zero setup. To enable full generative
-output:
+On first run, the app seeds the default workspace with the bundled feedback and
+analytics datasets. Both can be re-ingested at any time from **Settings → Data**.
 
-```bash
-cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-# then edit .streamlit/secrets.toml and set GEMINI_API_KEY
-```
+---
 
-`crewai` and `google-genai` are optional extras used only when a key is configured; core functionality
-(ingestion, classification, RICE scoring, dashboards) works fully offline via `scikit-learn`.
+## Configuration
 
-## Project layout
+Environment variable / secret:
 
-```
-app.py                  # Entry point: login gate + sidebar navigation
-screens/                # UI screens (from the frontend project)
-src/                     # Backend: db.py, nlp_utils.py, csv_utils.py, llm.py, agents.py, style.py
-utils/helpers.py         # Glue layer composing src/ functions for the screens
-data/                     # SQLite database + bundled seed dataset (created on first run)
-assets/                   # Images/CSS from the original frontend
-```
+- `GEMINI_API_KEY` — enables live Gemini calls and the CrewAI crews. Test connectivity
+  any time from **Settings → AI Connection**.
 
-### Quick PRD from raw feedback
+Streamlit theme (`.streamlit/config.toml`) sets the base light palette; in-app light/dark
+mode is a separate toggle (top-right, or **Settings → Appearance**) driven by CSS
+variables in `src/style.py`.
 
-`Reports → PRD Documents → ⚡ Quick PRD from raw feedback` lets you paste any unstructured customer
-feedback or support ticket text and get a mini-PRD immediately — no need to ingest it into the database
-first. This ports the 4-agent CrewAI chain (Feedback Agent → Feature Agent → Priority Agent → PRD Agent)
-from the team's standalone `Team3_AICopilot_backend` FastAPI service into this app's existing
-Gemini/CrewAI backend (`src/agents.run_quick_prd_from_text_crew`, wrapped by
-`src/llm.generate_quick_prd_from_feedback`), following the same three-layer fallback used everywhere
-else in the app: CrewAI crew → direct Gemini call → offline template.
+---
+
+## Architecture Notes
+
+- **`_ensure_column()`** in `src/db.py` — safe, idempotent SQLite migrations (adds a
+  column only if it doesn't already exist), so schema changes don't require a destructive
+  reset of `data/copilot.db`.
+- **`(result, error)` return tuples** — agent-calling functions return a tuple rather
+  than raising, so screens can show a graceful inline error instead of crashing on an
+  API hiccup.
+- **Three-layer resilience** — CrewAI crew → direct Gemini call → offline template,
+  applied consistently to every generative feature (themes, prioritization, PRDs, user
+  stories, roadmap, chat, executive summaries).
+- **Truncated titles, full text on demand** — `feature_requests.title` is truncated for
+  compact display (chart legends, cards); screens that need the full text look it up via
+  the untruncated `description` field rather than storing two copies of the truth.
+- High-level and low-level architecture diagrams are included as image files
+  (`High Level Architecture`, `Low Level Architecture`) alongside a written breakdown in
+  `DATA_AND_ARCHITECTURE.md`.
