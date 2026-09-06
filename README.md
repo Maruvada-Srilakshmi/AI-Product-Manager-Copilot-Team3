@@ -21,7 +21,6 @@ real generative output whenever a key is present.
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
 - [Architecture Notes](#architecture-notes)
-- [Current Status](#current-status)
 
 ---
 
