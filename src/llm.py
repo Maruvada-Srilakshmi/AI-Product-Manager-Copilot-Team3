@@ -242,7 +242,13 @@ Drafted from raw feedback: "{first_line[:120]}"
 def generate_user_stories(feature_title: str, description: str) -> str:
     system = "You write crisp Agile user stories with acceptance criteria in Markdown, 3-5 stories."
     user = f"Feature: {feature_title}\nDescription: {description}"
-    result = _call(system, user, max_tokens=700)
+    # Same class of bug hit (and fixed) in generate_executive_summary and
+    # generate_implementation_roadmap above: 700 tokens left no headroom
+    # once the model's own reasoning was counted against the budget, so the
+    # visible text was regularly cut off after a single opening sentence
+    # (e.g. "Here is a set of 3 crisp Agile user stories...") with none of
+    # the actual stories following it.
+    result = _call(system, user, max_tokens=2048)
     if result and not result.startswith("__ERROR__"):
         return result
     return f"""### User Stories: {feature_title}
