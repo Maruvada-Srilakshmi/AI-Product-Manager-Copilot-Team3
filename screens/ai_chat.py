@@ -1,4 +1,6 @@
 import streamlit as st
+import re
+import html
 from datetime import datetime
 
 from src.llm import chat_response
@@ -65,6 +67,72 @@ _SUGGESTED_QUESTIONS = [
 ]
 
 _WELCOME = "Hi! I'm your AI Product Manager assistant. Ask me anything about your product, feedback, or roadmap."
+
+
+def _inline_markdown(segment: str) -> str:
+    segment = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", segment)
+    segment = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<em>\1</em>", segment)
+    segment = re.sub(r"`(.+?)`", r"<code>\1</code>", segment)
+    return segment
+
+
+def _render_markdown_lite(text: str) -> str:
+    """
+    Converts the practical subset of Markdown that Gemini replies actually
+    use (headers, bold, italics, inline code, bullet/numbered lists) into
+    HTML, so it displays correctly inside the custom chat bubble.
+
+    Previously the AI reply was embedded with only `\\n` -> `<br>`
+    replacement before being dropped into a raw HTML <div>. Content inside
+    a raw HTML block isn't reparsed as Markdown, so literal '#' and '*'
+    characters (e.g. "### **1. Reporting Suite Gaps**") were showing up
+    verbatim instead of being rendered as headings and bold text.
+    """
+    text = html.escape(text)
+    list_type = None
+    rendered_lines = []
+
+    for raw_line in text.split("\n"):
+        line = raw_line.strip()
+        header_match = re.match(r"^(#{1,4})\s+(.*)$", line)
+        bullet_match = re.match(r"^[-*]\s+(.*)$", line)
+        numbered_match = re.match(r"^\d+\.\s+(.*)$", line)
+
+        if header_match:
+            if list_type:
+                rendered_lines.append(f"</{list_type}>")
+                list_type = None
+            level = min(len(header_match.group(1)) + 2, 6)
+            rendered_lines.append(
+                f"<h{level} style='margin:8px 0 4px;'>{_inline_markdown(header_match.group(2))}</h{level}>"
+            )
+        elif bullet_match:
+            if list_type != "ul":
+                if list_type:
+                    rendered_lines.append(f"</{list_type}>")
+                rendered_lines.append("<ul style='margin:4px 0; padding-left:20px;'>")
+                list_type = "ul"
+            rendered_lines.append(f"<li>{_inline_markdown(bullet_match.group(1))}</li>")
+        elif numbered_match:
+            if list_type != "ol":
+                if list_type:
+                    rendered_lines.append(f"</{list_type}>")
+                rendered_lines.append("<ol style='margin:4px 0; padding-left:20px;'>")
+                list_type = "ol"
+            rendered_lines.append(f"<li>{_inline_markdown(numbered_match.group(1))}</li>")
+        else:
+            if list_type:
+                rendered_lines.append(f"</{list_type}>")
+                list_type = None
+            if line:
+                rendered_lines.append(f"<div>{_inline_markdown(line)}</div>")
+            else:
+                rendered_lines.append("<div style='height:6px;'></div>")
+
+    if list_type:
+        rendered_lines.append(f"</{list_type}>")
+
+    return "".join(rendered_lines)
 
 
 def _history_for_backend():
@@ -146,7 +214,7 @@ def show_ai_chat():
                         unsafe_allow_html=True
                     )
                 else:
-                    formatted = msg["text"].replace("\n", "<br>")
+                    formatted = _render_markdown_lite(msg["text"])
                     st.markdown(
                         f'<div class="chat-ai-row">'
                         f'<div class="chat-ai-avatar">🤖</div>'

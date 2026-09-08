@@ -2,7 +2,6 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
-import random
 
 from utils.helpers import (
     fetch_feedback, fetch_features, fetch_documents, fetch_roadmap, reload_dataset,
@@ -199,42 +198,56 @@ def _donut_chart(labels, values, colors, height=220):
     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
-def _business_impact_matrix(features: pd.DataFrame):
-    if features.empty:
-        st.caption("No features available for the impact matrix.")
+_SENTIMENT_COLORS = {"Positive": "#22C55E", "Neutral": "#F59E0B", "Negative": "#EF4444"}
+
+
+def _sentiment_by_theme_chart(feedback: pd.DataFrame, top_n: int = 6):
+    """
+    Sentiment by Theme: for the most-mentioned themes, how much of that
+    feedback is Positive/Neutral/Negative. Ties together two things that
+    today only exist as separate, single-dimension panels lower on this
+    page -- Top Issues (negative-only counts per theme) and Sentiment
+    Analysis (an overall breakdown with no theme context) -- so a PM can
+    see not just which theme is loudest, but whether it's actually a
+    problem or just heavily discussed.
+    """
+    if feedback.empty or "theme" not in feedback.columns or "sentiment" not in feedback.columns:
+        st.caption("No categorized feedback available yet.")
         return
 
-    df = features.copy()
-    
-    # Generate a realistic, consistent spread of data if columns are missing
-    if "impact" not in df.columns:
-        random.seed(42) # Keeps the chart consistent between page reloads
-        df["impact"] = [random.randint(1, 5) for _ in range(len(df))]
-    
-    if "effort" not in df.columns:
-        random.seed(24) 
-        df["effort"] = [random.randint(1, 5) for _ in range(len(df))]
-        
-    if "votes" not in df.columns:
-        df["votes"] = [random.randint(5, 50) for _ in range(len(df))]
+    fb = feedback.dropna(subset=["theme", "sentiment"])
+    if fb.empty:
+        st.caption("No categorized feedback available yet.")
+        return
 
-    fig = px.scatter(
-        df,
-        x="effort",
-        y="impact",
-        size="votes",
-        color="title",
-        hover_name="title",
-        range_x=[0, 6],
-        range_y=[0, 6],
-        labels={"effort": "Engineering Effort (1-5)", "impact": "Business Impact (1-5)"}
+    theme_totals = fb["theme"].value_counts().head(top_n)
+    fb = fb[fb["theme"].isin(theme_totals.index)]
+
+    counts = fb.groupby(["theme", "sentiment"]).size().reset_index(name="count")
+
+    # Largest theme at the top of the horizontal bar chart
+    theme_order = theme_totals.sort_values(ascending=True).index.tolist()
+    sentiment_order = [s for s in ["Positive", "Neutral", "Negative"] if s in counts["sentiment"].unique()]
+
+    fig = px.bar(
+        counts,
+        x="count",
+        y="theme",
+        color="sentiment",
+        orientation="h",
+        category_orders={"theme": theme_order, "sentiment": sentiment_order},
+        color_discrete_map=_SENTIMENT_COLORS,
+        labels={"count": "Feedback Items", "theme": "", "sentiment": "Sentiment"},
     )
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         margin=dict(l=10, r=10, t=30, b=10),
-        showlegend=False,
-        height=320
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5, title=None),
+        height=320,
+        barmode="stack",
+        xaxis=dict(showgrid=True, gridcolor="#F3F4F6"),
+        yaxis=dict(showgrid=False),
     )
     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
@@ -362,9 +375,9 @@ def show_dashboard():
     
     with mat_col:
         with st.container(border=True):
-            st.markdown('<div class="panel-title">Business Impact vs. Effort Matrix</div>', unsafe_allow_html=True)
-            st.caption("Identify quick wins (Top-Left) and resource sinks (Bottom-Right).")
-            _business_impact_matrix(features)
+            st.markdown('<div class="panel-title">Sentiment by Theme</div>', unsafe_allow_html=True)
+            st.caption("Which pain points are actually negative, not just heavily discussed.")
+            _sentiment_by_theme_chart(feedback)
             
     with vel_col:
         with st.container(border=True):
